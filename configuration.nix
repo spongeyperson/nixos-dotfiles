@@ -10,13 +10,15 @@
       ./hardware-configuration.nix
     ];
 
+  # Nix Unfree
+  nixpkgs.config.allowUnfree = true;
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
+  #boot.loader.grub.version = 2; # no longer needed
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
@@ -26,7 +28,7 @@
 
   networking.hostName = "Spongey-PC"; # Define your hostname.
   # Pick only one of the below networking options.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -82,7 +84,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  Define a user account. Don't forget to set a password with ‘passwd’.
+  #Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tyler = {
     isNormalUser = true;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
@@ -144,11 +146,11 @@
     etcher
     # art
     krita
-    # virtualization, qemu
+    # virtualisation, qemu
     spice
     docker-compose
     virt-manager
-    gnome3.dconf # needed for saving settings in virt-manager
+    gnome3.dconf-editor # needed for saving settings in virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
     libvirt
     # fsmount,webdav
@@ -185,15 +187,16 @@
   #Virt-Manager Services
   services.qemuGuest.enable = true;
 
-  virtualization.libvirtd = {
+  virtualisation.libvirtd = {
     enable = true;
-    qemuOvmf = true;
-    qemuRunAsRoot = true;
+    qemu.ovmf.enable = true;
+    qemu.runAsRoot = true;
     onBoot = "ignore";
     onShutdown = "shutdown";
   };
 
-  virtualization.docker.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
