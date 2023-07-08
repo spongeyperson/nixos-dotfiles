@@ -51,6 +51,18 @@
     };
 
   swapDevices = [ ];
+  
+  # CIFS Mount (Samba)
+  environment.systemPackages = [ pkgs.cifs-utils ];
+  fileSystems."/mnt/Samba/NAS" = {
+      device = "//192.168.0.201/NAS";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

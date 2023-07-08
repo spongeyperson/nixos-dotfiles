@@ -150,6 +150,7 @@
       barrier
       anydesk
       filelight
+      lutris
       
       # GUI Audio Manipulation
       pavucontrol
@@ -191,6 +192,7 @@
     git
     man
     lshw
+    lsof
     ffmpeg
     ncurses5
     coreutils
