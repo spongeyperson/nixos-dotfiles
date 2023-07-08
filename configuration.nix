@@ -10,24 +10,40 @@
       ./hardware-configuration.nix
     ];
 
-  # Nix Unfree
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [ "electron-12.2.3" ];
+  # Nix Package Manager Configuration
+  nixpkgs.config = {
+	# Nix Allow Unfree Packages
+	allowUnfree = true;
+	permittedInsecurePackages = [ "electron-12.2.3" ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  #boot.loader.grub.version = 2; # no longer needed
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "nodev"; # or "nodev" for efi only
+  # boot.loader.grub.enable = true;
+  # #boot.loader.grub.version = 2; # no longer needed
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.useOSProber = true;
+  # # boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # # Define on which hard drive you want to install Grub.
+  # boot.loader.grub.device = "nodev"; # or "nodev" for efi only
+
+  boot.loader = {
+  efi = {
+    canTouchEfiVariables = true;
+    efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+  };
+  grub = {
+    enable = true;
+    efiSupport = true;
+    #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+    device = "nodev";
+    #useOSProber = true;
+  };
+};
 
   networking.hostName = "Spongey-PC"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -110,6 +126,7 @@
       tree
       jdk8
       jdk17
+      barrier
     ];
   };
 
@@ -162,6 +179,8 @@
     fuse
     sshfs
     cadaver
+    # icons
+    papirus-icon-theme
   ];
   # Fonts
   fonts.fonts = with pkgs; [
@@ -181,14 +200,19 @@
   # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
   programs.dconf.enable = true;
 
+  # Services
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.flatpak.enable = true;
-
-  #Virt-Manager Services
-  services.qemuGuest.enable = true;
+  services = {
+  openssh.enable = true;
+  flatpak.enable = true;
+  fstrim.enable = true;
+  #Virt-Manager Service
+  qemuGuest.enable = true;
+  };
+  
+  #services.openssh.enable = true;
+  #services.flatpak.enable = true;
+  #services.fstrim.enable = true;
 
   virtualisation.libvirtd = {
     enable = true;

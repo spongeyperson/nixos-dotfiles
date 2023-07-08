@@ -40,7 +40,7 @@
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "ssd" "space_cache=v2" "compress=zstd" "noatime" ];
+      options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
 
   fileSystems."/boot/efi" =
