@@ -96,13 +96,19 @@
   };
   
   # Vulkan Support
-  hardware.opengl = {
-	driSupport = true;
-	driSupport32Bit = true;
-	extraPackages = with pkgs; [
-		rocm-opencl-icd
-		rocm-opencl-runtime
-	];
+
+  hardware = {
+    opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
+      	extraPackages = with pkgs; [
+          rocm-opencl-icd
+          rocm-opencl-runtime
+	      ];
+    };
+    bluetooth = {
+      enable = true;
+    };
   };
   
   
@@ -124,22 +130,42 @@
 	# FIX "GTK themes are not applied in Wayland applications"
 	# https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
 	dconf.enable = true;
+  fish.enable = true;
   };
 
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.defaultUserShell = pkgs.fish;
   users.users.tyler = {
     isNormalUser = true;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
     
-      # Userspace,GUI
+      # Userspace, GUI
       steam
       authy
       vlc
       kate
+      openrgb
+      telegram-desktop
+      stremio
+      moonlight-qt
       
-      # Userspace,GUI,noflatpak
+      # Wine Gaming
+      protonup-qt
+      protontricks
+      mangohud
+      goverlay
+      lutris
+      bottles
+
+
+      # Userspace, GUI, Unstable Pkgs
+      latte-dock
+      
+      # Userspace, GUI, noflatpak
+      # Versions of Apps that also
+      # have flatpak alternatives
       brave
       firefox
       chromium
@@ -150,12 +176,13 @@
       barrier
       anydesk
       filelight
-      lutris
+      gnome.gnome-calculator
       
       # GUI Audio Manipulation
       pavucontrol
       qpwgraph
       easyeffects
+      plasma-pa
      
       # Art
       krita
@@ -203,7 +230,13 @@
     tree
     whois
     killall
-    
+    speedtest-cli
+    iperf
+
+    # Cooling Control
+    liquidctl
+
+
     # Encryption Key Management
     gnupg
     
@@ -219,17 +252,23 @@
     # tools, gui
     gparted
     kdiff3
+    # KDE KCM, gui
+    libsForQt5.kcmutils
+    libsForQt5.sddm-kcm
+    libsForQt5.flatpak-kcm
+
     #etcher
     
-    # virtualisation, qemu
+    # virtualisation hosts, qemu
     spice
     docker-compose
+    distrobox
     virt-manager
     gnome3.dconf-editor # needed for saving settings in virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
     libvirt
     
-    # fsmount,webdav
+    # fsmount, webdav
     davfs2
     autofs5
     fuse
@@ -251,16 +290,25 @@
     cascadia-code
   ];
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.ovmf.enable = true;
-    qemu.runAsRoot = true;
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-  };
-  virtualisation.docker = {
-	enable = true;
-	storageDriver = "btrfs";
+  # Virtualisation Toggles, libvirtd, docker, podman
+  virtualisation = {
+	libvirtd = {
+		enable = true;
+		qemu.ovmf.enable = true;
+		qemu.runAsRoot = true;
+		onBoot = "ignore";
+		onShutdown = "shutdown";
+	};
+	docker = {
+		enable = true;
+		storageDriver = "btrfs";
+	};
+	podman = {
+		enable = true;
+		# Enable compat to use podman as a drop-in replacement for docker.
+		#dockerCompat = true;
+		defaultNetwork.settings.dns_enabled = true;
+	};
   };
 
   # Open ports in the firewall.

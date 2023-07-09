@@ -1,0 +1,2 @@
+# <p align=center>Changed-Files:
+###### <p align=center> This directory is *soley* to keep track of changes made to default system / user files during the setup of a proper "in-config" setting in `configuration.nix`. This directory will disappear once the `configuration.nix` can be built on it's own in a vanilla NixOS install, and create config files on it's own.

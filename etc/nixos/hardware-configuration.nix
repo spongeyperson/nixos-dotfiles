@@ -64,6 +64,31 @@
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
 
+  # User NTFS Mounts
+  fileSystems."/mnt/Old 970 Evo" =
+    { device = "/dev/disk/by-uuid/01D9848E81913560";
+      fsType = "ntfs-3g"; 
+      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+    };
+
+  fileSystems."/mnt/New 970 Evo" =
+    { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
+      fsType = "ntfs-3g"; 
+      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+    };
+  
+  fileSystems."/mnt/SN750 Extra Storage" =
+    { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
+      fsType = "ntfs-3g"; 
+      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+    };
+
+  fileSystems."/media/flash" =
+    { device = "/dev/disk/by-uuid/1c8497cc-4a2f-4523-890f-401109defb2e";
+      fsType = "ext4";
+      options = [ "defaults" "noauto" ];
+    };
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
