@@ -7,13 +7,26 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelParams = [ ];
-  boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [
+      "dm-snapshot" 
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+      "vfio_virqfd"
+    ];
+    kernelModules = [
+      "kvm-amd" 
+    ];
+    kernelParams = [
+      "amd_iommu=on"
+      "iommu=pt"
+      "vfio-pci.ids=10de:2204,10de:1aef"
+    ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [ "ntfs" ];
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";

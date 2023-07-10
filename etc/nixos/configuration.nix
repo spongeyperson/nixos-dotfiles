@@ -68,17 +68,17 @@
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
     };
-	  
-	  # General Services
-	  openssh.enable = true;
-	  flatpak.enable = true;
-	  fstrim.enable = true;
-	  
-	  # Virt-Manager Service
-	  qemuGuest.enable = true;
-	  
-	  # Enable CUPS to print documents.
-	  printing.enable = true;
+
+  # General Services
+  openssh.enable = true;
+  flatpak.enable = true;
+  fstrim.enable = true;
+  
+  # Virt-Manager Service
+  qemuGuest.enable = true;
+  
+  # Enable CUPS to print documents.
+  printing.enable = true;
 
     # Sound Configuration:
     # sound.enable = true;
@@ -106,10 +106,10 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      	extraPackages = with pkgs; [
-          rocm-opencl-icd
-          rocm-opencl-runtime
-	      ];
+      extraPackages = with pkgs; [
+        rocm-opencl-icd
+        rocm-opencl-runtime
+      ];
     };
     bluetooth = {
       enable = true;
@@ -154,16 +154,16 @@
     packages = with pkgs; [
     
       # Userspace, GUI
-      steam
       authy
       vlc
-      kate
       openrgb
       telegram-desktop
       stremio
       moonlight-qt
       
-      # Wine Gaming
+      # Gaming
+      steam
+      gamemode
       protonup-qt
       protontricks
       mangohud
@@ -177,8 +177,7 @@
       
       # Userspace, GUI, noflatpak
       # Versions of Apps that also
-      # have flatpak alternatives
-      brave
+      # have flatpak alternativesIf you'd like to turn off all RGB devices supported by OpenRGB, consider something like:
       firefox
       chromium
       mailspring
@@ -195,7 +194,10 @@
       qpwgraph
       easyeffects
       plasma-pa
-     
+
+      # App Images
+      appimage-run
+
       # Art
       krita
       
@@ -222,6 +224,7 @@
     
     # Basic Commandline Tools
     wget
+    fuse3
     curl
     zip
     unzip
@@ -233,6 +236,9 @@
     man
     lshw
     lsof
+    rsync
+    zsync
+    rclone
     ffmpeg
     ncurses5
     coreutils
@@ -249,6 +255,22 @@
     # Cooling Control
     liquidctl
 
+    # KDE Plasma
+    ark
+    dolphin
+    kate
+    okular
+    spectacle
+
+    # Bluetooth
+    bluedevil
+    bluez
+    bluez-tools
+
+    # KDE KCM, gui
+    libsForQt5.kcmutils
+    libsForQt5.sddm-kcm
+    libsForQt5.flatpak-kcm
 
     # Encryption Key Management
     gnupg
@@ -265,21 +287,21 @@
     # tools, gui
     gparted
     kdiff3
-    # KDE KCM, gui
-    libsForQt5.kcmutils
-    libsForQt5.sddm-kcm
-    libsForQt5.flatpak-kcm
+
 
     #etcher
     
     # virtualisation hosts, qemu
     spice
     docker-compose
-    distrobox
     virt-manager
     gnome3.dconf-editor # needed for saving settings in virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
     libvirt
+
+    # Distrobox
+    distrobox
+    xorg.xhost
     
     # fsmount, webdav
     davfs2
@@ -305,23 +327,24 @@
 
   # Virtualisation Toggles, libvirtd, docker, podman
   virtualisation = {
-	libvirtd = {
-		enable = true;
-		qemu.ovmf.enable = true;
-		qemu.runAsRoot = true;
-		onBoot = "ignore";
-		onShutdown = "shutdown";
-	};
-	docker = {
-		enable = true;
-		storageDriver = "btrfs";
-	};
-	podman = {
-		enable = true;
-		# Enable compat to use podman as a drop-in replacement for docker.
-		#dockerCompat = true;
-		defaultNetwork.settings.dns_enabled = true;
-	};
+  spiceUSBRedirection.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.ovmf.enable = true;
+      qemu.runAsRoot = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+    };
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+    };
+    podman = {
+      enable = true;
+      # Enable compat to use podman as a drop-in replacement for docker.
+      #dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   # Open ports in the firewall.
