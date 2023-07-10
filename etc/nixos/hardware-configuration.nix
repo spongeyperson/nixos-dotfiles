@@ -83,6 +83,10 @@
       options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
     };
 
+  # Temporary Mount Point for Flash Drives
+  # This mount point is set as a temporary "stop-gap" for proton
+  # winebottles, since i'm using NTFS Drives under Linux.
+  # https://github.com/ValveSoftware/Proton/wiki/Using-a-NTFS-disk-with-Linux-and-Windows#preventing-ntfs-read-errors
   fileSystems."/media/flash" =
     { device = "/dev/disk/by-uuid/1c8497cc-4a2f-4523-890f-401109defb2e";
       fsType = "ext4";

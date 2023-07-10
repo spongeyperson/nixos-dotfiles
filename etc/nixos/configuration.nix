@@ -24,7 +24,10 @@
     };
   };
 
-  # Nix Package Manager Configuration
+  # Global Nix Settings:
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Nix Package Manager Configuration:
   nixpkgs.config = {
 	# Nix Allow Unfree Packages
 	allowUnfree = true;
@@ -32,7 +35,7 @@
 	#permittedInsecurePackages = [ "electron-12.2.3" ];
   };
   
-  # Set Hostname, Use Network Manager
+  # Set Hostname, Use Network Manager:
   networking = {
 	hostName = "Spongey-PC";
 	networkmanager.enable = true;
@@ -48,23 +51,23 @@
   
   # Services Configuration:
   services = {
-	xserver = {
-		# Enable the X11 windowing system.
-		enable = true;
-		
-		# Configure keymap in X11, Internationalisation.
-		layout = "us";
-		
-		# Enable Plasma 5 Desktop Environment.
-		displayManager.sddm.enable = true;
-		desktopManager.plasma5.enable = true;
-		
-		# Set Plasma Wayland as Default Session
-		displayManager.defaultSession = "plasmawayland";
-		
-		# Enable touchpad support (enabled default in most desktopManager).
-		libinput.enable = true;
-	};
+      xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+      
+      # Configure keymap in X11, Internationalisation.
+      layout = "us";
+      
+      # Enable Plasma 5 Desktop Environment.
+      displayManager.sddm.enable = true;
+      desktopManager.plasma5.enable = true;
+      
+      # Set Plasma Wayland as Default Session
+      displayManager.defaultSession = "plasmawayland";
+      
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+    };
 	  
 	  # General Services
 	  openssh.enable = true;
@@ -76,29 +79,31 @@
 	  
 	  # Enable CUPS to print documents.
 	  printing.enable = true;
+
+    # Sound Configuration:
+    # sound.enable = true;
+    # Pulseaudio (Gross)
+    # hardware.pulseaudio.enable = true;
+
+    # Pipewire
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      jack.enable = true;
+    };
   };
 
-  # Sound Configuration:
-  # sound.enable = true;
-  # Pulseaudio (Gross)
-  # hardware.pulseaudio.enable = true;
-  
-  # Pipewire
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
   
   # Vulkan Support
 
   hardware = {
     opengl = {
+      enable = true;
       driSupport = true;
       driSupport32Bit = true;
       	extraPackages = with pkgs; [
@@ -114,23 +119,29 @@
   
   # Programs Configuration:
   programs = {
-	mtr = {
-		# Enable Program SUID Wrapper Support.
-		# Some programs need SUID wrappers, can be configured further or are
-		# started in user sessions.
-		enable = true;
-	};
+    mtr = {
+      # Enable Program SUID Wrapper Support.
+      # Some programs need SUID wrappers, can be configured further or are
+      # started in user sessions.
+      enable = true;
+    };
 	
 	# Enable GNUPG Agent for Security and SSH Support.
-	gnupg.agent = {
-		enable = true;
-		enableSSHSupport = true;
-	};
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
 	
 	# FIX "GTK themes are not applied in Wayland applications"
 	# https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
 	dconf.enable = true;
   fish.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set-option -g default-shell /run/current-system/sw/bin/fish
+      '';
+    };
   };
 
   # User & User Packages
@@ -138,6 +149,7 @@
   users.defaultUserShell = pkgs.fish;
   users.users.tyler = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
     
@@ -201,6 +213,7 @@
   # System Packages
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  #environment.shells = with pkgs; [ fish ];
   environment.systemPackages = with pkgs; [
   
     # editors
