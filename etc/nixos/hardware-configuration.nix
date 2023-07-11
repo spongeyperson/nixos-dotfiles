@@ -11,6 +11,8 @@
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [
       "dm-snapshot" 
+
+      # VFIO
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
@@ -23,6 +25,7 @@
       "amd_iommu=on"
       "iommu=pt"
       "vfio-pci.ids=10de:2204,10de:1aef"
+      "modprobe.blacklist=nvidia,nvidiafb,nouveau"
     ];
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];

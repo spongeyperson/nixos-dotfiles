@@ -8,6 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./system-configs.nix
+      #./user-configs.nix
+      #./vfio.nix
     ];
 
   boot.loader = {
@@ -157,9 +160,20 @@
       authy
       vlc
       openrgb
-      telegram-desktop
       stremio
+
+      # Web Browsers
+      brave
+      librewolf
+      chromium
+      
+      # Chat
+      webcord
+      telegram-desktop
+      
+      # Game Streaming Clients
       moonlight-qt
+      parsec-bin
       
       # Gaming
       steam
@@ -170,18 +184,14 @@
       goverlay
       lutris
       bottles
-
-
+      
       # Userspace, GUI, Unstable Pkgs
       latte-dock
       
       # Userspace, GUI, noflatpak
       # Versions of Apps that also
       # have flatpak alternativesIf you'd like to turn off all RGB devices supported by OpenRGB, consider something like:
-      firefox
-      chromium
       mailspring
-      webcord
       spotify
       vscode
       barrier
@@ -194,10 +204,10 @@
       qpwgraph
       easyeffects
       plasma-pa
-
+      
       # App Images
       appimage-run
-
+      
       # Art
       krita
       
