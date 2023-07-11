@@ -34,7 +34,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
 
   fileSystems."/home" =
@@ -46,7 +46,7 @@
   fileSystems."/var" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@var" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
 
   fileSystems."/root" =
@@ -60,7 +60,15 @@
       fsType = "btrfs";
       options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
+  
+  #rootvol mount
+  fileSystems."/mnt/rootvol" =
+    { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
+      fsType = "btrfs";
+      options = [ "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+    };
 
+  #EFI System Partition
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/1E3B-DC2A";
       fsType = "vfat";

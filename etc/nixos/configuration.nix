@@ -135,9 +135,9 @@
       enableSSHSupport = true;
     };
 	
-	# FIX "GTK themes are not applied in Wayland applications"
-	# https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
-	dconf.enable = true;
+  # FIX "GTK themes are not applied in Wayland applications"
+  # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
+  dconf.enable = true;
   fish.enable = true;
     tmux = {
       enable = true;
@@ -155,7 +155,11 @@
     shell = pkgs.fish;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
-    
+      
+      # Temp Theme
+      materia-theme
+      materia-kde-theme
+      
       # Userspace, GUI
       authy
       vlc
@@ -186,7 +190,7 @@
       bottles
       
       # Userspace, GUI, Unstable Pkgs
-      latte-dock
+      #latte-dock
       
       # Userspace, GUI, noflatpak
       # Versions of Apps that also
