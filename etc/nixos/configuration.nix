@@ -8,8 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # User Configurations
+      #./userconf-configs.nix
+      #./userconf-declarative.nix
+      #<home-manager/nixos>
       #./system-configs.nix
-      #./user-configs.nix
+
+      # WIP VFIO.conf
       #./vfio.nix
     ];
 
@@ -28,13 +33,26 @@
   };
 
   # Global Nix Settings:
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 5d";
+    };
+    extraOptions = ''
+      min-free = ${toString (100 * 1024 * 1024)}
+      max-free = ${toString (1024 * 1024 * 1024)}
+    '';
+  };
 
   # Nix Package Manager Configuration:
   nixpkgs.config = {
 	# Nix Allow Unfree Packages
 	allowUnfree = true;
 	
+  #Required insecure package for etcher
 	#permittedInsecurePackages = [ "electron-12.2.3" ];
   };
   
@@ -50,8 +68,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
-  
-  
+
   # Services Configuration:
   services = {
       xserver = {
@@ -71,7 +88,7 @@
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
     };
-
+  
   # General Services
   openssh.enable = true;
   flatpak.enable = true;
@@ -82,12 +99,12 @@
   
   # Enable CUPS to print documents.
   printing.enable = true;
-
+  
     # Sound Configuration:
     # sound.enable = true;
     # Pulseaudio (Gross)
     # hardware.pulseaudio.enable = true;
-
+    
     # Pipewire
     pipewire = {
       enable = true;
@@ -118,27 +135,25 @@
       enable = true;
     };
   };
-  
-  
+
   # Programs Configuration:
   programs = {
+    fish.enable = true;
+    kdeconnect.enable = true;
+    # FIX "GTK themes are not applied in Wayland applications"
+    # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
+    dconf.enable = true;
     mtr = {
       # Enable Program SUID Wrapper Support.
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       enable = true;
     };
-	
 	# Enable GNUPG Agent for Security and SSH Support.
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
-	
-    # FIX "GTK themes are not applied in Wayland applications"
-    # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
-    dconf.enable = true;
-    fish.enable = true;
     tmux = {
       enable = true;
       extraConfig = ''
@@ -165,7 +180,7 @@
       vlc
       openrgb
       stremio
-
+      
       # Web Browsers
       brave
       librewolf
@@ -265,27 +280,27 @@
     killall
     speedtest-cli
     iperf
-
+    
     # Cooling Control
     liquidctl
-
+    
     # KDE Plasma
     ark
     dolphin
     kate
     okular
     spectacle
-
+    
     # Bluetooth
     bluedevil
     bluez
     bluez-tools
-
+    
     # KDE KCM, gui
     libsForQt5.kcmutils
     libsForQt5.sddm-kcm
     libsForQt5.flatpak-kcm
-
+    
     # Encryption Key Management
     gnupg
     
@@ -301,8 +316,8 @@
     # tools, gui
     gparted
     kdiff3
-
-
+    
+    
     #etcher
     
     # virtualisation hosts, qemu
@@ -313,7 +328,7 @@
     gnome3.dconf-editor # needed for saving settings in virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
     libvirt
-
+    
     # Distrobox
     distrobox
     xorg.xhost
