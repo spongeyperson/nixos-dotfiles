@@ -9,19 +9,22 @@
         - [hardware-configuration.nix](./etc/nixos/hardware-configuration.nix)
 
 
-- ### Repository Todo / Related Tasks:
+- ### Repository Todo / Related NixOS Tasks:
   - #### Actual NixOS Setup:
     - [ ] VFIO
-      - [ ] Setup a VFIO Branch or seperate optional `.nix` config file
-    - [ ] Setup Nix Home Manager
-    - [ ] Setup Docker
-    - [ ] Setup Podman
-    - [ ] Setup Distrobox
-    - [ ] Setup (preferrably automated) Flatpak
+      - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
+      - [x] Setup Backend Passthrough (e.g. Grub configs, enable `vfio-pci`, passthrough & blacklist hardware)
+      - [ ] Setup a VFIO Branch or seperate optional `.nix` config file <-
+    - [ ] Setup Nix Home Manager <- 
+    - [ ] Setup Docker <-
+    - [ ] Setup Podman <- 
+    - [ ] Setup Distrobox <-
+    - [ ] Setup (preferrably automated) Flatpak 
   - [ ] Implement system & user configuration file creation in [`configuration.nix`](./etc/nixos/configuration.nix)
     - [ ] Test operating system reinstallation with said configuration files, and make sure they work.
   - [ ] Make sure all configs are replicatable on Physical and Virtual Hardware
   - [ ] Remove [`changed-files/`](./changed-files/) crutch after system is replicatable elsewhere.
+  - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
 
 <!--
 <p align=center><img src="https://user-images.githubusercontent.com/28176188/210040764-90bf0b89-1e4f-4f6f-aa42-35a006060849.png" title="I Run Arch Btw"></p>
