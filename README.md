@@ -5,9 +5,6 @@
 # <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
-> <b>WARNING:</b> This repository is for my learning perposes,
-
-
 - ### Index:
     - <u><b>System / Userspace Configuration</b></u>:
         - [configuration.nix](./etc/nixos/configuration.nix)
