@@ -135,10 +135,10 @@
       enableSSHSupport = true;
     };
 	
-  # FIX "GTK themes are not applied in Wayland applications"
-  # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
-  dconf.enable = true;
-  fish.enable = true;
+    # FIX "GTK themes are not applied in Wayland applications"
+    # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications
+    dconf.enable = true;
+    fish.enable = true;
     tmux = {
       enable = true;
       extraConfig = ''
@@ -309,6 +309,7 @@
     spice
     docker-compose
     virt-manager
+    dconf
     gnome3.dconf-editor # needed for saving settings in virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
     libvirt

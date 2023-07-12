@@ -8,6 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
   boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [
       "dm-snapshot" 
@@ -16,7 +17,7 @@
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
-      "vfio_virqfd"
+      #"vfio_virqfd"
     ];
     kernelModules = [
       "kvm-amd" 
