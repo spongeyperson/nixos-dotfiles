@@ -11,7 +11,7 @@
       # User Configurations
       #./userconf-configs.nix
       #./userconf-declarative.nix
-      #<home-manager/nixos>
+      <home-manager/nixos>
       #./system-configs.nix
 
       # WIP VFIO.conf
@@ -67,21 +67,20 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Services Configuration:
   services = {
-      xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
-      
+      xserver = {      
       # Configure keymap in X11, Internationalisation.
       layout = "us";
+      #xserver.xkbOptions = "eurosign:e,caps:escape";
       
+      # Enable the X11 windowing system.
+      enable = true;
+
       # Enable Plasma 5 Desktop Environment.
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
-      
       # Set Plasma Wayland as Default Session
       displayManager.defaultSession = "plasmawayland";
       
@@ -118,9 +117,8 @@
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-  
-  # Vulkan Support
 
+  # Vulkan / OpenGL (Multilib) Support /w ROCM
   hardware = {
     opengl = {
       enable = true;
@@ -149,11 +147,12 @@
       # started in user sessions.
       enable = true;
     };
-	# Enable GNUPG Agent for Security and SSH Support.
+	  # Enable GNUPG Agent for Security and SSH Support.
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+    # Set Tmux Default Shell to Fish
     tmux = {
       enable = true;
       extraConfig = ''
@@ -203,13 +202,14 @@
       goverlay
       lutris
       bottles
+      prismlauncher
       
       # Userspace, GUI, Unstable Pkgs
       #latte-dock
       
       # Userspace, GUI, noflatpak
       # Versions of Apps that also
-      # have flatpak alternativesIf you'd like to turn off all RGB devices supported by OpenRGB, consider something like:
+      # have flatpak alternatives.
       mailspring
       spotify
       vscode
@@ -240,6 +240,17 @@
       jdk17
     ];
   };
+
+  # Home Manager Setup Configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.tyler = import ./home.nix {
+      inherit config;
+      inherit pkgs;
+    };
+  };
+
 
   # System Packages
   # List packages installed in system profile. To search, run:
@@ -295,8 +306,9 @@
     bluedevil
     bluez
     bluez-tools
+    libsForQt5.bluedevil
     
-    # KDE KCM, gui
+    # KDE Configuration Modules (KCM), gui
     libsForQt5.kcmutils
     libsForQt5.sddm-kcm
     libsForQt5.flatpak-kcm
@@ -316,7 +328,6 @@
     # tools, gui
     gparted
     kdiff3
-    
     
     #etcher
     
@@ -347,7 +358,7 @@
     materia-theme
     materia-kde-theme
   ];
-  
+
   # Fonts
   fonts.fonts = with pkgs; [
     nerdfonts
