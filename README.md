@@ -29,6 +29,67 @@
   - [ ] Remove [`changed-files/`](./changed-files/) crutch after system is replicatable elsewhere.
   - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
 
+- ## Setting up / Partitioning:
+    > Information in this section is based on the following NixOS Wiki Page on Manually installing on BTRFS: https://nixos.wiki/wiki/Btrfs 
+    1) Create the following partitions. (via Gparted / KDE Partition Manager or <a href="https://nixos.wiki/wiki/Btrfs#Installation">Manually Via Commandline</a>)
+        - Layout:
+
+    2) Mount New Bare Partition & cd to it:
+        > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
+        ```
+        sudo mount /dev/<device> /mnt
+        ```
+        ```
+        cd /mnt
+        ```
+    3) Create Subvolumes for Install:
+        ```
+        sudo btrfs subvol create @
+        sudo btrfs subvol create @home
+        sudo btrfs subvol create @root
+        sudo btrfs subvol create @var
+        sudo btrfs subvol create @nix
+        ```
+    4) cd elsewhere, then Unmount Bare Partition:
+        ```
+        cd ~
+        ```
+
+        ```
+        sudo umount -Rv /mnt
+        ```
+
+    5) Mount Subvolume Partitions:
+        > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
+
+        ```
+        sudo mount -o subvol=@,compress=zstd,noatime /dev/<device> /mnt
+        ```
+    - Then create recursive partitions:
+        > dumb linux quirks...
+        ```
+        sudo mkdir -pv /mnt/{home,root,var,nix,boot/efi}
+        ```
+    - Continue to mount the rest of the partitions:
+        ```
+        sudo mount -o subvol=@home,compress=zstd /dev/<device> /mnt/home
+        sudo mount -o subvol=@root,compress=zstd /dev/<device> /mnt/root
+        sudo mount -o subvol=@var,compress=zstd,noatime /dev/<device> /mnt/var
+        sudo mount -o subvol=@nix,compress=zstd,noatime /dev/<device> /mnt/nix
+        ``` 
+    - Mount EFI System Partition (EFI + GPT Only)
+        ```
+        sudo mount /dev/<device> /mnt/boot/efi
+        ```
+    6) Sanity Check:
+        - Run the following command to check your partitions:
+          ```
+          cat /proc/mounts | grep -e btrfs -e vfat
+          ```
+        - You should see something similar to this:
+        <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.">
+
+- ## Installing NixOS:
 <!--
 <p align=center><img src="https://user-images.githubusercontent.com/28176188/210040764-90bf0b89-1e4f-4f6f-aa42-35a006060849.png" title="I Run Arch Btw"></p>
 
