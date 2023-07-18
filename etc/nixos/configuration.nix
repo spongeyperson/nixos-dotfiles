@@ -48,9 +48,7 @@
         efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
       };
     grub = {
-      # Enable Grub
       enable = true;
-      # EFI Support Enable
       efiSupport = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
       device = "nodev";
@@ -113,9 +111,6 @@
       
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
-
-      #Enable Libvirtd
-      libvirtd.enable = true;
     };
   
   # General Services
@@ -177,7 +172,7 @@
       # started in user sessions.
       enable = true;
     };
-    # Enable GNUPG Agent for Security and SSH Support.
+	  # Enable GNUPG Agent for Security and SSH Support.
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -272,14 +267,14 @@
   };
 
   # Home Manager Setup Configuration
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.tyler = import ./home.nix {
-      inherit config;
-      inherit pkgs;
-    };
-  };
+  #home-manager = {
+  #  useGlobalPkgs = true;
+  #  useUserPackages = true;
+  #  users.tyler = import ./home.nix {
+  #    inherit config;
+  #    inherit pkgs;
+  #  };
+  #};
 
 
   # System Packages
