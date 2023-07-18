@@ -31,10 +31,10 @@
 
 - ## Setting up / Partitioning:
     > Information in this section is based on the following NixOS Wiki Page on Manually installing on BTRFS: https://nixos.wiki/wiki/Btrfs 
-    1) Create the following partitions. (via Gparted / KDE Partition Manager or <a href="https://nixos.wiki/wiki/Btrfs#Installation">Manually Via Commandline</a>)
+    1) #### Create the following partitions. (via Gparted / KDE Partition Manager or <a href="https://nixos.wiki/wiki/Btrfs#Installation">Manually Via Commandline</a>)
         - Layout:
 
-    2) Mount New Bare Partition & cd to it:
+    2) #### Mount New Bare Partition & cd to it:
         > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
         ```
         sudo mount /dev/<device> /mnt
@@ -42,7 +42,7 @@
         ```
         cd /mnt
         ```
-    3) Create Subvolumes for Install:
+    3) #### Create Subvolumes for Install:
         ```
         sudo btrfs subvol create @
         sudo btrfs subvol create @home
@@ -50,7 +50,7 @@
         sudo btrfs subvol create @var
         sudo btrfs subvol create @nix
         ```
-    4) cd elsewhere, then Unmount Bare Partition:
+    4) #### cd elsewhere, then Unmount Bare Partition:
         ```
         cd ~
         ```
@@ -59,7 +59,7 @@
         sudo umount -Rv /mnt
         ```
 
-    5) Mount Subvolume Partitions:
+    5) #### Mount Subvolume Partitions:
         > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
 
         ```
@@ -81,7 +81,7 @@
         ```
         sudo mount /dev/<device> /mnt/boot/efi
         ```
-    6) Sanity Check:
+    6) #### Sanity Check:
         - Run the following command to check your partitions:
           ```
           cat /proc/mounts | grep -e btrfs -e vfat
@@ -94,8 +94,48 @@
         ```
         sudo nixos-generate-config --root /mnt
         ```
-    2) Optional Tunables:
-        - In `hardare-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
+        This creates the following 2 files:<br></br>
+        `configuration.nix`
+        `hardware-configuration.nix`
+    2) Verify your `hardware-configuration.nix` with mount options:
+        - The previous command generated a `hardware-configuration.nix`, which is similar to your Operating Systems' `fstab` file.
+        
+        > Here's my recommended mount options:
+
+        > **Warning**: `/home` & `/root` <i>should not</i> have the `"noatime"` mount option.
+        ```
+        fileSystems."/" =
+          { device = "/dev/disk/by-uuid/<device-uuid>";
+            fsType = "btrfs";
+            options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+          };
+
+        fileSystems."/home" =
+          { device = "/dev/disk/by-uuid/<device-uuid>";
+            fsType = "btrfs";
+            options = [ "subvol=@home" "ssd" "space_cache=v2" "compress=zstd" ];
+          };
+
+        fileSystems."/root" =
+          { device = "/dev/disk/by-uuid/<device-uuid>";
+            fsType = "btrfs";
+            options = [ "subvol=@root" "ssd" "space_cache=v2" "compress=zstd" ];
+          };
+
+        fileSystems."/var" =
+          { device = "/dev/disk/by-uuid/<device-uuid>";
+            fsType = "btrfs";
+            options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+          };
+
+        fileSystems."/nix" =
+          { device = "/dev/disk/by-uuid/<device-uuid>";
+            fsType = "btrfs";
+            options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+          };
+        ```
+    - Optional Tunables:
+        - In `hardware-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
         - You may also want to change the following line in `configuration.nix`
           ```nix
           networking = {
