@@ -55,6 +55,7 @@
       #useOSProber = true;
       };
     };
+  };
 
   # Global Nix Settings:
   nix = {
