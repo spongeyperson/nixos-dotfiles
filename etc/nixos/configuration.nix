@@ -240,6 +240,7 @@
       vscode
       barrier
       anydesk
+      rustdesk
       filelight
       gnome.gnome-calculator
       
