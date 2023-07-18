@@ -96,6 +96,13 @@
         ```
     2) Optional Tunables:
         - In `hardare-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
+        - You may also want to change the following line in `configuration.nix`
+          ```nix
+          networking = {
+            hostName = "Spongey-PC";
+          }
+          ```
+          to whatever is required. Obviously, if you don't set this, your pc will be called `Spongey-PC` by default.
 <!--
 <p align=center><img src="https://user-images.githubusercontent.com/28176188/210040764-90bf0b89-1e4f-4f6f-aa42-35a006060849.png" title="I Run Arch Btw"></p>
 

@@ -11,7 +11,7 @@
       # User Configurations
       #./userconf-configs.nix
       #./userconf-declarative.nix
-      <home-manager/nixos>
+      #<home-manager/nixos>
       #./system-configs.nix
 
       # WIP VFIO.conf
@@ -47,15 +47,14 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
       };
-    };
     grub = {
       enable = true;
       efiSupport = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
       device = "nodev";
       #useOSProber = true;
+      };
     };
-  };
 
   # Global Nix Settings:
   nix = {
