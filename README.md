@@ -87,9 +87,15 @@
           cat /proc/mounts | grep -e btrfs -e vfat
           ```
         - You should see something similar to this:
-        <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.">
+        <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.'--color=always' was just enabled to show you the different disk types and make it easier to read.">
 
 - ## Installing NixOS:
+    1) Generate Config + Fstab
+        ```
+        sudo nixos-generate-config --root /mnt
+        ```
+    2) Optional Tunables:
+        - In `hardare-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
 <!--
 <p align=center><img src="https://user-images.githubusercontent.com/28176188/210040764-90bf0b89-1e4f-4f6f-aa42-35a006060849.png" title="I Run Arch Btw"></p>
 

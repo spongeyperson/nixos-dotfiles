@@ -18,17 +18,42 @@
       #./vfio.nix
     ];
 
-  boot.loader = {
-	efi = {
-		canTouchEfiVariables = true;
-		efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-	};
-	grub = {
-		enable = true;
-		efiSupport = true;
-		#efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-		device = "nodev";
-		#useOSProber = true;
+  boot = {
+    # Set Zen Kernel
+    kernelPackages = pkgs.linuxPackages_zen;
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [
+      "dm-snapshot" 
+
+      # VFIO
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+      #"vfio_virqfd"
+    ];
+    kernelModules = [
+      "kvm-amd" 
+    ];
+    kernelParams = [
+      "amd_iommu=on"
+      "iommu=pt"
+      "vfio-pci.ids=10de:2204,10de:1aef"
+      "modprobe.blacklist=nvidia,nvidiafb,nouveau"
+    ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [ "ntfs" ];
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
+    };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+      #useOSProber = true;
     };
   };
 
