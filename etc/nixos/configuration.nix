@@ -11,24 +11,49 @@
       # User Configurations
       #./userconf-configs.nix
       #./userconf-declarative.nix
-      <home-manager/nixos>
+      #<home-manager/nixos>
       #./system-configs.nix
 
       # WIP VFIO.conf
       #./vfio.nix
     ];
 
-  boot.loader = {
-	efi = {
-		canTouchEfiVariables = true;
-		efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-	};
-	grub = {
-		enable = true;
-		efiSupport = true;
-		#efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-		device = "nodev";
-		#useOSProber = true;
+  boot = {
+    # Set Zen Kernel
+    kernelPackages = pkgs.linuxPackages_zen;
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [
+      "dm-snapshot" 
+
+      # VFIO
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+      #"vfio_virqfd"
+    ];
+    kernelModules = [
+      "kvm-amd" 
+    ];
+    kernelParams = [
+      "amd_iommu=on"
+      "iommu=pt"
+      "vfio-pci.ids=10de:2204,10de:1aef"
+      "modprobe.blacklist=nvidia,nvidiafb,nouveau"
+    ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [ "ntfs" ];
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+      #useOSProber = true;
+      };
     };
   };
 
@@ -147,7 +172,7 @@
       # started in user sessions.
       enable = true;
     };
-	  # Enable GNUPG Agent for Security and SSH Support.
+    # Enable GNUPG Agent for Security and SSH Support.
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -169,10 +194,6 @@
     shell = pkgs.fish;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
-      
-      # Temp Theme
-      materia-theme
-      materia-kde-theme
       
       # Userspace, GUI
       authy
@@ -215,6 +236,7 @@
       vscode
       barrier
       anydesk
+      rustdesk
       filelight
       gnome.gnome-calculator
       
@@ -242,14 +264,16 @@
   };
 
   # Home Manager Setup Configuration
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.tyler = import ./home.nix {
-      inherit config;
-      inherit pkgs;
-    };
-  };
+  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
+  # causes failure to install on new Installs.
+  #home-manager = {
+  #  useGlobalPkgs = true;
+  #  useUserPackages = true;
+  #  users.tyler = import ./home.nix {
+  #    inherit config;
+  #    inherit pkgs;
+  #  };
+  #};
 
 
   # System Packages
@@ -292,8 +316,12 @@
     speedtest-cli
     iperf
     
+    # Watch Replacement
+    viddy
+
     # Cooling Control
     liquidctl
+    lm_sensors
     
     # KDE Plasma
     ark
@@ -302,7 +330,7 @@
     okular
     spectacle
     
-    # Bluetooth
+    # Bluetooth + Depends
     bluedevil
     bluez
     bluez-tools
