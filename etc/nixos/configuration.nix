@@ -216,6 +216,7 @@
       
       # Gaming
       steam
+      heroic
       gamemode
       protonup-qt
       protontricks
@@ -315,9 +316,11 @@
     killall
     speedtest-cli
     iperf
-    
     # Watch Replacement
     viddy
+
+    # General GUI Tools, needs root
+    fsearch
 
     # Cooling Control
     liquidctl
@@ -385,6 +388,9 @@
     # Theming, system
     materia-theme
     materia-kde-theme
+
+    # Theming , cursor
+    apple-cursor
   ];
 
   # Fonts
