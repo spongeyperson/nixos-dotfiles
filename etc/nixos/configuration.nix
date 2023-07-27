@@ -169,6 +169,7 @@
       extraPackages = with pkgs; [
         rocm-opencl-icd
         rocm-opencl-runtime
+        mesa
       ];
     };
     bluetooth = {
@@ -338,12 +339,13 @@
       killall
       speedtest-cli
       iperf
+      smartmontools
+      radeontop
       # Watch Replacement
       viddy
       # General GUI Tools, needs root
       fsearch
 
-      
       # Cooling Control
       liquidctl
       
