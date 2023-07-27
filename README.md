@@ -19,10 +19,10 @@
       - [x] Setup Backend Passthrough (e.g. Grub configs, enable `vfio-pci`, passthrough & blacklist hardware)
       - [ ] Setup a VFIO Branch or seperate optional `.nix` config file <-
     - [ ] Setup Nix Home Manager <- 
-    - [ ] Setup Docker <-
-    - [ ] Setup Podman <- 
-    - [ ] Setup Distrobox <-
-    - [ ] Setup (preferrably automated) Flatpak 
+    - [x] Setup `Docker` <-
+    - [ ] Setup `Podman` <- 
+    - [ ] Setup `Distrobox` <-
+    - [ ] Setup (preferrably declarative) `Flatpak` 
   - [ ] Implement system & user configuration file creation in [`configuration.nix`](./etc/nixos/configuration.nix)
     - [ ] Test operating system reinstallation with said configuration files, and make sure they work.
   - [ ] Make sure all configs are replicatable on Physical and Virtual Hardware
@@ -31,8 +31,8 @@
 
 - ## Setting up / Partitioning:
     > Information in this section is based on the following NixOS Wiki Page on Manually installing on BTRFS: https://nixos.wiki/wiki/Btrfs 
-    1) #### Create the following partitions. (via Gparted / KDE Partition Manager or <a href="https://nixos.wiki/wiki/Btrfs#Installation">Manually Via Commandline</a>)
-        - Layout:
+    1) #### Create a BTRFS Partition you want to install to; Find it's /dev/<device> name
+        - I suggest you use Gparted. This will be automated in the future.
 
     2) #### Mount New Bare Partition & cd to it:
         > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
@@ -90,14 +90,27 @@
         <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.'--color=always' was just enabled to show you the different disk types and make it easier to read.">
 
 - ## Installing NixOS:
-    1) Generate Config + Fstab
-        ```
+    1) #### Generate Config + Fstab
+        ```sh
         sudo nixos-generate-config --root /mnt
         ```
-        This creates the following 2 files:<br></br>
-        `configuration.nix`
-        `hardware-configuration.nix`
-    2) Verify your `hardware-configuration.nix` with mount options:
+        <u>This command generates the following 2 files:</u><br>
+        `configuration.nix` - Global NixOS Configuration File<br>
+        `hardware-configuration.nix` - Hardware Specific Configuration File<br>
+    2) #### Overwrite `configuration.nix` with the one in this repository:
+        > The previous command re-generated an automatic `configuration.nix`
+        - The Nix LiveCD (as of writing this) doesn't include `wget`. Install it.
+        ```sh
+        sudo nix-env -iA nixos.wget
+        ```
+        then grab the file:
+        ```sh
+        cd /mnt/etc/nixos/
+        ```
+        ```sh
+        wget https://github.com/spongeyperson/nixos-dotfiles/blob/desktop/etc/nixos/configuration.nix
+        ```
+    3) #### Verify your `hardware-configuration.nix` & set the following mount options:
         - The previous command generated a `hardware-configuration.nix`, which is similar to your Operating Systems' `fstab` file.
         
         > Here's my recommended mount options:
@@ -136,129 +149,22 @@
         ```
     - Optional Tunables:
         - In `hardware-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
-        - You may also want to change the following line in `configuration.nix`
+        - You may also want to change the following line(s) in `configuration.nix` near the beginning of the file.
           ```nix
-          networking = {
-            hostName = "Spongey-PC";
-          }
+          # Global Variables, (Optional Tunables)
+            let
+              user = "tyler";
+              hostname = "Spongey-PC";
+              # VFIO
+              vfioIDs = "10de:2204,10de:1aef";
+              vfioBlacklist = "nvidia,nvidiafb,nouveau";
+            in
           ```
-          to whatever is required. Obviously, if you don't set this, your pc will be called `Spongey-PC` by default.
-<!--
-<p align=center><img src="https://user-images.githubusercontent.com/28176188/210040764-90bf0b89-1e4f-4f6f-aa42-35a006060849.png" title="I Run Arch Btw"></p>
-
-<h2>Index:</h2>
-<ul>
-  <li><b>This Repo</b>:</li>
-  <ul>
-    <li><a href="#cloning-this-repo">Cloning this Repo</a></li>
-    <li><b><u>Branches:</u></b></li>
-      <ul>
-        <li><a href="https://github.com/spongeyperson/arch-dotfiles/tree/unused">Unused files Branch</a></li>
-      </ul>   
-      <li><b><u>Configurations</u></b>:</li>
-        <ul>
-          <li><a href="https://github.com/spongeyperson/arch-dotfiles/tree/master/etc/X11/xorg.conf.d/">Xorg configuration</a></li>
-          <li><a href="https://github.com/spongeyperson/arch-dotfiles/tree/master/home/tyler/.local/share/plasma/layout-templates">Custom KDE panels</a></li>
-          <li><b><u>VFIO / GPU Passthrough Related</u></b>:</li>
-            <ul>
-              <li><a href="https://github.com/spongeyperson/arch-dotfiles/tree/master/usr/share/kvm">GPU VBIOS ROMs</a></li>
-              <li><a href="https://github.com/spongeyperson/arch-dotfiles/tree/master/etc/libvirt/qemu">Virsh Config XMLs</a></li>
-            </ul>
-          </ul>
-        </ul>
-      </ul>
-    </ul>
-  </ul>
-</ul>
-<li><b>Other Repos</b>:</li>
-  <ul>
-  <li><b>Extra Dotfiles, Belonging to this Repo:</b> <a href="https://github.com/spongeyperson/dotfiles-extras"><sup><code>../dotfiles-extras</code></sup></a></li>
-    <ul>
-      <li><b><u>Documentation:</u></b></li>
-      <ul>
-        <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/PRIME-Render-Settings.md">(WIP) Prime Render Offload Settings:</a></li>
-        <li><img src="https://user-images.githubusercontent.com/28176188/224575749-b843d685-2e1e-43bc-8267-ee337fde8206.svg" width="14" height="14"><b> <u>Wine Related:</b></u></li>
-        <ul>
-          <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/Game-Settings.md">Game settings<a></li>
-          <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/Game-Troubleshooting.md">Game troubleshooting<a></li>
-        </ul>
-        <li><b><u>Hardware Specific Fixes & Settings:</u></b></li>
-          <ul>
-            <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/Hardware%20Specific%20Fixes%20%26%20Settings/Steam%20Deck%20Settings.md">Steam Deck</a></li>
-            <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/Hardware%20Specific%20Fixes%20%26%20Settings/ROG-G15-config.md">ROG G15 AMD Advantage on Linux</a></li>
-            <li><a href="https://github.com/spongeyperson/dotfiles-extras/blob/master/docs/Hardware%20Specific%20Fixes%20%26%20Settings/ZENITH-II-Extreme-config.md">(WIP) TRX40 Zenith II Extreme on Linux</a></li>
-          </ul>
-      </ul>
-      <li><b><u>Configurations</u></b>:</li>
-        <ul>
-          <li><a href="https://github.com/spongeyperson/dotfiles-extras/tree/master/virshxml_examples">Virsh Config XML Examples</a></li>
-        </ul>
-    </ul>
-  </ul>
-</ul>
-<ul>
-  <li><b>Other Dotfiles</b>:</li>
-    <ul>
-      <li><b>Fedora (ROG G15)</b>: <a href="https://github.com/spongeyperson/fedora-dotfiles-laptop/">spongeyperson/fedora-dotfiles-laptop</a></li>
-      <li><b>Fedora</b>: <a href="https://github.com/spongeyperson/fedora-dotfiles/">spongeyperson/fedora-dotfiles</a></li>
-      <li><b>Proxmox</b>: <a href="https://github.com/spongeyperson/proxmox-config/">spongeyperson/proxmox-config</a></li>
-    </ul>
-  </ul>
-</ul>
-
-## Cloning this Repo:
-> Please note, this information was taken from the following source and changed to fit the content of this repo.
-> https://www.atlassian.com/git/tutorials/dotfiles
-
-
-### From Scratch:
-
-  1) <b>Initialize the Repo:</b>
-      ```bash
-      git init --bare $HOME/.dotfiles
-      ```
-  2) <b>Set an Alias in your Shell's Config:</b>
-      > Fish Shell:
-      ```bash
-      echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'" >> $HOME/.config/fish/config.fish
-      ```
-      > Bash Shell:
-      ```bash
-      echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'" >> $HOME/.bashrc
-      ```
-  3) <b>Globally Untrack Files that aren't part of the Dotfiles</b>
-      ```bash
-      dotfiles config --local status.showUntrackedFiles no
-      ```
-
-### Migrate / Merge into System:
-
-  1) <b>Set an Alias in your Shell's Config:</b>
-      > Fish Shell:
-      ```bash
-      echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'" >> $HOME/.config/fish/config.fish
-      ```
-      > Bash Shell:
-      ```bash
-      echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=/'" >> $HOME/.bashrc
-      ```
-  2) <b>Globally Untrack Files that aren't part of the Dotfiles</b>
-      ```bash
-      dotfiles config --local status.showUntrackedFiles no
-      ```
-  3) <b>Set Dotfiles Repo Source as ignored:</b>
-      ```bash
-      echo ".dotfiles" >> .gitignore
-      ```
-  4) <b>Clone Bare Repo:</b>
-      ```bash
-      git clone --bare https://github.com/spongeyperson/arch-dotfiles.git $HOME/.dotfiles/
-      ```
-  5) <b>Checkout Content from Remote Repo:</b>
-      ```bash
-      dotfiles checkout
-      ```
--->
+  4) #### Run the Install Command:
+      - ```nix
+        sudo nixos-install --root /mnt
+        ```
+  #### <center>Congratz, It's installed. (if you did it right)</center>
 
 ---
 ###### <p align=center> Note: I do <ins>not</ins> pretend to own any content on this git repository. All contents are copyright of their respective owners. This repository is intented for recreating Linux installs only. Content on this repository is installed <ins>at your own risk</ins>. If you have any legal issue with the content on this repository, please make a github issue and i will create a submodule linking to your project instead.</p>

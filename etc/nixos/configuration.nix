@@ -4,6 +4,15 @@
 
 { config, pkgs, ... }:
 
+# Global Variables, (Optional Tunables)
+  let
+    user = "tyler";
+    hostname = "Spongey-PC";
+    # VFIO
+    vfioIDs = "10de:2204,10de:1aef";
+    vfioBlacklist = "nvidia,nvidiafb,nouveau";
+  in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -29,6 +38,7 @@
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
+      # Virqfd Kernel Module Not Required for Zen Kernel
       #"vfio_virqfd"
     ];
     kernelModules = [
@@ -37,8 +47,8 @@
     kernelParams = [
       "amd_iommu=on"
       "iommu=pt"
-      "vfio-pci.ids=10de:2204,10de:1aef"
-      "modprobe.blacklist=nvidia,nvidiafb,nouveau"
+      "vfio-pci.ids=${vfioIDs}"
+      "modprobe.blacklist=${vfioBlacklist}"
     ];
     extraModulePackages = [ ];
     supportedFilesystems = [ "ntfs" ];
@@ -48,7 +58,9 @@
         efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
       };
     grub = {
+      # Enable Grub
       enable = true;
+      # EFI Support Enable
       efiSupport = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
       device = "nodev";
@@ -83,7 +95,7 @@
   
   # Set Hostname, Use Network Manager:
   networking = {
-	hostName = "Spongey-PC";
+	hostName = ${hostname};
 	networkmanager.enable = true;
   };
 
@@ -111,6 +123,9 @@
       
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
+
+      #Enable Libvirtd
+      libvirtd.enable = true;
     };
   
   # General Services
@@ -124,6 +139,8 @@
   # Enable CUPS to print documents.
   printing.enable = true;
   
+  # Libratbag
+  ratbagd.enable = true;
     # Sound Configuration:
     # sound.enable = true;
     # Pulseaudio (Gross)
@@ -189,11 +206,15 @@
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.fish;
-  users.users.tyler = {
+  users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
+      
+      # Temp Theme
+      materia-theme
+      materia-kde-theme
       
       # Userspace, GUI
       authy
@@ -265,133 +286,139 @@
   };
 
   # Home Manager Setup Configuration
-  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
-  # causes failure to install on new Installs.
-  #home-manager = {
-  #  useGlobalPkgs = true;
-  #  useUserPackages = true;
-  #  users.tyler = import ./home.nix {
-  #    inherit config;
-  #    inherit pkgs;
-  #  };
-  #};
+-  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
+-  # causes failure to install on new Installs.
+-  #home-manager = {
+-  #  useGlobalPkgs = true;
+-  #  useUserPackages = true;
+-  #  users.tyler = import ./home.nix {
+-  #    inherit config;
+-  #    inherit pkgs;
+-  #  };
+-  #};
 
 
   # System Packages
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   #environment.shells = with pkgs; [ fish ];
-  environment.systemPackages = with pkgs; [
-  
-    # editors
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    geany
-    
-    # Basic Commandline Tools
-    wget
-    fuse3
-    curl
-    zip
-    unzip
-    file
-    htop
-    btop
-    tmux
-    git
-    man
-    lshw
-    lsof
-    rsync
-    zsync
-    rclone
-    ffmpeg
-    ncurses5
-    coreutils
-    binutils
-    pciutils
-    usbutils
-    dmidecode
-    tree
-    whois
-    killall
-    speedtest-cli
-    iperf
-    # Watch Replacement
-    viddy
+  environment = {
+    localBinInPath = true;
+    systemPackages = with pkgs; [
+      # editors
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      geany
+      
+      # Basic Commandline Tools
+      wget
+      fuse3
+      curl
+      zip
+      unzip
+      file
+      htop
+      btop
+      tmux
+      git
+      man
+      lshw
+      lsof
+      rsync
+      zsync
+      rclone
+      ffmpeg
+      ncurses5
+      coreutils
+      binutils
+      pciutils
+      usbutils
+      dmidecode
+      tree
+      whois
+      killall
+      speedtest-cli
+      iperf
+      # Watch Replacement
+      viddy
+      # General GUI Tools, needs root
+      fsearch
 
-    # General GUI Tools, needs root
-    fsearch
+      
+      # Cooling Control
+      liquidctl
+      
+      # KDE Plasma
+      ark
+      dolphin
+      kate
+      okular
+      spectacle
+      
+      # Bluetooth + Depends
+      bluedevil
+      bluez
+      bluez-tools
+      libsForQt5.bluez-qt
+      libsForQt5.bluedevil
 
-    # Cooling Control
-    liquidctl
-    lm_sensors
-    
-    # KDE Plasma
-    ark
-    dolphin
-    kate
-    okular
-    spectacle
-    
-    # Bluetooth + Depends
-    bluedevil
-    bluez
-    bluez-tools
-    libsForQt5.bluedevil
-    
-    # KDE Configuration Modules (KCM), gui
-    libsForQt5.kcmutils
-    libsForQt5.sddm-kcm
-    libsForQt5.flatpak-kcm
-    
-    # Encryption Key Management
-    gnupg
-    
-    # make tools, cli
-    autoconf
-    gcc
-    gnumake
-    llvm
-    libclang
-    clang
-    cmake
-    
-    # tools, gui
-    gparted
-    kdiff3
-    
-    #etcher
-    
-    # virtualisation hosts, qemu
-    spice
-    docker-compose
-    virt-manager
-    dconf
-    gnome3.dconf-editor # needed for saving settings in virt-manager
-    libguestfs # needed to virt-sparsify qcow2 files
-    libvirt
-    
-    # Distrobox
-    distrobox
-    xorg.xhost
-    
-    # fsmount, webdav
-    davfs2
-    autofs5
-    fuse
-    sshfs
-    cadaver
-    
-    # Theming, icons
-    papirus-icon-theme
-    
-    # Theming, system
-    materia-theme
-    materia-kde-theme
+      # Logitech Mouse Control
+      libratbag
+      piper
 
-    # Theming , cursor
-    apple-cursor
-  ];
+      # KDE Configuration Modules (KCM), gui
+      libsForQt5.kcmutils
+      libsForQt5.sddm-kcm
+      libsForQt5.flatpak-kcm
+      
+      # Encryption Key Management
+      gnupg
+      
+      # make tools, cli
+      autoconf
+      gcc
+      gnumake
+      llvm
+      libclang
+      clang
+      cmake
+      
+      # tools, gui
+      gparted
+      kdiff3
+      
+      #etcher
+      
+      # virtualisation hosts, qemu
+      spice
+      docker-compose
+      virt-manager
+      dconf
+      gnome3.dconf-editor # needed for saving settings in virt-manager
+      libguestfs # needed to virt-sparsify qcow2 files
+      libvirt
+      
+      # Distrobox
+      distrobox
+      xorg.xhost
+      
+      # fsmount, webdav
+      davfs2
+      autofs5
+      fuse
+      sshfs
+      cadaver
+      
+      # Theming, icons
+      papirus-icon-theme
+      
+      # Theming, system
+      materia-theme
+      materia-kde-theme
+
+      # Theming, cursor
+      apple-cursor
+    ];
+  };
 
   # Fonts
   fonts.fonts = with pkgs; [
