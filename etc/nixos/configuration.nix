@@ -95,7 +95,7 @@
   
   # Set Hostname, Use Network Manager:
   networking = {
-	hostName = ${hostname};
+	hostName = hostname;
 	networkmanager.enable = true;
   };
 
@@ -125,7 +125,7 @@
       libinput.enable = true;
 
       #Enable Libvirtd
-      libvirtd.enable = true;
+      #libvirtd.enable = true;
     };
   
   # General Services
@@ -286,16 +286,16 @@
   };
 
   # Home Manager Setup Configuration
--  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
--  # causes failure to install on new Installs.
--  #home-manager = {
--  #  useGlobalPkgs = true;
--  #  useUserPackages = true;
--  #  users.tyler = import ./home.nix {
--  #    inherit config;
--  #    inherit pkgs;
--  #  };
--  #};
+  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
+  # causes failure to install on new Installs.
+  #home-manager = {
+  #  useGlobalPkgs = true;
+  #  useUserPackages = true;
+  #  users.tyler = import ./home.nix {
+  #    inherit config;
+  #    inherit pkgs;
+  #  };
+  #};
 
 
   # System Packages
