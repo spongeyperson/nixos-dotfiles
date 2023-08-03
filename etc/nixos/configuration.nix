@@ -155,6 +155,36 @@
       # If you want to use JACK applications, uncomment this
       jack.enable = true;
     };
+    udev.extraRules = ''
+      # Valve USB devices
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0660", TAG+="uaccess";
+      # Steam Controller udev write access
+      KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput";
+      # Valve HID devices over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0660", TAG+="uaccess";
+      # Valve HID devices over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0660", TAG+="uaccess";
+      # DualShock 4 over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0660", TAG+="uaccess";
+      # DualShock 4 over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="05c4", MODE="0660", TAG+="uaccess";
+      # DualShock 4 wireless adapter over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ba0", MODE="0660", TAG+="uaccess";
+      # DualShock 4 Slim over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="09cc", MODE="0660", TAG+="uaccess";
+      # PS5 DualSense controller over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess";
+      # PS5 DualSense controller over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess";
+      # Nintendo Switch Pro Controller over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", MODE="0660", TAG+="uaccess";
+      # Nintendo Switch Pro Controller over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*057E:2009*", MODE="0660", TAG+="uaccess";
+      # DualShock 3 over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0660", TAG+="uaccess";
+      # DualShock 3 over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*054C:0268*", MODE="0660", TAG+="uaccess";
+    '';
   };
 
   # rtkit is optional but recommended
@@ -259,7 +289,7 @@
       vscode
       barrier
       anydesk
-      rustdesk
+      #rustdesk - Temporarily Disabled due to Rust Compilation Errors
       filelight
       gnome.gnome-calculator
       
@@ -356,6 +386,9 @@
       okular
       spectacle
       
+      # OBS
+      obs-studio
+
       # Bluetooth + Depends
       bluedevil
       bluez
