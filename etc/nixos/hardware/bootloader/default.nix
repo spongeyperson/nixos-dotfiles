@@ -1,24 +1,10 @@
 {
-    config,
-    lib,
-    pkgs,
-    ...
+  modulesPath,
+  ...
 }: {
-    boot = {
-        loader = {
-            efi = {
-                canTouchEfiVariables = true;
-                efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-            };
-            grub = {
-                # Enable Grub
-                enable = true;
-                # EFI Support Enable
-                efiSupport = true;
-                #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-                device = "nodev";
-                #useOSProber = true;
-            };
-        };
-    };
+  imports = [
+    #(modulesPath + "/installer/scan/not-detected.nix")
+    ./bootopts.nix
+    ./grub.nix
+  ];
 }
