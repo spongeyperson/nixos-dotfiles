@@ -16,6 +16,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hardware
+      ./virtualisation
       # User Configurations
       #./userconf-configs.nix
       #./userconf-declarative.nix

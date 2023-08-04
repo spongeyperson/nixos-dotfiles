@@ -7,13 +7,6 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./docker
-    ./vfio
-    # ./filesystem
-    # ./networking
-    # ./opengl
-    # ./platform
-    # ./processor
-    # ./swapdevices
+    ./vfio.nix
   ];
 }

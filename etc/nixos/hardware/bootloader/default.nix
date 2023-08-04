@@ -4,7 +4,7 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./bootopts.nix
+    ./kernelopts.nix
     ./grub.nix
   ];
 }
