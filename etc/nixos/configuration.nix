@@ -8,7 +8,7 @@
   let
     user = "tyler";
     hostname = "Spongey-PC";
-    # NOTICE: VFIO has been moved to ./hardware/boot/default.nix
+    # NOTICE: VFIO has been moved to ./virtualisation/vfio/vfio.nix
   in
 
 {
