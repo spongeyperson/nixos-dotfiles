@@ -10,6 +10,7 @@
         openssh.enable = true;
         flatpak.enable = true;
         fstrim.enable = true;
+        teamviewer.enable = true;
 
         # Virt-Manager Service
         qemuGuest.enable = true;
