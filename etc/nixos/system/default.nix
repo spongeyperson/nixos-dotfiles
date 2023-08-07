@@ -4,7 +4,8 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./nix
+    ./config
+    ./packages
     ./services
   ];
 }

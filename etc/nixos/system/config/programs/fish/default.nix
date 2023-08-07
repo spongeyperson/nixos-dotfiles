@@ -4,6 +4,6 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./tyler
+    ./shellAliases.nix
   ];
 }

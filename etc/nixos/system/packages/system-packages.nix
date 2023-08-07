@@ -47,6 +47,7 @@
         smartmontools
         hwloc
         mkpasswd
+        lm_sensors
         # Encryption Key Management
         gnupg
         # Watch Replacement
@@ -66,7 +67,6 @@
         libclang
         clang
         cmake
-
 
 
         ## GUI
@@ -105,6 +105,8 @@
         # Logitech Mouse Control
         libratbag
         piper
+        # Logitech Steering Wheel Support
+        oversteer
 
 
         #etcher

@@ -5,22 +5,25 @@
   ... 
 }: 
 let
-  user = "tyler";
-  overlays = import ./packages/user-packages.nix { inherit pkgs user; }; # Pass 'user' to the import
+  # Tunables. These can be changed.
+  user = "tyler"; # Set Global User Account Name.
+  overlays = import ./packages/user-packages.nix { inherit pkgs user; }; # Create an Overlay Variable for the following import file
+  
+  # Don't Change this.
+  homedir = "/home/${user}"; # Global Home Variable.
 in
 {
-  # Apply overlays to the packages directory
   imports = [
     overlays
   ];
 
   # User & User Packages
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with ‘passwd’, later.
   users = {
     defaultUserShell = pkgs.fish;
     users.${user} = {
       isNormalUser = true;
-      home = "/home/tyler";
+      home = homedir;
       uid = 1000;
       shell = pkgs.fish;
       extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
