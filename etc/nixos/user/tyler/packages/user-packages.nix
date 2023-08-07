@@ -49,7 +49,7 @@
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
-            filelight
+            filelight 
             gnome.gnome-calculator
 
             # GUI Audio Manipulation
