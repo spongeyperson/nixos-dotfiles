@@ -1,13 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: 
-let
-    user = "tyler";
-in
-{
+{   
+    pkgs, 
+    user, 
+    ... 
+}: {
     users.users.${user} = {
         packages = with pkgs; [
             # Temp Theme
@@ -33,9 +28,9 @@ in
             parsec-bin
 
             # Gaming
-            #steam
+            #steam - moved to system-programs.nix
             heroic
-            #gamemode
+            #gamemode - moved to ../../system/services/services.nix
             protonup-qt
             protontricks
             mangohud
@@ -73,7 +68,7 @@ in
             # Art
             krita
 
-            # Userspace,CLI
+            # Userspace, CLI
             flatpak
             android-tools
             scrcpy

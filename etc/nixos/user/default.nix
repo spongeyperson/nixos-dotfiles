@@ -4,7 +4,6 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./services.nix
-    ./udev-rules.nix
+    ./tyler/tyler.nix
   ];
 }

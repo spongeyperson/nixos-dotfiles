@@ -7,7 +7,6 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./system-programs.nix
-    ./user-programs.nix
+    ./system-packages.nix
   ];
 }

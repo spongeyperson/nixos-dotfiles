@@ -46,6 +46,7 @@
         iperf
         smartmontools
         hwloc
+        mkpasswd
         # Encryption Key Management
         gnupg
         # Watch Replacement
@@ -71,7 +72,12 @@
         ## GUI
         openrgb
         fsearch
+
+        # Remote Desktop Hosts, Etc.
         sunshine
+        waynergy
+        wl-clipboard
+
         # GUI Tools, General
         gparted
         kdiff3

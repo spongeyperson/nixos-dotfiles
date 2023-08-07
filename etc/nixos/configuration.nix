@@ -6,7 +6,6 @@
 
 # Global Variables, (Optional Tunables)
   let
-    user = "tyler";
     hostname = "Spongey-PC";
     # NOTICE: VFIO has been moved to ./virtualisation/vfio/vfio.nix
   in
@@ -17,7 +16,8 @@
       ./hardware-configuration.nix
       ./hardware
       ./system
-      ./programs
+      ./packages
+      ./user
       ./virtualisation
       # User Configurations
       #./userconf-configs.nix
@@ -169,26 +169,6 @@
       '';
     };
   };
-
-  # User & User Packages
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.fish;
-  users.users.${user} = {
-    isNormalUser = true;
-    shell = pkgs.fish;
-    extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
-  };
-  # Home Manager Setup Configuration
-  # Temporarily Disabled Due to Lack of Automatic "Channel" installation,
-  # causes failure to install on new Installs.
-  #home-manager = {
-  #  useGlobalPkgs = true;
-  #  useUserPackages = true;
-  #  users.tyler = import ./home.nix {
-  #    inherit config;
-  #    inherit pkgs;
-  #  };
-  #};
 
   # Fonts
   fonts.fonts = with pkgs; [
