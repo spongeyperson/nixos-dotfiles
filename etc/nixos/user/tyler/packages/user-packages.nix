@@ -5,10 +5,6 @@
 }: {
     users.users.${user} = {
         packages = with pkgs; [
-            # Temp Theme
-            materia-theme
-            materia-kde-theme
-
             # Userspace, GUI
             authy
             vlc

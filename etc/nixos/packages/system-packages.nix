@@ -129,13 +129,12 @@
         sshfs
         cadaver
 
-        # Theming, icons
-        papirus-icon-theme
-
+      # THEMING
         # Theming, system
         materia-theme
         materia-kde-theme
-
+        # Theming, icons
+        papirus-icon-theme
         # Theming, cursor
         apple-cursor
         ];
