@@ -97,6 +97,9 @@
         libsForQt5.kcmutils
         libsForQt5.sddm-kcm
         libsForQt5.flatpak-kcm
+        # Misc Libs for QT5, KDE Discover
+        libsForQt5.discover
+        packagekit
         # GUI Tools, Recording / Editing
         obs-studio
         handbrake
@@ -122,6 +125,7 @@
 
         # Distrobox
         distrobox
+
         xorg.xhost
 
         # fsmount, webdav

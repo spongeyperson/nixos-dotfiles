@@ -13,6 +13,7 @@
     
     # NOTE: Other modules & params defined under ../../virtualisation/vfio/vfio.nix
     initrd.kernelModules = [
+      "amdgpu"
       "dm-snapshot" 
     ];
     kernelModules = [ ];

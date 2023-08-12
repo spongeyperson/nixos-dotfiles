@@ -8,6 +8,7 @@
         listgenerations="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         list-generations="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         list-gen="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
+        nixgc="nix-collect-garbage --delete-older-than 3d";
         # General Aliases
         tb="nc termbin.com 9999";
         termbin="nc termbin.com 9999";
