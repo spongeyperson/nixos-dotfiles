@@ -35,6 +35,11 @@
             bottles
             prismlauncher
 
+            #Emulators
+            pcem
+            _86Box
+            rpcs3
+
             # Userspace, GUI, Unstable Pkgs
             #latte-dock
 
