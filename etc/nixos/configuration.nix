@@ -7,7 +7,7 @@
 # Global Variables, (Optional Tunables)
   let
     hostname = "Spongey-PC";
-    # NOTICE: VFIO has been moved to ./virtualisation/vfio/vfio.nix
+    # NOTICE: VFIO has been moved to: ./virtualisation/vfio/default.nix
   in
 
 {
@@ -34,7 +34,11 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-
+  # XDG Enable Default Portal
+  xdg = {
+    portal.enable = true;
+    portal.xdgOpenUsePortal = true;
+  };
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
@@ -49,28 +53,6 @@
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Virtualisation Toggles, libvirtd, docker, podman
-  virtualisation = {
-    spiceUSBRedirection.enable = true;
-      libvirtd = {
-        enable = true;
-        qemu.ovmf.enable = true;
-        qemu.runAsRoot = true;
-        onBoot = "ignore";
-        onShutdown = "shutdown";
-      };
-      docker = {
-        enable = true;
-        storageDriver = "btrfs";
-      };
-      podman = {
-        enable = true;
-        # Enable compat to use podman as a drop-in replacement for docker.
-        #dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
-      };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

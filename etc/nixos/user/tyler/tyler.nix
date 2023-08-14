@@ -1,3 +1,5 @@
+# User Configuration: "Tyler" - /user/tyler/tyler.nix
+
 { 
   config, 
   lib, 

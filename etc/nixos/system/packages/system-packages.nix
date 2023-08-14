@@ -54,6 +54,8 @@
         viddy
         # Cooling Control
         liquidctl
+        # AMDGPU Tuning
+        corectrl
         # Hardware Accel tools, Graphics Testing
         libva-utils
         vdpauinfo
