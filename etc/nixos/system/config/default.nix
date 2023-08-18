@@ -1,10 +1,12 @@
+# System Configuration, Configuration Import - /system/config/default.nix
+
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    ./nix
-    ./programs
+    #(import ./environment/pipewire { inherit commonVariables; })
+    (import ./nix { inherit commonVariables; })
+    (import ./programs { inherit commonVariables; })
   ];
 }

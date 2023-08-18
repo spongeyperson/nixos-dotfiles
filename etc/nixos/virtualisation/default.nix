@@ -1,15 +1,13 @@
-# This Configuration File is a bridge file that links the following imports together.
-# Modify this configuration only if you want to EXCLUDE a specific config.
+# Virtualisation Configuration Import - /virtualisation/default.nix
 
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     # Define Enabled Subdirectories.
-    #./docker
-    #./podman
-    ./vfio
+    #(import ./docker { inherit commonVariables; })
+    #(import ./podman { inherit commonVariables; })
+    (import ./vfio { inherit commonVariables; })
   ];
 }

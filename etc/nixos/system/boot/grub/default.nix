@@ -1,6 +1,7 @@
-# Grub Configuration - /system/boot/grub
+# Grub Configuration - /system/boot/grub/default.nix
 
 {
+  commonVariables,
   config,
   lib,
   pkgs,
@@ -8,7 +9,7 @@
 }: {
   boot = {
     # Set Zen Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = commonVariables.kernel;
 
     loader = {
       efi = {

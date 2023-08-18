@@ -2,46 +2,69 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ 
+  config, 
+  pkgs,
+  lib, 
+  ... 
+}:
+let
+  # Global NixOS Variables, (Optional Tunables)
+  commonVariables = { 
+    hostname = "Spongey-PC"; 
+    username = "tyler";
+    usershell = "pkgs.fish";
 
-# Global Variables, (Optional Tunables)
-  let
-    hostname = "Spongey-PC";
-    # NOTICE: VFIO has been moved to: ./virtualisation/vfio/default.nix
-  in
+    # DO NOT CHANGE THIS; unless you want a different home dir folder.
+    homedir = "/home/${username}";
 
+    # Set System Kernel: (./system/boot/grub/default.nix)
+    kernel = "pkgs.linuxPackages_zen";
+
+    # VFIO Settings: (./virtualisation/vfio/default.nix)
+    # Use this if you want VFIO.
+    # If you don't want VFIO, comment these 2 lines;
+    # and comment `./virtualisation` below.
+    # OR comment `./vfio` inside `./virtusalisation/default.nix`
+    vfioIDs = "10de:2204,10de:1aef";
+    vfioBlacklist = "nvidia,nvidiafb,nouveau";
+  };
+  inherit (lib) mkIf;
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # NixOS: Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # Custom Includes
-      ./hardware
-      ./system
-      ./user
-      ./virtualisation
+      # Custom Includes, with Inheritable "let-in" Variables.
+      (import ./hardware (commonVariables // {  }))
+      (import ./system (commonVariables // {  }))
+      (import ./user (commonVariables // {  }))
+      
+      # Uncomment this if you want to disable all of the following; vfio, docker, podman
+      (import ./virtualisation (commonVariables // {  }))
     ];
   
+
+# Stray Configurations which have yet to be defined elsewhere.
+  # Locale
+  time.timeZone = "America/Los_Angeles"; # Set time zone.
+  i18n.defaultLocale = "en_US.UTF-8";  # Select internationalisation properties.
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+
   # Set Hostname, Use Network Manager:
   networking = {
-	hostName = hostname;
-	networkmanager.enable = true;
+    hostName = commonVariables.hostname;
+    networkmanager.enable = true;
   };
-
-  # Set time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
 
   # XDG Enable Default Portal
   xdg = {
     portal.enable = true;
     portal.xdgOpenUsePortal = true;
   };
-
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
 
   # Fonts
   fonts.fonts = with pkgs; [

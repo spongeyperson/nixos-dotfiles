@@ -1,12 +1,14 @@
+# System Configuration Import - /system/default.nix
+
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     # Define Enabled Subdirectories.
-    ./config
-    ./packages
-    ./services
+    (import ./boot { inherit commonVariables; })
+    (import ./config { inherit commonVariables; })
+    (import ./packages { inherit commonVariables; })
+    (import ./services { inherit commonVariables; })
   ];
 }

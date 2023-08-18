@@ -1,33 +1,34 @@
 # User Configuration: "Tyler" - /user/tyler/tyler.nix
 
 { 
-  config, 
-  lib, 
+  commonVariables,
+  config,
   pkgs, 
+  lib, 
   ... 
 }: 
-let
-  # Tunables. These can be changed.
-  user = "tyler"; # Set Global User Account Name.
-  overlays = import ./packages/user-packages.nix { inherit pkgs user; }; # Create an Overlay Variable for the following import file
+# let
+#   # Tunables. These can be changed.
+#   user = "tyler"; # Set Global User Account Name.
+#   overlays = import ./packages/user-packages.nix { inherit pkgs user; }; # Create an Overlay Variable for the following import file
   
-  # Don't Change this.
-  homedir = "/home/${user}"; # Global Home Variable.
-in
+#   # Don't Change this.
+#   homedir = "/home/${user}"; # Global Home Variable.
+# in
 {
   imports = [
-    overlays
+    (import ./packages/user-packages.nix { inherit commonVariables; })
   ];
 
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’, later.
   users = {
-    defaultUserShell = pkgs.fish;
-    users.${user} = {
+    defaultUserShell = commonVariables.usershell;
+    users.${commonVariables.username} = {
       isNormalUser = true;
-      home = homedir;
+      home = commonVariables.homedir;
       uid = 1000;
-      shell = pkgs.fish;
+      shell = commonVariables.usershell;
       extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     };
   };

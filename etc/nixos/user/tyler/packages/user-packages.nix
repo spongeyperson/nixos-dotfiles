@@ -1,9 +1,9 @@
 {   
+    commonVariables,
     pkgs, 
-    user, 
     ... 
 }: {
-    users.users.${user} = {
+    users.users.${commonVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
             authy

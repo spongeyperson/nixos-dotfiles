@@ -1,10 +1,11 @@
+# User Configuration Import - /user/default.nix
+
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    # Define Enabled Subdirectories.
-    ./tyler
+    # Import User Folder + User Config
+    (import ./tyler/tyler.nix { inherit commonVariables; })
   ];
 }
