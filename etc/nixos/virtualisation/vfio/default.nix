@@ -32,10 +32,15 @@
         spiceUSBRedirection.enable = true;
         libvirtd = {
             enable = true;
-            qemu.ovmf.enable = true;
             qemu.runAsRoot = true;
+            qemu.ovmf.enable = true;
+            qemu.swtpm.enable = true;
             onBoot = "ignore";
             onShutdown = "shutdown";
         };
     };
+
+    #services = {
+        #qemuGuest.enable = true; # Enable QEMU Guest Agent on Host. Disable if you're not running this in a VM
+    #};
 }

@@ -1,3 +1,5 @@
+# System Services Config - /system/services/services.nix
+
 {
   config,
   lib,
@@ -11,9 +13,6 @@
         flatpak.enable = true;
         fstrim.enable = true;
         teamviewer.enable = true;
-
-        # Virt-Manager Service
-        qemuGuest.enable = true;
 
         # Enable CUPS to print documents.
         printing.enable = true;
@@ -45,9 +44,6 @@
 
             # Enable touchpad support (enabled default in most desktopManager).
             libinput.enable = true;
-
-            #Enable Libvirtd
-            #libvirtd.enable = true;
         };
 
         # Pipewire

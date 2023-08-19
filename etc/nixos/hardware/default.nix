@@ -1,12 +1,13 @@
+# Hardware Configuration Import - /hardware/default.nix
+
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     # Define Enabled Subdirectories.
-    ./bluetooth
-    ./cpu
-    ./opengl
+    (import ./bluetooth { inherit commonVariables; })
+    (import ./cpu { inherit commonVariables; })
+    (import ./opengl { inherit commonVariables; })
   ];
 }

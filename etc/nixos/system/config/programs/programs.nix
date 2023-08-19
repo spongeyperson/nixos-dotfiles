@@ -5,13 +5,10 @@
     user,
     ...
 }: {
-    # Programs Configuration:
     programs = {
-        # Alternative System Steam Install:
-        steam.enable = true;
-        # Install Gamemode to the System:
-        gamemode.enable = true;
-        fish.enable = true;
+        steam.enable = true; # Install Steam to System
+        gamemode.enable = true; # Install Feral Gamemode to System
+        fish.enable = true; # Install Fish Shell to System
         kdeconnect.enable = true;
 
         # FIX "GTK themes are not applied in Wayland applications"
@@ -32,7 +29,7 @@
         tmux = {
             enable = true;
             extraConfig = ''
-            set-option -g default-shell /run/current-system/sw/bin/fish
+                set-option -g default-shell /run/current-system/sw/bin/fish
             '';
         };
     };

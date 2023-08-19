@@ -1,14 +1,17 @@
+# Fish Shell Aliases Config - /system/config/programs/fish/shellAliases.nix
+
 {
     pkgs,
     user,
     ...
 }: {
-        programs.fish.shellAliases = {
+    programs.fish.shellAliases = {
         # NixOS Aliases
         listgenerations="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         list-generations="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         list-gen="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         nixgc="nix-collect-garbage --delete-older-than 3d";
+        update="sudo nix-channel --update ; sudo nixos-rebuild switch --upgrade";
         # General Aliases
         tb="nc termbin.com 9999";
         termbin="nc termbin.com 9999";
@@ -21,7 +24,6 @@
         lsmounts="cat /proc/mounts";
         #  neofetch="neofetch --config /home/tyler/.config/neofetch/fedora.conf --ascii_distro Fedora"
         virsh="virsh --connect=qemu:///system";
-        update="sudo nix-channel --update ; sudo nixos-rebuild switch --upgrade";
         duf="duf -hide-fs squashfs";
         CLEAR="clear";
         onedrive="rclone serve webdav OD_Chunk:/ --vfs-cache-mode writes -P --cache-db-purge";

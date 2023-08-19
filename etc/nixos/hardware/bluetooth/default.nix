@@ -1,9 +1,10 @@
+# Bluetooth Hardware Enable - /hardware/bluetooth/default.nix
+
 {
     pkgs,
     user,
     ...
 }: {
-    # Bluetooth Hardware Enable
     hardware = {
         bluetooth.enable = true;
     };

@@ -2,11 +2,11 @@
 # Modify this configuration only if you want to EXCLUDE a specific config.
 
 {
-  modulesPath,
+  commonVariables,
   ...
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
-    ./system-packages.nix
+    (import ./system-packages.nix { inherit commonVariables; })
   ];
 }
