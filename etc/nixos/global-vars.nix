@@ -1,3 +1,9 @@
+# Global Variables & Tunables Config - /etc/nixos/global-vars.nix 
+# = CHANGE WHAT YOU NEED HERE =
+# Changes made in this config 'should' apply globally.
+
+# WARNING: DO NOT DELETE THIS CONFIG. THIS FILE HARDCODED
+
 { 
     lib,
     config,
@@ -13,6 +19,10 @@
         username = "tyler";
         #usershell = "pkgs.fish";
 
+        # Locale
+        timeZone = "America/Los_Angeles"; # Set time zone.
+        Locale = "en_US.UTF-8"; # Select internationalisation properties.
+
         # Set System Kernel: (./system/boot/grub/default.nix)
         #kernel = "pkgs.linuxPackages_zen";
 
@@ -24,7 +34,12 @@
         vfioIDs = "10de:2204,10de:1aef";
         vfioBlacklist = "nvidia,nvidiafb,nouveau";
     };
+
+    # Work arounds for `pkgs` strings not being able to be read by `commonVariables`.
+    # This is super dumb. I spent over 3 hrs debugging this. Thanks for nothing NixOS
     boot.kernelPackages = pkgs.linuxPackages_zen;
-    users.defaultUserShell = pkgs.fish;
-    users.users.tyler.shell = pkgs.fish; 
+    users = {
+        defaultUserShell = pkgs.fish;
+        users.tyler.shell = pkgs.fish; 
+    };
 }

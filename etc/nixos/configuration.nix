@@ -21,23 +21,12 @@ in
       ./hardware
       ./system
       ./user
-      ./virtualisation
-
-      # TODO: Cleanup All imports on all configs.
-      #(import ./hardware/default.nix { commonVariables = commonVariables; })
-      #(import ./system/default.nix { commonVariables = commonVariables; })
-      #(import ./user/default.nix { commonVariables = commonVariables; })
-      
       # Uncomment this if you want to disable all of the following; vfio, docker, podman
-      #(import ./virtualisation/default.nix { commonVariables = commonVariables; })
+      ./virtualisation
     ];
   
 
 ## Stray Configurations which have yet to be defined elsewhere.
-  # Locale
-  time.timeZone = "America/Los_Angeles"; # Set time zone.
-  i18n.defaultLocale = "en_US.UTF-8";  # Select internationalisation properties.
-
 
   security = {
     rtkit.enable = true; # rtkit is optional but recommended
@@ -48,13 +37,6 @@ in
     #     '';
     #   };
     # };
-  };
-
-
-  # Set Hostname, Use Network Manager:
-  networking = {
-    hostName = commonVariables.hostname;
-    networkmanager.enable = true;
   };
 
   # XDG Enable Default Portal
