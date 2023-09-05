@@ -26,5 +26,5 @@
     };
     boot.kernelPackages = pkgs.linuxPackages_zen;
     users.defaultUserShell = pkgs.fish;
-    users.users.${config.commonVariables.username}.shell = pkgs.fish;
+    users.users.${config.commonVariables.username}.shell = pkgs.fish; 
 }
