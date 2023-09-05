@@ -41,13 +41,13 @@ in
 
   security = {
     rtkit.enable = true; # rtkit is optional but recommended
-    sudo.configFile = {
-      "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
-        content = ''
-          Defaults env_reset,pwfeedback 
-        '';
-      };
-    };
+    # sudo.configFile = {
+    #   "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
+    #     content = ''
+    #       Defaults env_reset,pwfeedback 
+    #     '';
+    #   };
+    # };
   };
 
 
