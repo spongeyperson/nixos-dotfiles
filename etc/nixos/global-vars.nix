@@ -11,10 +11,10 @@
         homedir = "/home/${config.commonVariables.username}";
 
         username = "tyler";
-        usershell = "pkgs.fish";
+        #usershell = "pkgs.fish";
 
         # Set System Kernel: (./system/boot/grub/default.nix)
-        kernel = "pkgs.linuxPackages_zen";
+        #kernel = "pkgs.linuxPackages_zen";
 
         # VFIO Settings: (./virtualisation/vfio/default.nix)
         # Use this if you want VFIO.
@@ -24,4 +24,7 @@
         vfioIDs = "10de:2204,10de:1aef";
         vfioBlacklist = "nvidia,nvidiafb,nouveau";
     };
+    boot.kernelPackages = pkgs.linuxPackages_zen;
+    users.defaultUserShell = pkgs.fish;
+    users.users.${commonVariables.username}.shell = pkgs.fish;
 }

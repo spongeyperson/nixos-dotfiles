@@ -15,7 +15,7 @@ in
 {
   boot = {
     # Set Kernel
-    kernelPackages = commonVariables.kernel;
+    #kernelPackages = commonVariables.kernel;
 
     loader = {
       efi = {

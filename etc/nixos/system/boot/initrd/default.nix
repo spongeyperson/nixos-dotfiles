@@ -22,7 +22,7 @@
         # Parameters added to the kernel command line.
         kernelParams = [ ];
         # A list of additional packages supplying kernel modules.
-        extraModulePackages = [ "config.boot.kernelPackages.v4l2loopback" ];
+        #extraModulePackages = [ "config.boot.kernelPackages.v4l2loopback" ];
         supportedFilesystems = [ 
             "btrfs"
             "ntfs" 

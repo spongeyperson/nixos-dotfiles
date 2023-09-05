@@ -29,12 +29,12 @@ in
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’, later.
   users = {
-    defaultUserShell = commonVariables.usershell;
+    #defaultUserShell = commonVariables.usershell;
     users.${commonVariables.username} = {
       isNormalUser = true;
       home = commonVariables.homedir;
       uid = 1000;
-      shell = commonVariables.usershell;
+      #shell = commonVariables.usershell;
       extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     };
   };
