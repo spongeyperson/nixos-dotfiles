@@ -7,6 +7,8 @@
 }: {
   imports = [
     #(import ./environment/pipewire { inherit commonVariables; })
+    ./locale
+    ./networking
     ./nix
     ./programs
     #(import ./nix { inherit commonVariables; })
