@@ -70,6 +70,11 @@ in
     cascadia-code
   ];
 
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=45s
+  '';
+
+
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
