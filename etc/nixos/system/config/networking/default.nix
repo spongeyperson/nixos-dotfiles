@@ -11,7 +11,7 @@ in
 {
         # Set Hostname, Use Network Manager:
     networking = {
-        hostName = commonVariables.hostname;
+        hostName = "${commonVariables.hostname}";
         networkmanager.enable = true;
     };
 }

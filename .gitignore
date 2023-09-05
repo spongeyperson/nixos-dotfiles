@@ -1,0 +1,9 @@
+# Ignore Secrets
+secrets
+
+# NixOS build links
+result
+
+# Ignore swap files
+*.swp
+*~
