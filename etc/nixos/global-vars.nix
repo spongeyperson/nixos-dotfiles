@@ -8,7 +8,7 @@
         hostname = "Spongey-PC"; 
 
         # DO NOT CHANGE THIS; unless you want a different home dir folder.
-        homedir = "/home/${config.commonVariables.username}";
+        homedir = "/home/tyler";
 
         username = "tyler";
         #usershell = "pkgs.fish";
