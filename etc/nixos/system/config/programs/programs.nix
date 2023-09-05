@@ -1,5 +1,7 @@
 # Programs Configuration - /system/config/programs/programs.nix
 
+#TODO: Set Tmux `extraConfig = ` to a global variable accessable by `commonVariables`
+
 {
     pkgs,
     user,

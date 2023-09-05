@@ -12,6 +12,8 @@
         list-gen="sudo nix-env --list-generations -p /nix/var/nix/profiles/system";
         nixgc="nix-collect-garbage --delete-older-than 3d";
         update="sudo nix-channel --update ; sudo nixos-rebuild switch --upgrade";
+        pkg-env="sudo nix-env -q ; nix-env -q";
+        envpkgs="sudo nix-env -q ; nix-env -q";
         # General Aliases
         tb="nc termbin.com 9999";
         termbin="nc termbin.com 9999";

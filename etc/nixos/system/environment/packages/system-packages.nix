@@ -1,7 +1,6 @@
 # System Packages Configuration - /system/environment/packages/system-packages.nix
 
 {
-  commonVariables,
   config,
   lib,
   pkgs,
@@ -13,6 +12,8 @@
     environment = {
       localBinInPath = true;
       systemPackages = with pkgs; [
+        #linuxKernel.packages.linux_zen.v4l2loopback
+
         # Text Editors - CLI
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         micro
@@ -143,6 +144,8 @@
         # Misc Libs for QT5, KDE Discover
         libsForQt5.discover
         packagekit
+        # Tiling Window Manager
+        libsForQt5.bismuth
 
 
         ## THEMING

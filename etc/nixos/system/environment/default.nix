@@ -1,12 +1,15 @@
 # Environment Configuration Import - /system/default.nix
 
+  #TODO: Cleanup
 {
-  commonVariables,
+  #commonVariables,
   ...
 }: {
     imports = [
         # Define Enabled Subdirectories.
-        (import ./packages { inherit commonVariables; })
-        (import ./pipewire { inherit commonVariables; })
+        ./packages/system-packages.nix
+        #./pipewire
+        #(import ./packages { inherit commonVariables; })
+        #(import ./pipewire { inherit commonVariables; })
     ];
 }

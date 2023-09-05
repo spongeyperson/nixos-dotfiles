@@ -1,11 +1,13 @@
-# User Configuration Import - /user/default.nix
+# In ./user/default.nix
 
+  #TODO: Cleanup, Add description of this file
 {
-  commonVariables,
+  #commonVariables,
   ...
 }: {
   imports = [
     # Import User Folder + User Config
-    (import ./tyler/tyler.nix { inherit commonVariables; })
+    ./tyler/tyler.nix
+    #(import ./tyler/tyler.nix { commonVariables = commonVariables; })
   ];
 }

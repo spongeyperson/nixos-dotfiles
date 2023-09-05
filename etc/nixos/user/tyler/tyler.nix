@@ -1,12 +1,17 @@
 # User Configuration: "Tyler" - /user/tyler/tyler.nix
 
+  #TODO: Cleanup
 { 
-  commonVariables,
+  #commonVariables,
   config,
   pkgs, 
   lib, 
   ... 
-}: 
+}:
+let
+  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+  commonVariables = globalVars.commonVariables;
+in
 # let
 #   # Tunables. These can be changed.
 #   user = "tyler"; # Set Global User Account Name.
@@ -17,7 +22,8 @@
 # in
 {
   imports = [
-    (import ./packages/user-packages.nix { inherit commonVariables; })
+    ./packages/user-packages.nix
+    #(import ./packages/user-packages.nix { inherit commonVariables; })
   ];
 
   # User & User Packages

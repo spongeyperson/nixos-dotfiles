@@ -1,9 +1,13 @@
+# CPU Configuration Import - /hardware/cpu/default.nix
+
+  #TODO: Cleanme
 {
-  modulesPath,
+  #commonVariables,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
+    # Define Enabled Subdirectories.
     ./amd
+    #(import ./amd { commonVariables = commonVariables; })
   ];
 }

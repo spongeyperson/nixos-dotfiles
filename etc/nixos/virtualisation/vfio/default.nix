@@ -1,12 +1,18 @@
 # GPU Passthrough via OVMF Config - /virtualisation/vfio/vfio.nix
 
+#TODO: Cleanup
 {
-    commonVariables,
+    #commonVariables,
     config,
     lib,
     pkgs,
     ...
-}: {
+}: 
+let
+    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    commonVariables = globalVars.commonVariables;
+in
+{
     # Required Boot Params
     boot = {
         initrd.kernelModules = [

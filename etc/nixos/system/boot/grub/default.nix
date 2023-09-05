@@ -1,12 +1,18 @@
 # Grub Configuration - /system/boot/grub/default.nix
 
+ #TODO: Cleanme
 {
-  commonVariables,
+  #commonVariables,
   config,
   lib,
   pkgs,
   ...
-}: {
+}: 
+let
+  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+  commonVariables = globalVars.commonVariables;
+in
+{
   boot = {
     # Set Zen Kernel
     kernelPackages = commonVariables.kernel;

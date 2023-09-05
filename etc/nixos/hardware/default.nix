@@ -1,13 +1,19 @@
 # Hardware Configuration Import - /hardware/default.nix
 
+  #TODO: Cleanme
 {
-  commonVariables,
+  #commonVariables,
+  #pkgs,
+  #user,
   ...
 }: {
   imports = [
     # Define Enabled Subdirectories.
-    (import ./bluetooth { inherit commonVariables; })
-    (import ./cpu { inherit commonVariables; })
-    (import ./opengl { inherit commonVariables; })
+    ./bluetooth
+    ./cpu
+    ./opengl
+    # (import ./bluetooth { commonVariables = commonVariables; })
+    # (import ./cpu { commonVariables = commonVariables; })
+    # (import ./opengl { commonVariables = commonVariables; })
   ];
 }

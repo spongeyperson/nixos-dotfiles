@@ -1,9 +1,9 @@
+# Services Configuration Import - /system/services/default.nix
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     ./services.nix
     ./udev-rules.nix
   ];

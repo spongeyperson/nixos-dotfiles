@@ -1,14 +1,19 @@
 # System Configuration Import - /system/default.nix
 
+  #TODO: Cleanup
 {
-  commonVariables,
+  #commonVariables,
   ...
 }: {
   imports = [
     # Define Enabled Subdirectories.
-    (import ./boot { inherit commonVariables; })
-    (import ./config { inherit commonVariables; })
-    (import ./environment { inherit commonVariables; })
-    (import ./services { inherit commonVariables; })
+    ./boot
+    ./config
+    ./environment
+    ./services
+    #(import ./boot { commonVariables = commonVariables; })
+    # (import ./config/default.nix { commonVariables = commonVariables; })
+    # (import ./environment/default.nix { commonVariables = commonVariables; })
+    # (import ./services/default.nix { commonVariables = commonVariables; })
   ];
 }

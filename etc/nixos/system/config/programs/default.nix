@@ -1,9 +1,9 @@
+# Program Configuration Import - /system/config/programs/default.nix
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     ./fish
     ./programs.nix
   ];

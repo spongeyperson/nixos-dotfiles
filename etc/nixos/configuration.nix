@@ -9,50 +9,47 @@
   ... 
 }:
 let
-  # Global NixOS Variables, (Optional Tunables)
-  commonVariables = { 
-    hostname = "Spongey-PC"; 
-    username = "tyler";
-    usershell = "pkgs.fish";
-
-    # DO NOT CHANGE THIS; unless you want a different home dir folder.
-    homedir = "/home/${username}";
-
-    # Set System Kernel: (./system/boot/grub/default.nix)
-    kernel = "pkgs.linuxPackages_zen";
-
-    # VFIO Settings: (./virtualisation/vfio/default.nix)
-    # Use this if you want VFIO.
-    # If you don't want VFIO, comment these 2 lines;
-    # and comment `./virtualisation` below.
-    # OR comment `./vfio` inside `./virtusalisation/default.nix`
-    vfioIDs = "10de:2204,10de:1aef";
-    vfioBlacklist = "nvidia,nvidiafb,nouveau";
-  };
-  inherit (lib) mkIf;
+  globalVars = import ./global-vars.nix { inherit config pkgs lib; };
+  commonVariables = globalVars.commonVariables;
 in
 {
   imports =
     [ # NixOS: Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # Custom Includes, with Inheritable "let-in" Variables.
-      (import ./hardware (commonVariables // {  }))
-      (import ./system (commonVariables // {  }))
-      (import ./user (commonVariables // {  }))
+      # Custom Includes
+      ./hardware
+      ./system
+      ./user
+      ./virtualisation
+
+      # TODO: Cleanup All imports on all configs.
+      #(import ./hardware/default.nix { commonVariables = commonVariables; })
+      #(import ./system/default.nix { commonVariables = commonVariables; })
+      #(import ./user/default.nix { commonVariables = commonVariables; })
       
       # Uncomment this if you want to disable all of the following; vfio, docker, podman
-      (import ./virtualisation (commonVariables // {  }))
+      #(import ./virtualisation/default.nix { commonVariables = commonVariables; })
     ];
   
 
-# Stray Configurations which have yet to be defined elsewhere.
+## Stray Configurations which have yet to be defined elsewhere.
   # Locale
   time.timeZone = "America/Los_Angeles"; # Set time zone.
   i18n.defaultLocale = "en_US.UTF-8";  # Select internationalisation properties.
 
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
+
+  security = {
+    rtkit.enable = true; # rtkit is optional but recommended
+    sudo.configFile = {
+      "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
+        content = ''
+          Defaults env_reset,pwfeedback 
+        '';
+      };
+    };
+  };
+
 
   # Set Hostname, Use Network Manager:
   networking = {

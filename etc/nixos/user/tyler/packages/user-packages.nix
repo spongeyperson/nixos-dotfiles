@@ -1,8 +1,16 @@
+#TODO: Cleanup
 {   
-    commonVariables,
+    #commonVariables,
+    config,
     pkgs, 
+    lib,
     ... 
-}: {
+}: 
+let
+    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    commonVariables = globalVars.commonVariables;
+in
+{
     users.users.${commonVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
@@ -54,8 +62,10 @@
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
-            filelight 
+            filelight
+            gnome-online-accounts
             gnome.gnome-calculator
+            gnome.gnome-calendar
 
             # GUI Audio Manipulation
             pavucontrol
