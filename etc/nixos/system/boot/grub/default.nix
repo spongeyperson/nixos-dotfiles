@@ -14,7 +14,7 @@ let
 in
 {
   boot = {
-    # Set Zen Kernel
+    # Set Kernel
     kernelPackages = commonVariables.kernel;
 
     loader = {
