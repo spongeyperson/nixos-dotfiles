@@ -27,6 +27,7 @@ in
   
 
 ## Stray Configurations which have yet to be defined elsewhere.
+# TODO: Move these configs elsewhere
 
   security = {
     rtkit.enable = true; # rtkit is optional but recommended
