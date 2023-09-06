@@ -8,7 +8,7 @@
 }: {
     virtualisation.vmware.host.enable = true;
     environment.systemPackages = with pkgs; [
-        #linuxKernel.packages.linux_zen.vmware
+        linuxKernel.packages.linux_zen.vmware
         #vmware-workstation
     ];
 }

@@ -46,13 +46,6 @@ in
     portal.xdgOpenUsePortal = true;
   };
 
-  # Fonts
-  fonts.fonts = with pkgs; [
-    nerdfonts
-    powerline-fonts
-    cascadia-code
-  ];
-
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=45s
   '';

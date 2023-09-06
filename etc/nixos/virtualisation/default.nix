@@ -7,6 +7,7 @@
 }: {
   imports = [
     # Define Enabled Subdirectories.
+    ./docker
     ./vfio
     ./vmware
     #(import ./docker { inherit commonVariables; })

@@ -22,8 +22,8 @@
         # Libratbag
         ratbagd.enable = true;
         # Sound Configuration:
-        # sound.enable = true;
         # Pulseaudio (Gross)
+        # sound.enable = true;
         # hardware.pulseaudio.enable = true;
 
         xserver = {      

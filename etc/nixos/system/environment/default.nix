@@ -8,7 +8,7 @@
     imports = [
         # Define Enabled Subdirectories.
         ./packages/system-packages.nix
-        #./pipewire
+        ./pipewire
         #(import ./packages { inherit commonVariables; })
         #(import ./pipewire { inherit commonVariables; })
     ];

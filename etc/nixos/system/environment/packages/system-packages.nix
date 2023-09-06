@@ -6,6 +6,13 @@
   pkgs,
   ...
 }: {
+    # System Font Package Config
+    fonts.fonts = with pkgs; [
+        nerdfonts
+        powerline-fonts
+        cascadia-code
+    ];
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     #environment.shells = with pkgs; [ fish ];
