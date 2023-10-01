@@ -2,7 +2,7 @@
 > <p align=center> This repository will <i>probably</i> never be finished. This repository was created soley for <i>my</i> learning purposes. Please don't use this for your main config setup unless you know what you're doing. <i><b>Use this Repo at your own risk</b></i></p>
 <br>
 
-# <p align=center>- Spongey's (ROG-G15) <u>NixOS</u> KDE Dotfiles -
+# <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
 - ### Index:
