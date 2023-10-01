@@ -6,6 +6,7 @@
   lib, 
   ... 
 }:
+# Import global-vars.nix
 let
   globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
   commonVariables = globalVars.commonVariables;
@@ -18,11 +19,11 @@ in
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’, later.
   users = {
-    #defaultUserShell = commonVariables.usershell;
-      # Moved to /etc/nixos/global-vars.nix
+  # Set Global Variable Shell as Default:
+    defaultUserShell = commonVariables.usershell;
     users.${commonVariables.username} = {
       isNormalUser = true;
-      home = commonVariables.homedir;
+      home = "${commonVariables.homedir}";
       uid = 1000;
       #shell = commonVariables.usershell;
         # Moved to /etc/nixos/global-vars.nix

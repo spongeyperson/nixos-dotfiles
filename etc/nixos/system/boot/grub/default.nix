@@ -8,6 +8,7 @@
   pkgs,
   ...
 }: 
+# Import global-vars.nix
 let
   globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
   commonVariables = globalVars.commonVariables;
@@ -15,7 +16,13 @@ in
 {
   boot = {
     # Set Kernel
-    #kernelPackages = commonVariables.kernel;
+    kernelPackages = commonVariables.kernel;
+
+    # Temporary fix for AMDGPU HDMI Audio (Zen Kernel): 
+    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3353#note_2017643
+    kernelParams = [
+      "snd_intel_dspcfg.dsp_driver=1"
+    ];
 
     loader = {
       efi = {

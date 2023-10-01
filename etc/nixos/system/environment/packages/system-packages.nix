@@ -104,6 +104,7 @@
         # GUI Tools, Recording / Editing
         obs-studio
         handbrake
+        sonobus
         # GUI - Remote Desktop Hosts, Etc.
         sunshine
         waynergy

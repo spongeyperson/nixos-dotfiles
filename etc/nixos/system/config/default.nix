@@ -10,6 +10,7 @@
     ./locale
     ./networking
     ./nix
+    ./pipewire
     ./programs
     #(import ./nix { inherit commonVariables; })
     #(import ./programs { inherit commonVariables; })
