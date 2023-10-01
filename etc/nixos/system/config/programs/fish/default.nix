@@ -1,9 +1,18 @@
+# Fish Shell Configuration - /system/config/programs/fish/default.nix
+
 {
-  modulesPath,
+  config,
+  lib,
+  pkgs,
   ...
-}: {
+}: 
+# Import global-vars.nix
+let
+  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+  commonVariables = globalVars.commonVariables;
+in
+{
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
     ./shellAliases.nix
   ];
 }

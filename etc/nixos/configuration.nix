@@ -8,19 +8,21 @@
   lib, 
   ... 
 }:
+# Import global-vars.nix
 let
-  globalVars = import ./global-vars.nix { inherit config pkgs lib; };
+  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
   commonVariables = globalVars.commonVariables;
 in
 {
   imports =
     [ # NixOS: Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./global-vars.nix
 
       # Custom Includes
       ./hardware
       ./system
-      ./user
+      ./users
       # Uncomment this if you want to disable all of the following; vfio, docker, podman
       ./virtualisation
     ];
@@ -29,8 +31,19 @@ in
 ## Stray Configurations which have yet to be defined elsewhere.
 # TODO: Move these configs elsewhere
 
-  security = {
-    rtkit.enable = true; # rtkit is optional but recommended
+
+# TODO: Move section under /system/config/programs/fish/default.nix
+  # Work arounds for `pkgs` strings not being able to be read by `commonVariables`.
+  # This is super dumb. I spent over 3 hrs debugging this. Thanks for nothing NixOS
+  users = {
+      users.tyler.shell = pkgs.fish; 
+  };
+# TODO: Move section under /system/config/programs/fish/default.nix
+
+
+  #security = {
+    # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
+    #rtkit.enable = true; # rtkit is optional but recommended
     # sudo.configFile = {
     #   "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
     #     content = ''
@@ -38,7 +51,7 @@ in
     #     '';
     #   };
     # };
-  };
+  #};
 
   # XDG Enable Default Portal
   xdg = {
