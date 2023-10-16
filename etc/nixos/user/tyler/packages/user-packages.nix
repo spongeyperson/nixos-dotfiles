@@ -41,7 +41,7 @@
             # Userspace, GUI, noflatpak
             # Versions of Apps that also
             # have flatpak alternatives.
-            mailspring
+            #mailspring
             spotify
             vscode
             barrier
@@ -49,7 +49,7 @@
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
-            filelight
+            filelight 
             gnome.gnome-calculator
 
             # GUI Audio Manipulation

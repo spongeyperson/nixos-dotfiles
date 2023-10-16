@@ -4,12 +4,10 @@
 }: {
   imports = [
     #(modulesPath + "/installer/scan/not-detected.nix")
+    # Define Enabled Subdirectories.
+    ./bluetooth
     ./bootloader
-    # ./filesystem
-    # ./networking
-    # ./opengl
-    # ./platform
-    # ./processor
-    # ./swapdevices
+    ./cpu
+    ./opengl
   ];
 }

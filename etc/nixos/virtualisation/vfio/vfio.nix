@@ -15,6 +15,7 @@ in
             "vfio_pci"
             "vfio"
             "vfio_iommu_type1"
+            "amdgpu"
             # Virqfd Kernel Module Not Required for Zen Kernel
             #"vfio_virqfd"
         ];

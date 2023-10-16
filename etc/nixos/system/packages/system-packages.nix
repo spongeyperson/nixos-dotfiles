@@ -47,6 +47,7 @@
         smartmontools
         hwloc
         mkpasswd
+        lm_sensors
         # Encryption Key Management
         gnupg
         # Watch Replacement
@@ -66,7 +67,6 @@
         libclang
         clang
         cmake
-
 
 
         ## GUI
@@ -97,6 +97,9 @@
         libsForQt5.kcmutils
         libsForQt5.sddm-kcm
         libsForQt5.flatpak-kcm
+        # Misc Libs for QT5, KDE Discover
+        libsForQt5.discover
+        packagekit
         # GUI Tools, Recording / Editing
         obs-studio
         handbrake
@@ -105,6 +108,8 @@
         # Logitech Mouse Control
         libratbag
         piper
+        # Logitech Steering Wheel Support
+        oversteer
 
 
         #etcher
@@ -120,6 +125,7 @@
 
         # Distrobox
         distrobox
+
         xorg.xhost
 
         # fsmount, webdav
