@@ -12,6 +12,9 @@
         fstrim.enable = true;
         teamviewer.enable = true;
 
+        # Open VSCode Server
+        openvscode-server.enable = true;
+
         # Virt-Manager Service
         qemuGuest.enable = true;
 

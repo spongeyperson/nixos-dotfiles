@@ -72,6 +72,8 @@
             tree
             jdk8
             jdk17
+
+            cryptomator
         ];
     };
 }

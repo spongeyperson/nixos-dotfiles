@@ -15,6 +15,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      # ROG G15 Advantage Custom Includes
+      ./g15/system/packages/g15.nix
+
       # Custom Includes
       ./hardware
       ./system

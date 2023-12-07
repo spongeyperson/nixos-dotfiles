@@ -8,9 +8,21 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     #environment.shells = with pkgs; [ fish ];
+
+    # Temporarily Permitted Insecure Packages
+    nixpkgs.config.permittedInsecurePackages = [
+      "nodejs-16.20.2" # Required for Webcord, according to Nix-tree
+      "electron-24.8.6" # Required for Webcord
+    ];
+
+
     environment = {
         localBinInPath = true;
         systemPackages = with pkgs; [
+
+        # NixOS Specifc
+        nix-tree
+
         # editors
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         geany
@@ -52,8 +64,6 @@
         gnupg
         # Watch Replacement
         viddy
-        # Cooling Control
-        liquidctl
         # Hardware Accel tools, Graphics Testing
         libva-utils
         vdpauinfo
@@ -128,14 +138,20 @@
 
         xorg.xhost
 
-        # fsmount, webdav
+        # Filesystems
+        # webdav
         davfs2
         autofs5
         fuse
         sshfs
         cadaver
+        # HFS+ (MacOS)
+        hfsprogs
+        # Exfat
+        exfat
+        exfatprogs
 
-      # THEMING
+        # THEMING
         # Theming, system
         materia-theme
         materia-kde-theme
