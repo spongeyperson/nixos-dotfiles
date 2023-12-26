@@ -2,71 +2,77 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ 
-  config, 
-  pkgs,
-  lib, 
-  ... 
-}:
-# Import global-vars.nix
-let
-  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-  commonVariables = globalVars.commonVariables;
-in
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports =
-    [ # NixOS: Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./global-vars.nix
+
+      # ROG G15 Advantage Custom Includes
+      ./g15/system/packages/g15.nix
+
+      # ROG G15 Advantage Custom Includes
+      ./g15/system/packages/g15.nix
 
       # Custom Includes
       ./hardware
       ./system
-      ./users
-      # Uncomment this if you want to disable all of the following; vfio, docker, podman
+      ./user
       ./virtualisation
     ];
   
-
-## Stray Configurations which have yet to be defined elsewhere.
-# TODO: Move these configs elsewhere
-
-
-# TODO: Move section under /system/config/programs/fish/default.nix
-  # Work arounds for `pkgs` strings not being able to be read by `commonVariables`.
-  # This is super dumb. I spent over 3 hrs debugging this. Thanks for nothing NixOS
-  users = {
-      users.tyler.shell = pkgs.fish; 
-  };
-# TODO: Move section under /system/config/programs/fish/default.nix
-
-
-  #security = {
-    # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
-    #rtkit.enable = true; # rtkit is optional but recommended
-    # sudo.configFile = {
-    #   "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
-    #     content = ''
-    #       Defaults env_reset,pwfeedback 
-    #     '';
-    #   };
-    # };
-  #};
-
-  # XDG Enable Default Portal
-  xdg = {
-    portal.enable = true;
-    portal.xdgOpenUsePortal = true;
+  # Set Hostname, Use Network Manager:
+  networking = {
+	hostName = hostname;
+	networkmanager.enable = true;
   };
 
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=45s
-  '';
+  # Set time zone.
+  time.timeZone = "America/Los_Angeles";
 
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+
+  # Fonts
+  fonts.fonts = with pkgs; [
+    nerdfonts
+    powerline-fonts
+    cascadia-code
+  ];
 
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
-  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Virtualisation Toggles, libvirtd, docker, podman
+  virtualisation = {
+    spiceUSBRedirection.enable = true;
+      libvirtd = {
+        enable = true;
+        qemu.ovmf.enable = true;
+        qemu.runAsRoot = true;
+        onBoot = "ignore";
+        onShutdown = "shutdown";
+      };
+      docker = {
+        enable = true;
+        storageDriver = "btrfs";
+      };
+      podman = {
+        enable = true;
+        # Enable compat to use podman as a drop-in replacement for docker.
+        #dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true;
+      };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
