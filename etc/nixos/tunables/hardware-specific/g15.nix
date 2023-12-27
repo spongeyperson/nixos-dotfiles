@@ -1,4 +1,4 @@
-# ROG G15 Advantage Edition Custom Programs / Config
+# /etc/nixos/tunables/hardware-specific/g15.nix - ROG G15 Advantage Edition Custom Programs / Config
 
 {
   config,

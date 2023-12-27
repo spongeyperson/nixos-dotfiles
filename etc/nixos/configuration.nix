@@ -12,23 +12,10 @@
       ./hardware-configuration.nix
 
       # ROG G15 Advantage Custom Includes
-      ./g15/system/packages/g15.nix
+      ./global
+      ./tunables
 
-      # ROG G15 Advantage Custom Includes
-      ./g15/system/packages/g15.nix
-
-      # Custom Includes
-      ./hardware
-      ./system
-      ./user
-      ./virtualisation
     ];
-  
-  # Set Hostname, Use Network Manager:
-  networking = {
-	hostName = hostname;
-	networkmanager.enable = true;
-  };
 
   # Set time zone.
   time.timeZone = "America/Los_Angeles";
@@ -36,43 +23,13 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-
-
   # rtkit is optional but recommended
   security.rtkit.enable = true;
 
-  # Fonts
-  fonts.fonts = with pkgs; [
-    nerdfonts
-    powerline-fonts
-    cascadia-code
-  ];
 
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Virtualisation Toggles, libvirtd, docker, podman
-  virtualisation = {
-    spiceUSBRedirection.enable = true;
-      libvirtd = {
-        enable = true;
-        qemu.ovmf.enable = true;
-        qemu.runAsRoot = true;
-        onBoot = "ignore";
-        onShutdown = "shutdown";
-      };
-      docker = {
-        enable = true;
-        storageDriver = "btrfs";
-      };
-      podman = {
-        enable = true;
-        # Enable compat to use podman as a drop-in replacement for docker.
-        #dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
-      };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

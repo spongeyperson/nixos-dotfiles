@@ -16,6 +16,6 @@ in
     # CPU Enable Microcode Updates.
     # Should be required / enabled by default, but whatever nixos.
     hardware = {
-        cpu.${systemVariables.cputype}.updateMicrocode = true;
+        cpu.${systemVariables.cputype}.updateMicrocode = true; #lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
 }

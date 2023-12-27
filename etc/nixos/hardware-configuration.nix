@@ -42,22 +42,14 @@
       fsType = "btrfs";
       options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
   #rootvol mount
   fileSystems."/mnt/rootvol" =
     { device = "/dev/disk/by-uuid/a77b5c3a-d207-4cb7-9a0e-761bacb77e33";
       fsType = "btrfs";
       options = [ "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
     };
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
 
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/C611-76E8";
@@ -75,5 +67,4 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

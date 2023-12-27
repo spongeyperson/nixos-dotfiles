@@ -1,4 +1,4 @@
-# /etc/nixos/tunables/hardware-specific/vfio/vfio.nix
+# /etc/nixos/tunables/hardware-specific/vfio.nix
 
 {
     config,
@@ -18,6 +18,16 @@ in
 
         # Virt-Manager Service
         qemuGuest.enable = true;
+    };
+    virtualisation = {
+        spiceUSBRedirection.enable = true;
+        libvirtd = {
+            enable = true;
+            qemu.ovmf.enable = true;
+            qemu.runAsRoot = true;
+            onBoot = "ignore";
+            onShutdown = "shutdown";
+        };
     };
     boot = {
         initrd.kernelModules = [
@@ -39,3 +49,18 @@ in
         ];
     };
 }
+
+  # Virtualisation Toggles, libvirtd, docker, podman
+  virtualisation = {
+      };
+      docker = {
+        enable = true;
+        storageDriver = "btrfs";
+      };
+      podman = {
+        enable = true;
+        # Enable compat to use podman as a drop-in replacement for docker.
+        #dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true;
+      };
+  };

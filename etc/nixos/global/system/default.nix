@@ -11,7 +11,6 @@
     # Dir Declarations
     ./bootloader
     ./hardware
-    ./services
     #./virtualisation
 
     # File Declarations
