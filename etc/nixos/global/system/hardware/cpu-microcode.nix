@@ -1,6 +1,8 @@
+# /etc/nixos/global/system/hardware/cpu-microcode.nix
+
 {
-    config,
     pkgs,
+    user,
     ...
 }:
 let
@@ -11,14 +13,9 @@ let
   userVariables = globalVars.userVariables;
 in
 {
-    # AMD CPU Enable Microcode Updates.
+    # CPU Enable Microcode Updates.
     # Should be required / enabled by default, but whatever nixos.
-    networking = {
-        # Enable Network Manager
-        networkmanager.enable = true;
-
-        # Set Hostname & FQDN
-        hostName = systemVariables.hostname;
-        fqdn = systemVariables.fqdn;
+    hardware = {
+        cpu.${systemVariables.cputype}.updateMicrocode = true;
     };
 }

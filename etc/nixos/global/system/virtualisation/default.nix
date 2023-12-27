@@ -8,7 +8,7 @@
   ...
 }: {
   imports = [
-#     ./docker.nix
-#     ./podman.nix
+     ./docker.nix
+     ./podman.nix
   ];
 }

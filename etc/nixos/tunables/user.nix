@@ -7,7 +7,9 @@
   ... 
 }: 
 let
+  # Define Global Variables from (/etc/nixos/tunables/global-vars.nix)
   globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
+  # Simplify Global Variables
   systemVariables = globalVars.systemVariables;
   userVariables = globalVars.userVariables;
 in

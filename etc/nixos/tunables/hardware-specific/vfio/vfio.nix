@@ -1,3 +1,5 @@
+# /etc/nixos/tunables/hardware-specific/vfio/vfio.nix
+
 {
     config,
     lib,
@@ -10,6 +12,13 @@ let
   commonVariables = globalVars.commonVariables;
 in
 {
+    services = {
+        #Enable Libvirtd
+        libvirtd.enable = true;
+
+        # Virt-Manager Service
+        qemuGuest.enable = true;
+    };
     boot = {
         initrd.kernelModules = [
             "vfio_pci"

@@ -18,6 +18,10 @@
         # This changes IOMMU enablement / cpu microcode settings
         cputype = "amd";
 
+        # Only Type "amdgpu" or "nvidia".
+        # This changes XServer / Wayland default driver
+        gputype = "amdgpu";
+
         # Set System Kernel:
         kernel = pkgs.linuxPackages_zen;
 
@@ -44,8 +48,9 @@
         usershell = pkgs.fish;
         userid = 1000;
 
-        # Locale
+        # Locale / Localisation
         timeZone = "America/Los_Angeles"; # Set time zone.
         Locale = "en_US.UTF-8"; # Select internationalisation properties.
+        keymap = "us";
     };
 }

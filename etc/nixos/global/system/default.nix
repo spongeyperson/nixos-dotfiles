@@ -11,10 +11,11 @@
     # Dir Declarations
     ./bootloader
     ./hardware
-    #./services
+    ./services
     #./virtualisation
 
     # File Declarations
+    ./services.nix
     ./udev-rules.nix
   ];
 }

@@ -1,3 +1,4 @@
+# /etc/nixos/global/system/bootloader/grub.nix
 {
     config,
     lib,

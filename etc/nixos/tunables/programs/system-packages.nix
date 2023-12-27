@@ -1,3 +1,5 @@
+# /etc/nixos/tunables/programs/system-packages.nix
+
 {
   config,
   lib,

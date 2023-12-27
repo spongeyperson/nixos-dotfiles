@@ -2,16 +2,8 @@
     pkgs,
     user,
     ...
-}:
-let
-  # Define Global Variables from (/etc/nixos/tunables/global-vars.nix)
-  globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
-  # Simplify Global Variables
-  systemVariables = globalVars.systemVariables;
-  userVariables = globalVars.userVariables;
-in
-{
-    users.users.${userVariables.username} = {
+}: {
+    users.users.${user} = {
         packages = with pkgs; [
             # Userspace, GUI
             authy
