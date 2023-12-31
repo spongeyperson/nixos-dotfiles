@@ -1,4 +1,4 @@
-# /etc/nixos/global/system/hardware/cpu-microcode.nix
+# /etc/nixos/tunables/hardware-specific/gpu.nix
 
 {
     pkgs,
@@ -13,9 +13,15 @@ let
     userVariables = globalVars.userVariables;
 in
 {
-    # CPU Enable Microcode Updates.
-    # Should be required / enabled by default, but whatever nixos.
-    hardware = {
-        cpu.${systemVariables.cputype}.updateMicrocode = true; #lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.logitech.wireless = {
+        enable = true;
+        enableGraphical = true;
+    };
+    environment = {
+        systemPackages = with pkgs; [
+            # Work Around for Logitech Mice
+            logitech-udev-rules
+            solaar
+        ];
     };
 }
