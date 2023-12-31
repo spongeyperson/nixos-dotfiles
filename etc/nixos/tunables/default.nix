@@ -10,7 +10,7 @@
   imports = [
     # Dir Declarations
     ./hardware-specific
-    ./programs
+    ./packages
     # File Declarations
     ./desktop-environment.nix
     ./global-vars.nix

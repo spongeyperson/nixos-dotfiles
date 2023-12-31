@@ -4,17 +4,17 @@
     ...
 }:
 let
-  # Define Global Variables from (/etc/nixos/tunables/global-vars.nix)
-  globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
-  # Simplify Global Variables
-  systemVariables = globalVars.systemVariables;
-  userVariables = globalVars.userVariables;
+    # Define Global Variables from (/etc/nixos/tunables/global-vars.nix)
+    globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
+    # Simplify Global Variables
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
     users.users.${userVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
-            authy
+            #authy - Disabled In favor of Flatpak Version
             vlc
             stremio
 

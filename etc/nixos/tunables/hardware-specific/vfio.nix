@@ -7,9 +7,9 @@
     ...
 }: 
 let
-  globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
-  systemVariables = globalVars.systemVariables;
-  commonVariables = globalVars.commonVariables;
+    globalVars = import /etc/nixos/tunables/global-vars.nix { inherit config pkgs lib; };
+    systemVariables = globalVars.systemVariables;
+    commonVariables = globalVars.commonVariables;
 in
 {
     services = {
@@ -49,18 +49,3 @@ in
         ];
     };
 }
-
-  # Virtualisation Toggles, libvirtd, docker, podman
-  virtualisation = {
-      };
-      docker = {
-        enable = true;
-        storageDriver = "btrfs";
-      };
-      podman = {
-        enable = true;
-        # Enable compat to use podman as a drop-in replacement for docker.
-        #dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
-      };
-  };

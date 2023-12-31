@@ -10,6 +10,7 @@
   imports = [
     # File Declarations
     ./g15.nix
+    ./gpu.nix
     ./vfio.nix
   ];
 }

@@ -29,4 +29,7 @@
         #Required insecure package for etcher
         #permittedInsecurePackages = [ "electron-12.2.3" ];
     };
+    
+    # Temporary Solution for Enabling Native Wayland Support for Applications
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

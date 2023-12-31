@@ -26,11 +26,6 @@
   # rtkit is optional but recommended
   security.rtkit.enable = true;
 
-
-  # Temporary Solution for Enabling Native Wayland Support for Applications
-  # This will be moved *eventually*
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

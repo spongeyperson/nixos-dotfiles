@@ -6,8 +6,8 @@
     pkgs,
     ...
 }: {
-  # Podman
-  virtualisation.podman = {
+    # Podman
+    virtualisation.podman = {
         enable = true;
         # Enable compat to use podman as a drop-in replacement for docker.
         #dockerCompat = true;

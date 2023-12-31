@@ -8,6 +8,8 @@
   ...
 }: {
   imports = [
+    # Dir Declarations
+    ./declarations
     # File Declarations
     ./system-packages.nix
     ./user-packages.nix

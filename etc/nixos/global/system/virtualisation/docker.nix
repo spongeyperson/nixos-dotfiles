@@ -6,8 +6,8 @@
     pkgs,
     ...
 }: {
-  # Docker
-  virtualisation.docker = {
+    # Docker
+    virtualisation.docker = {
         enable = true;
         storageDriver = "btrfs";
     };
