@@ -14,8 +14,8 @@ let
 in
 {
     nixpkgs.config.permittedInsecurePackages = [
-        "mailspring-1.11.0"
-        "electron-24.8.6"
+        "mailspring-1.12.0"
+        #"electron-24.8.6"
     ];
     users.users.${userVariables.username} = {
         packages = with pkgs; [

@@ -13,7 +13,7 @@
       };
     };
     # System Font Package Config
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
         nerdfonts
         powerline-fonts
         cascadia-code
