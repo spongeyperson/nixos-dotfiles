@@ -1,4 +1,5 @@
-# User Configuration: "Tyler" - /user/tyler/tyler.nix
+# /etc/nixos/user/tyler/tyler.nix
+# User Configuration: "Tyler"
 
 {
   config,
@@ -8,25 +9,21 @@
 }:
 # Import global-vars.nix
 let
-  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-  commonVariables = globalVars.commonVariables;
+    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
-  imports = [
-    ./packages/user-packages.nix
-  ];
-
   # User & User Packages
   # Define a user account. Don't forget to set a password with ‘passwd’, later.
   users = {
   # Set Global Variable Shell as Default:
-    defaultUserShell = commonVariables.usershell;
-    users.${commonVariables.username} = {
+    defaultUserShell = userVariables.usershell;
+    users.${userVariables.username} = {
       isNormalUser = true;
-      home = "${commonVariables.homedir}";
-      uid = 1000;
-      #shell = commonVariables.usershell;
-        # Moved to /etc/nixos/global-vars.nix
+      home = "${userVariables.homedir}";
+      uid = userVariables.userid;
+      #shell = "${userVariables.usershell}"; - Now Defined in (/etc/nixos/system/config/programs/fish.nix)
       extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     };
   };

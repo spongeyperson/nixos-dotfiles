@@ -6,6 +6,12 @@
   pkgs,
   ...
 }: {
+    # Allow Unstable Repo for Specific Packages: 
+    nixpkgs.config = {
+      packageOverrides = pkgs: with pkgs; {
+        unstable = import <unstable> {};
+      };
+    };
     # System Font Package Config
     fonts.fonts = with pkgs; [
         nerdfonts
@@ -13,13 +19,23 @@
         cascadia-code
     ];
 
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     #environment.shells = with pkgs; [ fish ];
     environment = {
       localBinInPath = true;
       systemPackages = with pkgs; [
-        #linuxKernel.packages.linux_zen.v4l2loopback
+
+        # Work Around for Logitech Mice
+        logitech-udev-rules
+        solaar
+
+        linuxKernel.packages.linux_zen.v4l2loopback
 
         # Text Editors - CLI
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -80,7 +96,7 @@
 
 
         ## Hardware Control, CLI
-        liquidctl     # Liquid Cooling Control
+        unstable.liquidctl     # Liquid Cooling Control
         lm_sensors    # ACPI Sensors Control
         corectrl      # AMDGPU Tuning
         ## Hardware Control, GUI
@@ -115,6 +131,8 @@
         ## Virtualisation, QEMU
         spice
         docker-compose
+
+
         virt-manager
         dconf
         gnome3.dconf-editor # needed for saving settings in virt-manager
@@ -163,6 +181,6 @@
         papirus-icon-theme
         # Theming, cursor
         apple-cursor
-      ];
+    ];
   };
 }

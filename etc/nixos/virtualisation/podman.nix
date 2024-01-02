@@ -1,4 +1,5 @@
-# Podman Configuration - /virtualisation/podman/default.nix
+# /etc/nixos/virtualisation/podman.nix
+# Podman Configuration
 
 {
     config,

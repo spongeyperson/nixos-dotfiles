@@ -1,4 +1,5 @@
-# Bluetooth Hardware Enable - /hardware/bluetooth/default.nix
+# /etc/nixos/hardware/bluetooth.nix
+#  Bluetooth Hardware Enable
 
 {
     pkgs,

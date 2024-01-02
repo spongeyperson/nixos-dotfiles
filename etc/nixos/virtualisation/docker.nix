@@ -1,4 +1,5 @@
-# Docker Configuration - /virtualisation/docker/default.nix
+# /etc/nixos/virtualisation/docker.nix
+# Docker Configuration
 
 {
     config,

@@ -1,37 +1,56 @@
-# Global Variables & Tunables Config - /etc/nixos/global-vars.nix 
+# /etc/nixos/global-vars.nix
+# Global Variables & Tunables Config
+
 # = CHANGE WHAT YOU NEED HERE =
 # Changes made in this config 'should' apply globally.
 
 # WARNING: DO NOT DELETE THIS CONFIG. THIS FILE IS HARDCODED
 
-{ 
+{
     lib,
     config,
     pkgs,
-    ... 
+    ...
 }: {
-    commonVariables = { 
-        hostname = "Spongey-PC"; 
+    systemVariables = {
 
-        # DO NOT CHANGE THIS; unless you want a different home dir folder.
-        homedir = "/home/tyler";
+        # Only Type "amd" or "intel".
+        # This changes IOMMU enablement / cpu microcode settings
+        cputype = "amd";
 
-        username = "tyler";
-        usershell = pkgs.fish;
+        # Only Type "amdgpu" or "nvidia".
+        # This changes XServer / Wayland default driver
+        gputype = "amdgpu";
 
-        # Locale
-        timeZone = "America/Los_Angeles"; # Set time zone.
-        Locale = "en_US.UTF-8"; # Select internationalisation properties.
-
-        # Set System Kernel: (./system/boot/grub/default.nix)
+        # Set System Kernel:
         kernel = pkgs.linuxPackages_zen;
 
-        # VFIO Settings: (./virtualisation/vfio/default.nix)
+        # VFIO Settings: (./hardware-specific/vfio)
         # Use this if you want VFIO.
         # If you don't want VFIO, comment these 2 lines;
         # and comment `./virtualisation` below.
         # OR comment `./vfio` inside `./virtusalisation/default.nix`
-        vfioIDs = "10de:2204,10de:1aef";
+        vfioIDs = "1002:73df,1002:ab28";
         vfioBlacklist = "nvidia,nvidiafb,nouveau";
+
+        # System Hostname
+        hostname = "Spongey-PC";
+        # Fully Qualified (Local) Domain Name
+        fqdn = "Spongey-PC.lan";
+    };
+    userVariables = {
+
+        # DO NOT CHANGE THIS; unless you want a different home dir folder.
+        homedir = "/home/tyler";
+
+        # User
+        username = "tyler";
+        usershell = pkgs.fish;
+        userid = 1000;
+
+        # Locale / Localisation
+        timeZone = "America/Los_Angeles"; # Set time zone.
+        locale = "en_US.UTF-8"; # Select internationalisation properties.
+        keymap = "us";
     };
 }

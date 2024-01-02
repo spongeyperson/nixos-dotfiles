@@ -1,6 +1,5 @@
-# Programs Configuration - /system/config/programs/programs.nix
-
-#TODO: Set Tmux `extraConfig = ` to a global variable accessable by `commonVariables`
+# /etc/nixos/system/config/programs/programs.nix
+# Programs Configuration
 
 {
     pkgs,
@@ -10,7 +9,6 @@
     programs = {
         steam.enable = true; # Install Steam to System
         gamemode.enable = true; # Install Feral Gamemode to System
-        fish.enable = true; # Install Fish Shell to System
         kdeconnect.enable = true;
 
         # FIX "GTK themes are not applied in Wayland applications"
@@ -26,13 +24,6 @@
         gnupg.agent = {
             enable = true;
             enableSSHSupport = true;
-        };
-        # Set Tmux Default Shell to Fish
-        tmux = {
-            enable = true;
-            extraConfig = ''
-                set-option -g default-shell /run/current-system/sw/bin/fish
-            '';
         };
     };
 }

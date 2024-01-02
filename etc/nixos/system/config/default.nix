@@ -1,18 +1,18 @@
-# System Configuration, Configuration Import - /system/config/default.nix
+# /etc/nixos/system/config/default.nix
 
-  #TODO: Cleanup
 {
-  #commonVariables,
   ...
 }: {
   imports = [
-    #(import ./environment/pipewire { inherit commonVariables; })
-    ./locale
-    ./networking
-    ./nix
-    ./pipewire
+    # Dir Declarations
     ./programs
-    #(import ./nix { inherit commonVariables; })
-    #(import ./programs { inherit commonVariables; })
+
+    # File Declarations
+    ./audio.nix
+    ./desktop-environment.nix
+    ./locale.nix
+    ./networking.nix
+    ./nixconfig.nix
+    ./systemd.nix
   ];
 }

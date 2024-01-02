@@ -1,16 +1,17 @@
-# GPU Passthrough via OVMF Config - /virtualisation/vfio/vfio.nix
+# /etc/nixos/virtualisation/vfio.nix
+# GPU Passthrough via OVMF Config
 
-#TODO: Cleanup
 {
-    #commonVariables,
     config,
     lib,
     pkgs,
     ...
 }: 
+# Import global-vars.nix
 let
     globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-    commonVariables = globalVars.commonVariables;
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
     # Required Boot Params
@@ -28,8 +29,8 @@ in
         kernelParams = [
             "amd_iommu=on"
             "iommu=pt"
-            "vfio-pci.ids=${commonVariables.vfioIDs}"
-            "modprobe.blacklist=${commonVariables.vfioBlacklist}"
+            "vfio-pci.ids=${systemVariables.vfioIDs}"
+            "modprobe.blacklist=${systemVariables.vfioBlacklist}"
         ];
     };
 

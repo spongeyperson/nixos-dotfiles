@@ -1,10 +1,12 @@
-# Program Configuration Import - /system/config/programs/default.nix
+# /etc/nixos/system/config/programs/default.nix
+# Program Configuration Import
 
 {
   ...
 }: {
   imports = [
-    ./fish
+    # File Declarations
+    ./fish.nix
     ./programs.nix
   ];
 }

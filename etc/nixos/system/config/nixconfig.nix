@@ -1,4 +1,5 @@
-# NixOS NixPKG Configuration - /system/config/nix/default.nix
+# /etc/nixos/system/config/nixconfig.nix
+# NixOS NixPKG Configuration
 
 {
   config,

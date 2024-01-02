@@ -1,15 +1,12 @@
-# Boot Configuration Import - /system/boot/default.nix
+# /etc/nixos/system/boot/default.nix
 
- #TODO: Cleanme
 {
-  #commonVariables,
   ...
 }: {
   imports = [
-    # Define Enabled Subdirectories.
-    #(import ./grub { commonVariables = commonVariables; })
-    #(import ./initrd { commonVariables = commonVariables; })
-    ./grub
-    ./initrd
+    # File Declarations
+    ./grub.nix
+    ./initrd.nix
+    ./kernelparams.nix
   ];
 }

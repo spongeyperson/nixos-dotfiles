@@ -1,17 +1,23 @@
-#TODO: Cleanup
-{   
-    #commonVariables,
+# /etc/nixos/users/tyler/userPackages.nix
+
+{
     config,
     pkgs, 
     lib,
     ... 
 }: 
+# Import global-vars.nix
 let
     globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-    commonVariables = globalVars.commonVariables;
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
-    users.users.${commonVariables.username} = {
+    nixpkgs.config.permittedInsecurePackages = [
+        "mailspring-1.11.0"
+        "electron-24.8.6"
+    ];
+    users.users.${userVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
             authy

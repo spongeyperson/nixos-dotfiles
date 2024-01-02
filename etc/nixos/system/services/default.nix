@@ -1,53 +1,12 @@
-# System Services Config - /system/services/services.nix
+# /etc/nixos/system/services/default.nix
+# System Configuration Import
 
 {
-  config,
-  lib,
-  pkgs,
   ...
 }: {
-    imports = [
+  imports = [
+    # File Declarations
+    ./services.nix
     ./udev-rules.nix
-    ];
-    
-    # General Services Configuration where they cannot go elsewhere:
-    services = {
-        # General Services
-        openssh.enable = true;
-        flatpak.enable = true;
-        fstrim.enable = true;
-        teamviewer.enable = true;
-
-        # Enable CUPS to print documents.
-        printing.enable = true;
-        
-        # Package Kit
-        packagekit.enable = true;
-        # Libratbag
-        ratbagd.enable = true;
-        # Sound Configuration:
-        # Pulseaudio (Gross)
-        # sound.enable = true;
-        # hardware.pulseaudio.enable = true;
-
-        xserver = {      
-            # Configure keymap in X11, Internationalisation.
-            layout = "us";
-            #xserver.xkbOptions = "eurosign:e,caps:escape";
-            
-            # Enable the X11 windowing system.
-            enable = true;
-            # Set XServer Default Video Driver
-            videoDrivers = [ "amdgpu" ];
-
-            # Enable Plasma 5 Desktop Environment.
-            displayManager.sddm.enable = true;
-            desktopManager.plasma5.enable = true;
-            # Set Plasma Wayland as Default Session
-            displayManager.defaultSession = "plasmawayland";
-
-            # Enable touchpad support (enabled default in most desktopManager).
-            libinput.enable = true;
-        };
-    };
+  ];
 }

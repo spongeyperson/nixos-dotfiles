@@ -61,26 +61,26 @@
   # NTFS Mounts
   fileSystems."/mnt/Old 970 Evo" =
     { device = "/dev/disk/by-uuid/01D9848E81913560";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+      fsType = "ntfs3"; 
+      options = [ "defaults" "nofail" "noauto" "acl" "rw" "user" "exec" "windows_names" "uid=1000" "gid=100"  "umask=000" ];
     };
 
   fileSystems."/mnt/New 970 Evo" =
     { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+      fsType = "ntfs3"; 
+      options = [ "defaults" "nofail" "noauto" "acl" "rw" "user" "exec" "windows_names" "uid=1000" "gid=100" "umask=000" ];
     };
   
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000" "gid=100" "user" "exec" "umask=000" ];
+      fsType = "ntfs3"; 
+      options = [ "defaults" "nofail" "noauto" "acl" "rw" "user" "exec" "windows_names" "uid=1000" "gid=100" "umask=000" ];
     };
 
   # CIFS Mount (Samba)
   environment.systemPackages = [ pkgs.cifs-utils ];
   fileSystems."/mnt/Samba/NAS" = {
-    device = "//192.168.0.201/NAS";
+    device = "//10.0.0.201/NAS";
     fsType = "cifs";
     options = let
       # this line prevents hanging on network split

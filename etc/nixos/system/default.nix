@@ -1,13 +1,16 @@
-# System Configuration Import - /system/default.nix
+# /etc/nixos/system/default.nix
+# System Configuration Import
 
 {
   ...
 }: {
   imports = [
-    # Define Enabled Subdirectories.
+    # Dir Declarations
     ./boot
     ./config
-    ./environment
     ./services
+
+    # File Declarations
+    ./systemPackages.nix
   ];
 }
