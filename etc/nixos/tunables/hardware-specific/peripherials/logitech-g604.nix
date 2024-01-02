@@ -22,6 +22,10 @@ in
             # Work Around for Logitech Mice
             logitech-udev-rules
             solaar
+
+            # Ratbag Control
+            libratbag
+            piper
         ];
     };
 }

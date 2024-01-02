@@ -92,37 +92,10 @@
 
         # GUI Tools, General
         gparted
-        kdiff3
-        # GUI Tools, KDE Plasma
-        ark
-        dolphin
-        kate
-        okular
-        spectacle
-        # GUI Tools, KDE Plasma Depends, Bluetooth
-        bluedevil
-        bluez
-        bluez-tools
-        libsForQt5.bluez-qt
-        libsForQt5.bluedevil
-        # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
-        libsForQt5.kcmutils
-        libsForQt5.sddm-kcm
-        libsForQt5.flatpak-kcm
-        # Misc Libs for QT5, KDE Discover
-        libsForQt5.discover
-        packagekit
+
         # GUI Tools, Recording / Editing
         obs-studio
         handbrake
-
-
-        # Logitech Mouse Control
-        libratbag
-        piper
-        # Logitech Steering Wheel Support
-        oversteer
-
 
         #etcher
         
@@ -152,15 +125,6 @@
         # Exfat
         exfat
         exfatprogs
-
-        # THEMING
-        # Theming, system
-        materia-theme
-        materia-kde-theme
-        # Theming, icons
-        papirus-icon-theme
-        # Theming, cursor
-        apple-cursor
         ];
     };
 }

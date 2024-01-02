@@ -8,6 +8,9 @@
   ...
 }: {
   imports = [
+    # Dir Declarations
+    ./peripherials
+
     # File Declarations
     ./g15.nix
     ./gpu.nix

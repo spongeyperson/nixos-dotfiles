@@ -11,9 +11,10 @@
     # Dir Declarations
     ./hardware-specific
     ./packages
+    ./personalisation
+    
     # File Declarations
-    ./desktop-environment.nix
-    ./global-vars.nix
+    #./global-vars.nix - Doesn't need to be imported, as it is imported by various files that require this file.
     ./user.nix
   ];
 }

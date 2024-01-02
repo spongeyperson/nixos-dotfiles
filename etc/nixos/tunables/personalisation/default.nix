@@ -1,4 +1,4 @@
-# /etc/nixos/tunables/packages/default.nix
+# /etc/nixos/tunables/personalisation/default.nix
 
 # This Configuration File is a bridge file that links the following imports together.
 # Modify this configuration only if you want to EXCLUDE a specific config.
@@ -8,11 +8,8 @@
   ...
 }: {
   imports = [
-    # Dir Declarations
-    ./declarations
-
     # File Declarations
-    ./system-packages.nix
-    ./user-packages.nix
+    ./kdeplasma.nix
+    ./theming.nix
   ];
 }

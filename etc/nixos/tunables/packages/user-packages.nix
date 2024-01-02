@@ -1,3 +1,6 @@
+# /etc/nixos/tunables/packages/user-packages.nix
+# Define Usermode Packages & Dependancies
+
 {
     pkgs,
     user,
@@ -11,6 +14,8 @@ let
     userVariables = globalVars.userVariables;
 in
 {
+    #nixpkgs.config.permittedInsecurePackages = {  };
+    
     users.users.${userVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
