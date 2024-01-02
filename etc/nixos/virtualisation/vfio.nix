@@ -29,7 +29,7 @@ in
         kernelParams = [
             "amd_iommu=on"
             "iommu=pt"
-            "vfio-pci.ids=${systemVariables.vfioIDs}"
+            #"vfio-pci.ids=${systemVariables.vfioIDs}" - Disabled due to wanting hybrid approach to handling dGPU binding
             "modprobe.blacklist=${systemVariables.vfioBlacklist}"
         ];
     };

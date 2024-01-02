@@ -34,9 +34,9 @@
         vfioBlacklist = "nvidia,nvidiafb,nouveau";
 
         # System Hostname
-        hostname = "Spongey-PC";
+        hostname = "Spongey-ROG";
         # Fully Qualified (Local) Domain Name
-        fqdn = "Spongey-PC.lan";
+        fqdn = "Spongey-ROG.lan";
     };
     userVariables = {
 

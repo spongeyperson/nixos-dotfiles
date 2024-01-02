@@ -1,14 +1,21 @@
 # /etc/nixos/hardware/cpu.nix
-# CPU Configuration
+# General CPU Configuration
 
 {
     pkgs,
     user,
     ...
-}: {
-    # AMD CPU Enable Microcode Updates. 
+}: 
+# Import global-vars.nix
+let
+    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
+in
+{
+    # Enable Microcode Updates. 
     # Should be required / enabled by default, but whatever nixos.
     hardware = {
-        cpu.amd.updateMicrocode = true;
+        cpu.${systemVariables.cputype}.updateMicrocode = true;
     };
 }
