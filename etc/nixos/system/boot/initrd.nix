@@ -1,4 +1,5 @@
-# Initrd / Initramfs Configuration - /system/boot/initrd
+# /etc/nixos/system/boot/initrd.nix
+# Initrd / Initramfs Configuration
 
 {
     config,
@@ -17,10 +18,6 @@
             ];
         };
 
-        # The set of kernel modules to be loaded in the second stage of the boot process.
-        kernelModules = [ ];
-        # Parameters added to the kernel command line.
-        kernelParams = [ ];
         # A list of additional packages supplying kernel modules.
         #extraModulePackages = [ "config.boot.kernelPackages.v4l2loopback" ];
         supportedFilesystems = [ 

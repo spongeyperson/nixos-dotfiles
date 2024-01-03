@@ -8,10 +8,11 @@
   lib, 
   ... 
 }:
-# Import global-vars.nix
+# Import global-vars.nix 
 let
-  globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-  commonVariables = globalVars.commonVariables;
+    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
   imports =
@@ -31,16 +32,6 @@ in
 ## Stray Configurations which have yet to be defined elsewhere.
 # TODO: Move these configs elsewhere
 
-
-# TODO: Move section under /system/config/programs/fish/default.nix
-  # Work arounds for `pkgs` strings not being able to be read by `commonVariables`.
-  # This is super dumb. I spent over 3 hrs debugging this. Thanks for nothing NixOS
-  users = {
-      users.tyler.shell = pkgs.fish; 
-  };
-# TODO: Move section under /system/config/programs/fish/default.nix
-
-
   #security = {
     # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
     #rtkit.enable = true; # rtkit is optional but recommended
@@ -58,10 +49,6 @@ in
     portal.enable = true;
     portal.xdgOpenUsePortal = true;
   };
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=45s
-  '';
 
 
   # Temporary Solution for Enabling Native Wayland Support for Applications

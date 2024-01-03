@@ -1,4 +1,5 @@
-# AMD CPU Configuration - /hardware/cpu/amd/default.nix
+# /etc/nixos/hardware/cpu.nix
+# CPU Configuration
 
 {
     pkgs,

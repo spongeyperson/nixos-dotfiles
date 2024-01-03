@@ -1,19 +1,13 @@
-# Hardware Configuration Import - /hardware/default.nix
+# /etc/nixos/hardware/default.nix
+# Hardware Configuration Import
 
-  #TODO: Cleanme
 {
-  #commonVariables,
-  #pkgs,
-  #user,
   ...
 }: {
   imports = [
-    # Define Enabled Subdirectories.
-    ./bluetooth
-    ./cpu
-    ./opengl
-    # (import ./bluetooth { commonVariables = commonVariables; })
-    # (import ./cpu { commonVariables = commonVariables; })
-    # (import ./opengl { commonVariables = commonVariables; })
+    # File Declarations
+    ./bluetooth.nix
+    ./cpu.nix
+    ./gpu.nix
   ];
 }

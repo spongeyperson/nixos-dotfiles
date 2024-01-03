@@ -1,17 +1,14 @@
-# Virtualisation Configuration Import - /virtualisation/default.nix
+# /etc/nixos/virtualisation/default.nix
+# Virtualisation Configuration Import
 
-#TODO: Cleanup
 {
-  #commonVariables,
   ...
 }: {
   imports = [
-    # Define Enabled Subdirectories.
-    ./docker
-    ./vfio
-    ./vmware
-    #(import ./docker { inherit commonVariables; })
-    #(import ./podman { inherit commonVariables; })
-    #(import ./vfio { inherit commonVariables; })
+    # File Declarations
+    ./docker.nix
+    ./podman.nix
+    ./vfio.nix
+    ./vmware.nix
   ];
 }

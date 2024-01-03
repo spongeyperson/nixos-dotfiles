@@ -1,3 +1,5 @@
+# /etc/nixos/system/config/networking.nix
+
 {
     config,
     pkgs,
@@ -6,12 +8,14 @@
 }: 
 let
     globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
-    commonVariables = globalVars.commonVariables;
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
 in
 {
         # Set Hostname, Use Network Manager:
     networking = {
-        hostName = "${commonVariables.hostname}";
+        hostName = "${systemVariables.hostname}";
+        fqdn = "${systemVariables.fqdn}";
         networkmanager.enable = true;
     };
 }

@@ -1,9 +1,17 @@
+# /etc/nixos/system/config/audio.nix
+
 {
     config,
     pkgs,
     user,
     ...
 }: {
+    # Sound Configuration:
+    # Pulseaudio (Gross)
+    # sound.enable = true;
+    # hardware.pulseaudio.enable = true;
+
+
     # Pipewire
     # rtkit is optional but recommended
     security.rtkit.enable = true;
