@@ -30,7 +30,7 @@
         # If you don't want VFIO, comment these 2 lines;
         # and comment `./virtualisation` below.
         # OR comment `./vfio` inside `./virtusalisation/default.nix`
-        vfioIDs = "1002:73df,1002:ab28";
+        vfioIDs = "10de:2204,10de:1aef";
         vfioBlacklist = "nvidia,nvidiafb,nouveau";
 
         # System Hostname
