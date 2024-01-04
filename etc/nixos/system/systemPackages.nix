@@ -19,24 +19,12 @@
         cascadia-code
     ];
 
-    hardware.logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
-
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     #environment.shells = with pkgs; [ fish ];
     environment = {
       localBinInPath = true;
       systemPackages = with pkgs; [
-
-        # Work Around for Logitech Mice
-        logitech-udev-rules
-        solaar
-
-        linuxKernel.packages.linux_zen.v4l2loopback
-
         # Text Editors - CLI
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         micro

@@ -6,6 +6,7 @@
   imports = [
     # Dir Declarations
     ./programs
+    ./udev-rules
 
     # File Declarations
     ./audio.nix

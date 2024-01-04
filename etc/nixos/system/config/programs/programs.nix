@@ -7,7 +7,7 @@
     ...
 }: {
     programs = {
-        steam.enable = true; # Install Steam to System
+        #steam.enable = true; # Install Steam to System - (Moved to ../steam.nix)
         gamemode.enable = true; # Install Feral Gamemode to System
         kdeconnect.enable = true;
 
