@@ -40,9 +40,9 @@ in
             # Gaming
             #steam - moved to system-programs.nix
             heroic
-            #gamemode - moved to ../../system/services/services.nix
+            #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
-            protontricks
+            #protontricks - disabled due to old packaging
             mangohud
             goverlay
             lutris

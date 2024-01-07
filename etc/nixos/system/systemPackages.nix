@@ -1,4 +1,5 @@
-# System Packages Configuration - /system/environment/packages/system-packages.nix
+# /etc/nixos/system/systemPackages.nix
+# System Packages Configuration
 
 {
   config,
@@ -129,15 +130,9 @@
         # Virtualisation, Distrobox
         distrobox
 
-
         ## Dependancies:
         xorg.xhost
-        # fsmount, webdav
-        davfs2
-        autofs5
-        fuse
-        sshfs
-        cadaver
+
         ## KDE Depends
         ark
         dolphin
