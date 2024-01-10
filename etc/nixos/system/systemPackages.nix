@@ -20,12 +20,18 @@
         cascadia-code
     ];
 
+    # Permitted Insecure Packages, moved to /etc/nixos/system/config/nixconfig.nix
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     #environment.shells = with pkgs; [ fish ];
     environment = {
       localBinInPath = true;
       systemPackages = with pkgs; [
+        # Packages with Insecure Package Requirements
+        etcher
+
+
         # Text Editors - CLI
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         micro
@@ -114,7 +120,6 @@
         sunshine
         waynergy
         wl-clipboard
-        #etcher
 
 
         ## Virtualisation, QEMU

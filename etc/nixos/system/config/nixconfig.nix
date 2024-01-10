@@ -2,10 +2,10 @@
 # NixOS NixPKG Configuration
 
 {
-  config,
-  lib,
-  pkgs,
-  ...
+    config,
+    lib,
+    pkgs,
+    ...
 }: {
     # Global Nix Settings:
     nix = {
@@ -26,8 +26,9 @@
     nixpkgs.config = {
         # Nix Allow Unfree Packages
         allowUnfree = true;
-
-        #Required insecure package for etcher
-        #permittedInsecurePackages = [ "electron-12.2.3" ];
+        permittedInsecurePackages = [
+            "mailspring-1.12.0" # Mailspring is "Insecure"
+            "electron-19.1.9" #Required insecure package for etcher
+        ];
     };
 }
