@@ -1,3 +1,6 @@
+# /etc/nixos/hardware/peripherials/mouse-logitech-g604.nix
+# Logitech G604 Mouse
+
 {
     config,
     lib,
@@ -11,8 +14,9 @@
         enableGraphical = true;
     };
     environment.systemPackages = with pkgs; [
-        # Work Around for Logitech Mice
         logitech-udev-rules
         solaar
+        libratbag
+        piper
     ];
 }

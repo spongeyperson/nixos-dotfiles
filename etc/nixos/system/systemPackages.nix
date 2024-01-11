@@ -1,5 +1,5 @@
 # /etc/nixos/system/systemPackages.nix
-# System Packages Configuration
+# General System Packages Configuration
 
 {
   config,
@@ -38,19 +38,23 @@
         # Text Editors - GUI
         geany
 
+
         # NixOS Specific
         nix-diff
+
 
         # Basic Commandline Tools
         wget
         fuse3
         curl
 
+
         # Archive Management
         zip
         unzip
         rar 
         unrar
+
 
         file
         htop
@@ -94,11 +98,10 @@
         unstable.liquidctl     # Liquid Cooling Control
         lm_sensors    # ACPI Sensors Control
         corectrl      # AMDGPU Tuning
+        lact          # Alternative to corectrl
+
         ## Hardware Control, GUI
         openrgb       # RGB Control
-        libratbag     # Logitech Mice
-        piper         # Logitech Mice
-        oversteer     # Logitech Steering Wheel
 
 
         # GPU Hardware Accel Tools / Graphics Testing
@@ -120,46 +123,6 @@
         sunshine
         waynergy
         wl-clipboard
-
-
-        ## Virtualisation, QEMU
-        spice
-        docker-compose
-
-
-        virt-manager
-        dconf
-        gnome3.dconf-editor # needed for saving settings in virt-manager
-        libguestfs # needed to virt-sparsify qcow2 files
-        libvirt
-        # Virtualisation, Distrobox
-        distrobox
-
-        ## Dependancies:
-        xorg.xhost
-
-        ## KDE Depends
-        ark
-        dolphin
-        kate
-        okular
-        spectacle
-        # KDE Plasma Depends, Bluetooth
-        bluedevil
-        bluez
-        bluez-alsa
-        bluez-tools
-        libsForQt5.bluez-qt
-        libsForQt5.bluedevil
-        # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
-        libsForQt5.kcmutils
-        libsForQt5.sddm-kcm
-        libsForQt5.flatpak-kcm
-        # Misc Libs for QT5, KDE Discover
-        libsForQt5.discover
-        packagekit
-        # Tiling Window Manager
-        libsForQt5.bismuth
 
 
         ## THEMING

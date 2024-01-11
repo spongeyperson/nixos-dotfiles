@@ -7,5 +7,6 @@
     # File Declarations
     ./gamepad-gulikit-kk2.nix
     ./mouse-logitech-g604.nix
+    ./wheel-logitech-g29.nix
   ];
 }

@@ -19,4 +19,21 @@
         # Set Plasma Wayland as Default Session
         displayManager.defaultSession = "plasmawayland";
     };
+    environment.systemPackages = with pkgs; [
+        ## KDE Depends
+        ark
+        dolphin
+        kate
+        okular
+        spectacle
+        # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
+        libsForQt5.kcmutils
+        libsForQt5.sddm-kcm
+        libsForQt5.flatpak-kcm
+        # Misc Libs for QT5, KDE Discover
+        libsForQt5.discover
+        packagekit
+        # Tiling Window Manager
+        libsForQt5.bismuth
+    ];
 }

@@ -46,7 +46,20 @@ in
             onShutdown = "shutdown";
         };
     };
+    environment.systemPackages = with pkgs; [
+        ## Virtualisation, QEMU
+        spice
+        virt-manager
+        dconf
+        gnome3.dconf-editor # needed for saving settings in virt-manager
+        libguestfs # needed to virt-sparsify qcow2 files
+        libvirt
+        # Virtualisation, Distrobox
+        distrobox
 
+        ## Dependancies:
+        xorg.xhost
+    ];
     #services = {
         #qemuGuest.enable = true; # Enable QEMU Guest Agent on Host. Disable if you're not running this in a VM
     #};
