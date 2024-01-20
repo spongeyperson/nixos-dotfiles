@@ -38,11 +38,6 @@
         # Text Editors - GUI
         geany
 
-
-        # NixOS Specific
-        nix-diff
-
-
         # Basic Commandline Tools
         wget
         fuse3
@@ -112,6 +107,7 @@
 
 
         ## GUI
+        xwaylandvideobridge
         fsearch
         gparted
         kdiff3

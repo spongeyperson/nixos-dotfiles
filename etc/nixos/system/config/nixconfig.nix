@@ -31,4 +31,13 @@
             "electron-19.1.9" #Required insecure package for etcher
         ];
     };
+    environment.systemPackages = with pkgs; [
+        # NixOS Specific Commandline Packages
+        nix-diff
+        nix-du
+        nix-tree
+        nix-index
+        nix-output-monitor
+
+    ];
 }

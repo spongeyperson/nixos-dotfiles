@@ -28,6 +28,7 @@ in
             # Web Browsers
             brave
             librewolf
+            floorp
             chromium
 
             # Chat
