@@ -25,6 +25,9 @@
         # Set System Kernel:
         kernel = pkgs.linuxPackages_zen;
 
+        # Set the System Kernel for Kernel Modules:
+        kernelmodule_support = "linux_zen";
+
         # VFIO Settings: (./hardware-specific/vfio)
         # Use this if you want VFIO.
         # If you don't want VFIO, comment these 2 lines;

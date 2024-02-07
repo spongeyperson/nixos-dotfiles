@@ -14,6 +14,10 @@ let
     userVariables = globalVars.userVariables;
 in
 {
+    # Install v4l2loopback Kernel Module
+    environment.systemPackages = with pkgs; [
+        linuxKernel.packages.${systemVariables.kernelmodule_support}.v4l2loopback
+    ];
     boot = {
         # Set Kernel
         kernelPackages = systemVariables.kernel;

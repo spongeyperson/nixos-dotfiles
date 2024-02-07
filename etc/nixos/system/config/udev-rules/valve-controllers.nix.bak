@@ -1,4 +1,5 @@
-# /etc/nixos/system/services/udev-rules.nix
+# /etc/nixos/system/config/udev-rules/valve-controllers.nix
+# Valve Controller udev rules. This should be default Torvalds!
 
 {
     config,

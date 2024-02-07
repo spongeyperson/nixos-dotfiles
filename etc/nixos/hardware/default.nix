@@ -5,6 +5,9 @@
   ...
 }: {
   imports = [
+    # Dir Declarations
+    ./peripherials
+
     # File Declarations
     ./bluetooth.nix
     ./cpu.nix

@@ -12,6 +12,7 @@
         initrd = {
             availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
             # NOTE: Other modules & params defined under ../../virtualisation/vfio/vfio.nix
+            # TODO: make "amdgpu" declaration connect to global-vars.nix
             kernelModules = [
                 "amdgpu"
                 "dm-snapshot" 

@@ -1,4 +1,5 @@
-# System Packages Configuration - /system/environment/packages/system-packages.nix
+# /etc/nixos/system/systemPackages.nix
+# General System Packages Configuration
 
 {
   config,
@@ -19,10 +20,7 @@
         cascadia-code
     ];
 
-    hardware.logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
+    # Permitted Insecure Packages, moved to /etc/nixos/system/config/nixconfig.nix
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -30,12 +28,9 @@
     environment = {
       localBinInPath = true;
       systemPackages = with pkgs; [
+        # Packages with Insecure Package Requirements
+        etcher
 
-        # Work Around for Logitech Mice
-        logitech-udev-rules
-        solaar
-
-        linuxKernel.packages.linux_zen.v4l2loopback
 
         # Text Editors - CLI
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -43,19 +38,18 @@
         # Text Editors - GUI
         geany
 
-        # NixOS Specific
-        nix-diff
-
         # Basic Commandline Tools
         wget
         fuse3
         curl
+
 
         # Archive Management
         zip
         unzip
         rar 
         unrar
+
 
         file
         htop
@@ -96,14 +90,15 @@
 
 
         ## Hardware Control, CLI
-        unstable.liquidctl     # Liquid Cooling Control
+        ## Moved to /etc/nixos/system/config/programs/liquidctl.nix
+        #unstable.liquidctl     # Liquid Cooling Control
         lm_sensors    # ACPI Sensors Control
         corectrl      # AMDGPU Tuning
+        lact          # Alternative to corectrl
+
         ## Hardware Control, GUI
-        openrgb       # RGB Control
-        libratbag     # Logitech Mice
-        piper         # Logitech Mice
-        oversteer     # Logitech Steering Wheel
+        ## Moved to /etc/nixos/system/config/programs/openrgb.nix
+        #openrgb       # RGB Control
 
 
         # GPU Hardware Accel Tools / Graphics Testing
@@ -114,6 +109,7 @@
 
 
         ## GUI
+        xwaylandvideobridge
         fsearch
         gparted
         kdiff3
@@ -125,53 +121,6 @@
         sunshine
         waynergy
         wl-clipboard
-        #etcher
-
-
-        ## Virtualisation, QEMU
-        spice
-        docker-compose
-
-
-        virt-manager
-        dconf
-        gnome3.dconf-editor # needed for saving settings in virt-manager
-        libguestfs # needed to virt-sparsify qcow2 files
-        libvirt
-        # Virtualisation, Distrobox
-        distrobox
-
-
-        ## Dependancies:
-        xorg.xhost
-        # fsmount, webdav
-        davfs2
-        autofs5
-        fuse
-        sshfs
-        cadaver
-        ## KDE Depends
-        ark
-        dolphin
-        kate
-        okular
-        spectacle
-        # KDE Plasma Depends, Bluetooth
-        bluedevil
-        bluez
-        bluez-alsa
-        bluez-tools
-        libsForQt5.bluez-qt
-        libsForQt5.bluedevil
-        # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
-        libsForQt5.kcmutils
-        libsForQt5.sddm-kcm
-        libsForQt5.flatpak-kcm
-        # Misc Libs for QT5, KDE Discover
-        libsForQt5.discover
-        packagekit
-        # Tiling Window Manager
-        libsForQt5.bismuth
 
 
         ## THEMING

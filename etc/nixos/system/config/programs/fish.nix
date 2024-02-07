@@ -16,6 +16,7 @@ let
 in
 {
     users = {
+        # Set Default Shell to Fish
         users.${userVariables.username}.shell = pkgs.fish; 
     };
     programs = {
@@ -114,10 +115,5 @@ in
             icd="ls /usr/share/vulkan/icd.d/*.json";
             ##
         };
-    };
-    # Set Tmux Default Shell to Fish
-
-    programs.fish.shellAliases = {
-
     };
 }

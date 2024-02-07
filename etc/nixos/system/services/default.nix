@@ -7,6 +7,5 @@
   imports = [
     # File Declarations
     ./services.nix
-    ./udev-rules.nix
   ];
 }
