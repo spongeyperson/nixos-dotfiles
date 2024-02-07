@@ -7,6 +7,8 @@
   imports = [
     # File Declarations
     ./fish.nix
+    ./liquidctl.nix
+    ./openrgb.nix
     ./programs.nix
     ./steam.nix
   ];

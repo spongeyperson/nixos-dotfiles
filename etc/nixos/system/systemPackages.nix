@@ -90,13 +90,15 @@
 
 
         ## Hardware Control, CLI
-        unstable.liquidctl     # Liquid Cooling Control
+        ## Moved to /etc/nixos/system/config/programs/liquidctl.nix
+        #unstable.liquidctl     # Liquid Cooling Control
         lm_sensors    # ACPI Sensors Control
         corectrl      # AMDGPU Tuning
         lact          # Alternative to corectrl
 
         ## Hardware Control, GUI
-        openrgb       # RGB Control
+        ## Moved to /etc/nixos/system/config/programs/openrgb.nix
+        #openrgb       # RGB Control
 
 
         # GPU Hardware Accel Tools / Graphics Testing

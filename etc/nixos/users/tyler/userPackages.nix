@@ -94,6 +94,9 @@ in
             tree
             jdk8
             jdk17
+
+            # Dropdown terminal
+            yakuake
         ];
     };
 }
