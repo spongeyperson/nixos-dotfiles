@@ -42,6 +42,9 @@ in
             envpkgs="sudo nix-env -q ; nix-env -q";
             pkgversion="sudo nix-env -qa --description";
             nixinfo="nix-shell -p nix-info --run 'nix-info -m'";
+
+            editalias="vim ~/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
+            vimalias="editalias";
             # General Aliases
             tb="nc termbin.com 9999";
             termbin="nc termbin.com 9999";
@@ -61,7 +64,8 @@ in
             openports="sudo lsof -i -P -n | grep LISTEN";
 
             #FLATPAK VSCode
-            # code="flatpak run com.visualstudio.code";
+            code="flatpak run com.visualstudio.code";
+            vscode="code";
 
             # File Management Tweaks
             mv="mv -v";

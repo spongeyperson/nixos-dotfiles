@@ -72,6 +72,7 @@
         tree
         whois
         killall
+        gpm
         speedtest-cli
         iperf
         smartmontools
@@ -113,6 +114,7 @@
         fsearch
         gparted
         kdiff3
+        qdirstat
         # GUI Tools, Recording / Editing
         obs-studio
         handbrake
