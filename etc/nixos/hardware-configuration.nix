@@ -72,12 +72,18 @@
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
     };
 
-  fileSystems."/mnt/New 970 Evo" =
-    { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
-      fsType = "ntfs3"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
-    };
+  # fileSystems."/mnt/New 970 Evo" =
+  #   { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
+  #     fsType = "ntfs3"; 
+  #     options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
+  #   };
   
+  fileSystems."/mnt/New 970 Evo" =
+    { device = "/dev/disk/by-uuid/2fbab2fc-833e-492d-91c0-6e5263e23dee";
+      fsType = "ext4"; 
+      options = [ "defaults" "discard" "data=ordered" ];
+    };
+
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
       fsType = "ntfs3"; 
