@@ -59,7 +59,7 @@ in
             virsh="virsh --connect=qemu:///system";
             duf="duf -hide-fs squashfs";
             CLEAR="clear";
-            onedrive="rclone serve webdav OD_Chunk:/ --vfs-cache-mode writes -P --cache-db-purge";
+            onedrive="rclone serve webdav chunk-onedrive:/ --vfs-cache-mode writes -P --cache-db-purge";
             ports="sudo lsof -i -P -n | grep LISTEN";
             openports="sudo lsof -i -P -n | grep LISTEN";
 

@@ -17,11 +17,11 @@ in
     users.users.${userVariables.username} = {
         packages = with pkgs; [
             # Packages with Insecure Package Requirements
-            mailspring
+            mailspring # Not using Flatpak due to Libsecret issue
 
 
             # Userspace, GUI
-            authy
+            #authy
             vlc
             stremio
 
@@ -63,7 +63,7 @@ in
             # Versions of Apps that also
             # have flatpak alternatives.
             spotify
-            vscode
+            #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
             anydesk
             teamviewer
