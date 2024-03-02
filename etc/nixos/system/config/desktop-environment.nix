@@ -23,9 +23,11 @@
         ## KDE Depends
         ark
         dolphin
+        ## KDE-Specific Applications
         kate
         okular
         spectacle
+        libsForQt5.merkuro # Merkuro (Kalendar)
         # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
         libsForQt5.kcmutils
         libsForQt5.sddm-kcm

@@ -42,6 +42,9 @@ in
             envpkgs="sudo nix-env -q ; nix-env -q";
             pkgversion="sudo nix-env -qa --description";
             nixinfo="nix-shell -p nix-info --run 'nix-info -m'";
+
+            editalias="vim ~/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
+            vimalias="editalias";
             # General Aliases
             tb="nc termbin.com 9999";
             termbin="nc termbin.com 9999";
@@ -56,12 +59,13 @@ in
             virsh="virsh --connect=qemu:///system";
             duf="duf -hide-fs squashfs";
             CLEAR="clear";
-            onedrive="rclone serve webdav OD_Chunk:/ --vfs-cache-mode writes -P --cache-db-purge";
+            onedrive="rclone serve webdav chunk-onedrive:/ --vfs-cache-mode writes -P --cache-db-purge";
             ports="sudo lsof -i -P -n | grep LISTEN";
             openports="sudo lsof -i -P -n | grep LISTEN";
 
             #FLATPAK VSCode
-            # code="flatpak run com.visualstudio.code";
+            code="flatpak run com.visualstudio.code";
+            vscode="code";
 
             # File Management Tweaks
             mv="mv -v";

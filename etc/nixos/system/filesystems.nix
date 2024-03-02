@@ -21,5 +21,7 @@
       exfatprogs
       xorg.xfs # Why is this FS part of xorg??
       hfsprogs
+      udftools
+      libudfread
   ];
 }

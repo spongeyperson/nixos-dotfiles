@@ -5,7 +5,9 @@
 # <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
-- ### Index:
+<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/76d8c6cb-4faa-4621-925f-6229b3726cbd" title="I Run Arch Btw"></p>
+
+- ## Index:
     - <u><b>System / Userspace Configuration</b></u>:
         - [configuration.nix](./etc/nixos/configuration.nix)
     - <u><b>Partition Configuration:</b></u>:

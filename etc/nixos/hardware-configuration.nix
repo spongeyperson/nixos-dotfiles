@@ -18,7 +18,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  #boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; #Exfat Kernel Module Enablement
 
   # EFI System Partition
   fileSystems."/boot/efi" =
@@ -72,12 +72,24 @@
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
     };
 
-  fileSystems."/mnt/New 970 Evo" =
-    { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
-      fsType = "ntfs3"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
-    };
+  # fileSystems."/mnt/New 970 Evo" =
+  #   { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
+  #     fsType = "ntfs3"; 
+  #     options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
+  #   };
   
+  fileSystems."/mnt/New 970 Evo EXT4" =
+    { device = "/dev/disk/by-uuid/be15d8bb-a24f-4052-9ce9-6abd1c5afd81";
+      fsType = "ext4"; 
+      options = [ "defaults" "nofail" "discard" "data=ordered" ];
+    };
+
+  # fileSystems."/mnt/New 970 Evo UDF" =
+  #   { device = "/dev/disk/by-uuid/65d8096f961b552f";
+  #     fsType = "udf"; 
+  #     options = [ "defaults" "nofail" ];
+  #   };
+
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
       fsType = "ntfs3"; 
@@ -91,7 +103,7 @@
     fsType = "cifs";
     options = let
       # this line prevents hanging on network split
-      automount_opts = "_netdev,noauto,rw,users,uid=tyler,iocharset=utf8,file_mode=0777,dir_mode=0777,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      automount_opts = "_netdev,noauto,nofail,rw,users,uid=tyler,iocharset=utf8,file_mode=0777,dir_mode=0777,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
     in ["${automount_opts},credentials=/home/.smb-secrets"];
   };
