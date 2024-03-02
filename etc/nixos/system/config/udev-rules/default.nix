@@ -7,6 +7,6 @@
     # File Declarations
     ./50-removeable-cache.nix
     #./liquidctl.nix
-    #./valve-controllers.nix
+    ./valve-controllers.nix
   ];
 }
