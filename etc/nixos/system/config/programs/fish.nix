@@ -43,9 +43,10 @@ in
             pkgversion="sudo nix-env -qa --description";
             nixinfo="nix-shell -p nix-info --run 'nix-info -m'";
 
-            editalias="vim ~/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
+            editalias="vim /home/tyler/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
             vimalias="editalias";
             # General Aliases
+            cat="bat";
             tb="nc termbin.com 9999";
             termbin="nc termbin.com 9999";
             clbin="curl -F 'clbin=<-' https://clbin.com";
@@ -85,7 +86,10 @@ in
             sshkey="echo -e '\033[0;32mAuthorized SSH Devices:\033[0m' && ls /home/$USER/.ssh/ssh-identities/ -1I '*.pub'";
             keys="echo -e '\033[0;32mAuthorized SSH Devices:\033[0m' && ls /home/$USER/.ssh/ssh-identities/ -1I '*.pub'";
             key="echo -e '\033[0;32mAuthorized SSH Devices:\033[0m' && ls /home/$USER/.ssh/ssh-identities/ -1I '*.pub'";
-
+            # Fix weird issues with SSH on high MTU
+            scp="scp -o MACs=hmac-sha2-256";
+            ssh="ssh -o MACs=hmac-sha2-256";
+            
             # Manipulate KDE
             lockwidgets="echo -e '\033[0;31mWidgets Locked\033[0m' ; qdbus org.kde.plasmashell /PlasmaShell evaluateScript 'lockCorona(true)'";
             unlockwidgets="echo -e '\033[0;32mWidgets Unlocked\033[0m' ; qdbus org.kde.plasmashell /PlasmaShell evaluateScript 'lockCorona(false)'";

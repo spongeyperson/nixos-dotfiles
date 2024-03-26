@@ -79,8 +79,12 @@
       viddy
       fzf
       atuin
+      du-dust
+      bat
+      eza
+      gamescope
 
-      # CLI - GCC MAKE Tools
+      # GCC MAKE Tools
       autoconf
       gcc
       gnumake
@@ -133,6 +137,8 @@
       btop
       powertop
       iotop
+
+      okteta
     ];
   };
 }

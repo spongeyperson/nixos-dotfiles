@@ -29,6 +29,7 @@ in
             brave
             librewolf
             floorp
+            vivaldi
             chromium
 
             # Chat
@@ -44,6 +45,7 @@ in
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
+            wineWowPackages.staging # Wine 32/64 Staging
             protontricks
             mangohud
             goverlay
