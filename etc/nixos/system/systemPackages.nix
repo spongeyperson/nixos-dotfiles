@@ -83,6 +83,7 @@
       bat
       eza
       gamescope
+      v4l-utils
 
       # GCC MAKE Tools
       autoconf

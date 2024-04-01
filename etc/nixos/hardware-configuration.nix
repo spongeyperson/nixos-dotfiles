@@ -17,8 +17,8 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  #boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; #Exfat Kernel Module Enablement
+  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
+  #boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; #Exfat Kernel Module Enablement (ExFat is broken)
 
   # EFI System Partition
   fileSystems."/boot/efi" =

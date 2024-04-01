@@ -97,6 +97,8 @@ in
             jdk8
             jdk17
 
+            qbittorrent
+
             # Dropdown terminal
             yakuake
         ];
