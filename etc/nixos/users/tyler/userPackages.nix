@@ -21,7 +21,7 @@ in
 
 
             # Userspace, GUI
-            #authy
+            #authy - Removed as App has been Deprecated
             vlc
             stremio
 
@@ -67,7 +67,7 @@ in
             spotify
             #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
-            anydesk
+            #anydesk - Removed as App has been Deprecated
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
