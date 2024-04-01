@@ -7,11 +7,11 @@
   ...
 }: {
     # Allow Unstable Repo for Specific Packages: 
-    nixpkgs.config = {
-      packageOverrides = pkgs: with pkgs; {
-        unstable = import <unstable> {};
-      };
-    };
+    # nixpkgs.config = {
+    #   packageOverrides = pkgs: with pkgs; {
+    #     unstable = import <unstable> {};
+    #   };
+    # };
     # System Font Package Config
     fonts.packages = with pkgs; [
         nerdfonts
@@ -96,7 +96,7 @@
 
 
         ## Hardware Control, CLI
-        unstable.liquidctl     # Liquid Cooling Control
+        #unstable.liquidctl     # Liquid Cooling Control
         lm_sensors    # ACPI Sensors Control
         corectrl      # AMDGPU Tuning
         ## Hardware Control, GUI

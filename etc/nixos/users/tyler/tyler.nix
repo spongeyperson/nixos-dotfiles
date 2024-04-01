@@ -1,4 +1,4 @@
-# /etc/nixos/user/tyler/tyler.nix
+# /etc/nixos/users/tyler/tyler.nix
 # User Configuration: "Tyler"
 
 {
@@ -9,7 +9,7 @@
 }:
 # Import global-vars.nix
 let
-    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    globalVars = import (toString ../../global-vars.nix) { inherit config pkgs lib; };
     systemVariables = globalVars.systemVariables;
     userVariables = globalVars.userVariables;
 in

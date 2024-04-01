@@ -2,13 +2,15 @@
 # General CPU Configuration
 
 {
+    config,
     pkgs,
+    lib,
     user,
     ...
 }: 
 # Import global-vars.nix
 let
-    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    globalVars = import (toString ../global-vars.nix) { inherit config pkgs lib; };
     systemVariables = globalVars.systemVariables;
     userVariables = globalVars.userVariables;
 in

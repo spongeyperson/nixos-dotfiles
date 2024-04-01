@@ -8,7 +8,7 @@
 }: 
 # Import global-vars.nix
 let
-    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    globalVars = import (toString ../../global-vars.nix) { inherit config pkgs lib; };
     systemVariables = globalVars.systemVariables;
     userVariables = globalVars.userVariables;
 in
@@ -20,7 +20,7 @@ in
     users.users.${userVariables.username} = {
         packages = with pkgs; [
             # Userspace, GUI
-            authy
+            #authy
             vlc
             stremio
 
@@ -64,7 +64,7 @@ in
             spotify
             vscode
             barrier
-            anydesk
+            #anydesk
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
