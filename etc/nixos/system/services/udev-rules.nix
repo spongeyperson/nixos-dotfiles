@@ -1,8 +1,10 @@
+# /etc/nixos/system/services/udev-rules.nix
+
 {
-  config,
-  lib,
-  pkgs,
-  ...
+    config,
+    lib,
+    pkgs,
+    ...
 }: {
     services = {
         udev.extraRules = ''

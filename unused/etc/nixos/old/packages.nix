@@ -38,7 +38,7 @@ pkgs: with pkgs; [
     # Userspace, GUI, noflatpak
     # Versions of Apps that also
     # have flatpak alternatives.
-    mailspring
+    #mailspring
     spotify
     vscode
     barrier

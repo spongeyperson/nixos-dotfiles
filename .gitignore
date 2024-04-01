@@ -7,6 +7,3 @@ result
 # Ignore swap files
 *.swp
 *~
-
-# Ignore Test Config Dirs
-*-test/
