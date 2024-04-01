@@ -23,6 +23,10 @@
         # If you want to use JACK applications, uncomment this
         jack.enable = true;
     };
+    # Install Pulseaudio Package for `pactl` and associated tools, but don't enable them as services.
+    environment.systemPackages = with pkgs; [
+        pulseaudio
+    ];
     # environment.etc = {
     #     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
     #         bluez_monitor.properties = {

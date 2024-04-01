@@ -13,12 +13,13 @@ let
     userVariables = globalVars.userVariables;
 in
 {
-    nixpkgs.config.permittedInsecurePackages = [
-        "mailspring-1.12.0"
-        #"electron-24.8.6"
-    ];
+    # Permitted Insecure Packages, moved to /etc/nixos/system/config/nixconfig.nix
     users.users.${userVariables.username} = {
         packages = with pkgs; [
+            # Packages with Insecure Package Requirements
+            mailspring # Not using Flatpak due to Libsecret issue
+
+
             # Userspace, GUI
             #authy
             vlc
@@ -27,6 +28,8 @@ in
             # Web Browsers
             brave
             librewolf
+            floorp
+            vivaldi
             chromium
 
             # Chat
@@ -40,8 +43,9 @@ in
             # Gaming
             #steam - moved to system-programs.nix
             heroic
-            #gamemode - moved to ../../system/services/services.nix
+            #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
+            wineWowPackages.staging # Wine 32/64 Staging
             protontricks
             mangohud
             goverlay
@@ -60,11 +64,10 @@ in
             # Userspace, GUI, noflatpak
             # Versions of Apps that also
             # have flatpak alternatives.
-            mailspring
             spotify
-            vscode
+            #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
-            #anydesk
+            anydesk
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
@@ -93,6 +96,11 @@ in
             tree
             jdk8
             jdk17
+
+            qbittorrent
+
+            # Dropdown terminal
+            yakuake
         ];
     };
 }

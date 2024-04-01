@@ -8,5 +8,6 @@
     # File Declarations
     ./fish.nix
     ./programs.nix
+    ./steam.nix
   ];
 }

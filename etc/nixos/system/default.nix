@@ -11,6 +11,7 @@
     ./services
 
     # File Declarations
+    ./filesystems.nix
     ./systemPackages.nix
   ];
 }
