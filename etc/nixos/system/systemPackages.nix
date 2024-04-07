@@ -9,9 +9,9 @@
 }: {
   # Allow Unstable Repo for Specific Packages: 
   nixpkgs.config = {
-    packageOverrides = pkgs: with pkgs; {
+      packageOverrides = pkgs: with pkgs; {
       unstable = import <unstable> {};
-    };
+      };
   };
   # System Font Package Config
   fonts.packages = with pkgs; [
@@ -84,6 +84,8 @@
       eza
       gamescope
       v4l-utils
+      android-tools
+      android-udev-rules
 
       # GCC MAKE Tools
       autoconf
@@ -140,6 +142,7 @@
       iotop
 
       okteta
+      helvum
     ];
   };
 }

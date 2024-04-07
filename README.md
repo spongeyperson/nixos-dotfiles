@@ -16,14 +16,14 @@
 
 - ### Repository Todo / Related NixOS Tasks:
   - #### Actual NixOS Setup:
-    - [ ] VFIO
+    - [X] VFIO
       - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
       - [x] Setup Backend Passthrough (e.g. Grub configs, enable `vfio-pci`, passthrough & blacklist hardware)
-      - [ ] Setup a VFIO Branch or seperate optional `.nix` config file <-
+      - [ ] Setup a VFIO Branch or seperate optional `.nix` config file <-~~
     - [ ] Setup Nix Home Manager <- 
     - [x] Setup `Docker` <-
-    - [ ] Setup `Podman` <- 
-    - [ ] Setup `Distrobox` <-
+    - [X] Setup `Podman` <- 
+    - [X] Setup `Distrobox` <-
     - [ ] Setup (preferrably declarative) `Flatpak` 
   - [ ] Implement system & user configuration file creation in [`configuration.nix`](./etc/nixos/configuration.nix)
     - [ ] Test operating system reinstallation with said configuration files, and make sure they work.

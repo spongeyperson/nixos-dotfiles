@@ -90,7 +90,6 @@ in
 
             # Userspace, CLI
             flatpak
-            android-tools
             scrcpy
             neofetch
             tree
