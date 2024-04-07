@@ -1,6 +1,8 @@
 # /etc/nixos/system/config/programs/liquidctl.nix
 # Liquidctl Configuration
 
+#TODO: Move config to individual hardware requirement, config. (example: Kraken X62 or Corsair AIO Config.)
+
 {
     config,
     pkgs, 

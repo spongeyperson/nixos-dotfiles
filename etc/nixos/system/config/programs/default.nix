@@ -6,6 +6,7 @@
 }: {
   imports = [
     # File Declarations
+    ./coolercontrol.nix
     ./fish.nix
     ./liquidctl.nix
     ./openrgb.nix

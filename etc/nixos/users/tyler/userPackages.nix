@@ -8,7 +8,7 @@
 }: 
 # Import global-vars.nix
 let
-    globalVars = import /etc/nixos/global-vars.nix { inherit config pkgs lib; };
+    globalVars = import (toString ../../global-vars.nix) { inherit config pkgs lib; };
     systemVariables = globalVars.systemVariables;
     userVariables = globalVars.userVariables;
 in
@@ -21,7 +21,7 @@ in
 
 
             # Userspace, GUI
-            #authy
+            #authy - Removed as App has been Deprecated
             vlc
             stremio
 
@@ -29,6 +29,7 @@ in
             brave
             librewolf
             floorp
+            vivaldi
             chromium
 
             # Chat
@@ -44,6 +45,7 @@ in
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
+            wineWowPackages.staging # Wine 32/64 Staging
             protontricks
             mangohud
             goverlay
@@ -65,7 +67,7 @@ in
             spotify
             #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
-            anydesk
+            #anydesk - Removed as App has been Deprecated
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
@@ -88,12 +90,13 @@ in
 
             # Userspace, CLI
             flatpak
-            android-tools
             scrcpy
             neofetch
             tree
             jdk8
             jdk17
+
+            qbittorrent
 
             # Dropdown terminal
             yakuake

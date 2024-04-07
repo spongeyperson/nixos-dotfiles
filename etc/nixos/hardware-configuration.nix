@@ -17,8 +17,8 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  #boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; #Exfat Kernel Module Enablement
+  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
+  #boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ]; #Exfat Kernel Module Enablement (ExFat is broken)
 
   # EFI System Partition
   fileSystems."/boot/efi" =
@@ -68,7 +68,7 @@
   # NTFS Mounts
   fileSystems."/mnt/Old 970 Evo" =
     { device = "/dev/disk/by-uuid/01D9848E81913560";
-      fsType = "ntfs3"; 
+      fsType = "lowntfs-3g"; 
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
     };
 
@@ -92,7 +92,7 @@
 
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
-      fsType = "ntfs3"; 
+      fsType = "lowntfs-3g"; 
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
     };
 

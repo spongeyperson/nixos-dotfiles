@@ -1,6 +1,8 @@
 # /etc/nixos/system/config/programs/openrgb.nix
 # OpenRGB Configuration
 
+#TODO: Move config to individual hardware requirement, config. (example: Common Device Requirement)
+
 {
     config,
     pkgs, 

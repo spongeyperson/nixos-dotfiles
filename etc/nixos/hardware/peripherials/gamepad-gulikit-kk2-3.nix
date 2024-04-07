@@ -1,5 +1,5 @@
-# /etc/nixos/hardware/peripherials/gulikit-controller/systemd-gulikit-keepalive.nix
-# Gulikit King Kong 2 Controller
+# /etc/nixos/hardware/peripherials/gamepad-gulikit-kk2-3.nix
+# Gulikit King Kong 2 & 3 Controller Driver & SystemD keep-alive service
 
 {
     config,

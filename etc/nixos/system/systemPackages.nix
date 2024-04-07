@@ -9,9 +9,9 @@
 }: {
   # Allow Unstable Repo for Specific Packages: 
   nixpkgs.config = {
-    packageOverrides = pkgs: with pkgs; {
+      packageOverrides = pkgs: with pkgs; {
       unstable = import <unstable> {};
-    };
+      };
   };
   # System Font Package Config
   fonts.packages = with pkgs; [
@@ -79,8 +79,15 @@
       viddy
       fzf
       atuin
+      du-dust
+      bat
+      eza
+      gamescope
+      v4l-utils
+      android-tools
+      android-udev-rules
 
-      # CLI - GCC MAKE Tools
+      # GCC MAKE Tools
       autoconf
       gcc
       gnumake
@@ -133,6 +140,9 @@
       btop
       powertop
       iotop
+
+      okteta
+      helvum
     ];
   };
 }
