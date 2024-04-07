@@ -7,17 +7,23 @@
     pkgs,
     ...
 }: {
-    services.xserver = {
-        # Enable the x11 Windowing system (requirement for sddm)
-        enable = true;
-        # Enable touchpad support (enabled default in most desktopManager).
-        libinput.enable = true;
-
-        # Enable Plasma 5 Desktop Environment.
-        displayManager.sddm.enable = true;
-        desktopManager.plasma5.enable = true;
-        # Set Plasma Wayland as Default Session
-        displayManager.defaultSession = "plasmawayland";
+    services = {
+        # Enable Plasma 6
+        desktopManager.plasma6.enable = true;
+        xserver = {
+            # Enable the x11 Windowing system (requirement for sddm)
+            enable = true;
+            # Enable touchpad support (enabled default in most desktopManager).
+            libinput.enable = true;
+            displayManager = {
+                # Enable SDDM
+                sddm.enable = true;
+                # Set SDDM to Wayland Mode
+                sddm.wayland.enable = true;
+                # Set SDDM Default Session to Plasma Wayland
+                defaultSession = "plasma";
+            };
+        };
     };
     environment.systemPackages = with pkgs; [
         ## KDE Depends

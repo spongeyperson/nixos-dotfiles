@@ -21,15 +21,14 @@
             max-free = ${toString (1024 * 1024 * 1024)}
         '';
     };
-
     # Nix Package Manager Configuration:
     nixpkgs.config = {
         # Nix Allow Unfree Packages
         allowUnfree = true;
-        permittedInsecurePackages = [
-            "mailspring-1.12.0" # Mailspring is "Insecure"
-            "electron-19.1.9" #Required insecure package for etcher
-        ];
+        # permittedInsecurePackages = [
+        #     "mailspring-1.12.0" # Mailspring is "Insecure"
+        #     "electron-19.1.9" #Required insecure package for etcher
+        # ];
     };
     environment.systemPackages = with pkgs; [
         # NixOS Specific Commandline Packages

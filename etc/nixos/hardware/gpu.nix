@@ -29,7 +29,7 @@ in
                 # OpenCL ROCM (Compute)
                 rocm-opencl-icd
                 rocm-opencl-runtime
-                nvtop-amd
+                nvtopPackages.amd
             ];
         };
     };

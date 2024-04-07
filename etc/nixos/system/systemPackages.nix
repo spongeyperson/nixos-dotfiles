@@ -8,11 +8,11 @@
   ...
 }: {
   # Allow Unstable Repo for Specific Packages: 
-  nixpkgs.config = {
-      packageOverrides = pkgs: with pkgs; {
-      unstable = import <unstable> {};
-      };
-  };
+  # nixpkgs.config = {
+  #     packageOverrides = pkgs: with pkgs; {
+  #     unstable = import <unstable> {};
+  #     };
+  # };
   # System Font Package Config
   fonts.packages = with pkgs; [
       nerdfonts
@@ -29,7 +29,7 @@
     localBinInPath = true;
     systemPackages = with pkgs; [
       # Packages with Insecure Package Requirements
-      etcher
+      #etcher
 
       # Text Editors - CLI
       vim

@@ -3,9 +3,10 @@
 <br>
 
 # <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
+### <p align=center>(Plasma 6 Branch)
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
-<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/76d8c6cb-4faa-4621-925f-6229b3726cbd" title="I Run Arch Btw"></p>
+<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/38219ae7-8c45-4f5b-b956-aac3a8c5762e" title="I Run NixOS Btw"></p>
 
 - ## Index:
     - <u><b>System / Userspace Configuration</b></u>:

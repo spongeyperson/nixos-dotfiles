@@ -10,13 +10,14 @@
     ... 
 }: {
     # Allow Unstable Repo for Specific Packages: 
-    nixpkgs.config = {
-        packageOverrides = pkgs: with pkgs; {
-        unstable = import <unstable> {};
-        };
-    };
+    # nixpkgs.config = {
+    #     packageOverrides = pkgs: with pkgs; {
+    #     unstable = import <unstable> {};
+    #     };
+    # };
     environment.systemPackages = with pkgs; [
-        unstable.liquidctl # RGB Control
+        #unstable.liquidctl # RGB Control
+        liquidctl
     ];
     # 71-liquidctl.rules
     services = {
