@@ -27,19 +27,19 @@
     };
     environment.systemPackages = with pkgs; [
         ## KDE Depends
-        ark
-        dolphin
+        kdePackages.ark
+        kdePackages.dolphin
         ## KDE-Specific Applications
-        kate
-        okular
-        spectacle
-        libsForQt5.merkuro # Merkuro (Kalendar)
+        kdePackages.kate
+        kdePackages.okular
+        kdePackages.spectacle
+        kdePackages.merkuro # Merkuro (Kalendar)
         # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
-        libsForQt5.kcmutils
-        libsForQt5.sddm-kcm
-        libsForQt5.flatpak-kcm
+        kdePackages.kcmutils
+        kdePackages.sddm-kcm
+        kdePackages.flatpak-kcm
         # Misc Libs for QT5, KDE Discover
-        libsForQt5.discover
+        kdePackages.discover
         packagekit
         # Tiling Window Manager
         libsForQt5.bismuth

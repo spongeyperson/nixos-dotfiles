@@ -21,7 +21,7 @@
         bluez
         bluez-alsa
         bluez-tools
-        libsForQt5.bluez-qt
-        libsForQt5.bluedevil
+        kdePackages.bluez-qt
+        kdePackages.bluedevil
     ];
 }

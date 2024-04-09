@@ -14,8 +14,23 @@
     - <u><b>Partition Configuration:</b></u>:
         - [hardware-configuration.nix](./etc/nixos/hardware-configuration.nix)
 
+- ## Setup Unstable Repository (for Plasma 6)
+  1) ### Remove <u>all</u> your Previous Repositories:
+      ```
+      sudo nix-channel --remove <channel name>
+      ```
 
-- ### Repository Todo / Related NixOS Tasks:
+  2) ### Replace your `nixos` channel with `unstable`:
+      ```
+      sudo nix-channel --add https://channels.nixos.org/nixos-unstable nixos
+      ```
+
+  3) ### Rebuild Switch
+      ```
+      sudo nixos-rebuild switch
+      ```
+
+- ## Repository Todo / Related NixOS Tasks:
   - #### Actual NixOS Setup:
     - [X] VFIO
       - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
@@ -31,6 +46,8 @@
   - [ ] Make sure all configs are replicatable on Physical and Virtual Hardware
   - [ ] Remove [`changed-files/`](./changed-files/) crutch after system is replicatable elsewhere.
   - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
+
+
 
 - ## Setting up / Partitioning:
     > Information in this section is based on the following NixOS Wiki Page on Manually installing on BTRFS: https://nixos.wiki/wiki/Btrfs 
