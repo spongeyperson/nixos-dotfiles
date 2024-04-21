@@ -46,7 +46,7 @@ in
             editalias="vim /home/tyler/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
             vimalias="editalias";
             # General Aliases
-            cat="bat";
+            #cat="bat";
             tb="nc termbin.com 9999";
             termbin="nc termbin.com 9999";
             clbin="curl -F 'clbin=<-' https://clbin.com";

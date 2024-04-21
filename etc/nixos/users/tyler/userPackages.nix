@@ -38,15 +38,12 @@ in
 
             # Game Streaming Clients
             moonlight-qt
-            parsec-bin
 
             # Gaming
             #steam - moved to system-programs.nix
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
-            wineWowPackages.staging # Wine 32/64 Staging
-            protontricks
             mangohud
             goverlay
             lutris
@@ -75,6 +72,7 @@ in
             gnome-online-accounts
             gnome.gnome-calculator
             gnome.gnome-calendar
+            gnome.gnome-system-monitor
 
             # GUI Audio Manipulation
             pavucontrol
@@ -100,6 +98,7 @@ in
 
             # Dropdown terminal
             yakuake
+            steamtinkerlaunch
         ];
     };
 }

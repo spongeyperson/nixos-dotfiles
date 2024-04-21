@@ -10,7 +10,7 @@
   # Allow Unstable Repo for Specific Packages: 
   nixpkgs.config = {
       packageOverrides = pkgs: with pkgs; {
-      unstable = import <unstable> {};
+        unstable = import <unstable> {};
       };
   };
   # System Font Package Config
@@ -143,6 +143,13 @@
 
       okteta
       helvum
+      parsec-bin
+      gnome.zenity
+      p7zip
+
+      # Wine
+      wineWowPackages.staging # Wine 32/64 Staging
+      protontricks
     ];
   };
 }
