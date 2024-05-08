@@ -9,6 +9,6 @@
     ./docker.nix
     ./podman.nix
     ./vfio.nix
-    ./vmware.nix
+    #./vmware.nix - Disabled Temporarily Due to server being down
   ];
 }
