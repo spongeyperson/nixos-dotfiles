@@ -15,6 +15,11 @@ let
     userVariables = globalVars.userVariables;
 in
 {
+    environment = {
+        systemPackages = with pkgs; [
+            nvtop-amd
+        ];
+    };
     # AMDGPU Vulkan / OpenGL (Multilib) Support /w ROCM
     hardware = {
         opengl = {
@@ -29,7 +34,6 @@ in
                 # OpenCL ROCM (Compute)
                 rocm-opencl-icd
                 rocm-opencl-runtime
-                nvtop-amd
             ];
         };
     };

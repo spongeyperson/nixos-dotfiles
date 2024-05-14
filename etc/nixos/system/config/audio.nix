@@ -47,18 +47,18 @@
     # };
 
 
-    # Pipewire Low Latency, as Specified by NixOS Wiki:
+    #Pipewire Low Latency, as Specified by NixOS Wiki:
     #https://nixos.wiki/wiki/PipeWire#Low-latency_setup
-    # environment.etc = {
-    #     "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
-    #         context.properties = {
-    #         default.clock.rate = 48000
-    #         default.clock.quantum = 32
-    #         default.clock.min-quantum = 32
-    #         default.clock.max-quantum = 32
-    #         }
-    #     '';
-    # };
+    environment.etc = {
+        "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
+            context.properties = {
+            default.clock.rate = 48000
+            default.clock.quantum = 32
+            default.clock.min-quantum = 16
+            default.clock.max-quantum = 768
+            }
+        '';
+    };
     # environment.etc = let
     #     json = pkgs.formats.json {};
     # in {

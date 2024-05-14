@@ -89,7 +89,8 @@ in
             # Userspace, CLI
             flatpak
             scrcpy
-            neofetch
+            neofetch # Soon to be deprecated
+            fastfetch
             tree
             jdk8
             jdk17
@@ -99,6 +100,7 @@ in
             # Dropdown terminal
             yakuake
             steamtinkerlaunch
+            yuzu-mainline
         ];
     };
 }

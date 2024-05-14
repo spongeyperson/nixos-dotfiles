@@ -11,6 +11,7 @@
     # File Declarations
     ./audio.nix
     ./desktop-environment.nix
+    ./font-rendering.nix
     ./locale.nix
     ./networking.nix
     ./nixconfig.nix
