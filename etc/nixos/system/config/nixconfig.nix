@@ -38,6 +38,5 @@
         nix-tree
         nix-index
         nix-output-monitor
-
     ];
 }

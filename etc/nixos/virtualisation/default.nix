@@ -9,6 +9,6 @@
     ./docker.nix
     ./podman.nix
     ./vfio.nix
-    ./vmware.nix
+    # ./vmware.nix - BROKEN in Latest Update - https://github.com/NixOS/nixpkgs/issues/310121
   ];
 }

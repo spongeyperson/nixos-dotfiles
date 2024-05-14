@@ -30,27 +30,27 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@home" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@home" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
   fileSystems."/root" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@root" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@root" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
   fileSystems."/var" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
 
   # Rootvol loopback mount
@@ -58,7 +58,7 @@
   fileSystems."/mnt/rootvol" =
     { device = "/dev/disk/by-uuid/ba5453e9-40c2-4c20-b4b8-8d975e07f9b7";
       fsType = "btrfs";
-      options = [ "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+      options = [ "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
     };
   swapDevices = [ ];
 

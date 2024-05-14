@@ -5,7 +5,7 @@
 # <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
-<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/76d8c6cb-4faa-4621-925f-6229b3726cbd" title="I Run Arch Btw"></p>
+<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/eb7aceb7-d27f-48ce-bbc0-ddebfeca3a0e" title="I Run Nix Btw"></p>
 
 - ## Index:
     - <u><b>System / Userspace Configuration</b></u>:
@@ -13,13 +13,12 @@
     - <u><b>Partition Configuration:</b></u>:
         - [hardware-configuration.nix](./etc/nixos/hardware-configuration.nix)
 
-
 - ### Repository Todo / Related NixOS Tasks:
   - #### Actual NixOS Setup:
     - [X] VFIO
       - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
       - [x] Setup Backend Passthrough (e.g. Grub configs, enable `vfio-pci`, passthrough & blacklist hardware)
-      - [ ] Setup a VFIO Branch or seperate optional `.nix` config file <-~~
+      - [X] Setup a VFIO Branch or seperate optional `.nix` config file <-~~
     - [ ] Setup Nix Home Manager <- 
     - [x] Setup `Docker` <-
     - [X] Setup `Podman` <- 
@@ -45,11 +44,12 @@
         cd /mnt
         ```
     3) #### Create Subvolumes for Install:
+        > (Multi-line Copy)
         ```
-        sudo btrfs subvol create @
-        sudo btrfs subvol create @home
-        sudo btrfs subvol create @root
-        sudo btrfs subvol create @var
+        sudo btrfs subvol create @; \ 
+        sudo btrfs subvol create @home; \
+        sudo btrfs subvol create @root; \
+        sudo btrfs subvol create @var; \
         sudo btrfs subvol create @nix
         ```
     4) #### cd elsewhere, then Unmount Bare Partition:
@@ -65,7 +65,7 @@
         > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
 
         ```
-        sudo mount -o subvol=@,compress=zstd,noatime /dev/<device> /mnt
+        sudo mount -o subvol=@,compress=zstd:3,noatime /dev/<device> /mnt
         ```
     - Then create recursive partitions:
         > dumb linux quirks...
@@ -74,10 +74,10 @@
         ```
     - Continue to mount the rest of the partitions:
         ```
-        sudo mount -o subvol=@home,compress=zstd /dev/<device> /mnt/home
-        sudo mount -o subvol=@root,compress=zstd /dev/<device> /mnt/root
-        sudo mount -o subvol=@var,compress=zstd,noatime /dev/<device> /mnt/var
-        sudo mount -o subvol=@nix,compress=zstd,noatime /dev/<device> /mnt/nix
+        sudo mount -o subvol=@home,compress=zstd:3 /dev/<device> /mnt/home
+        sudo mount -o subvol=@root,compress=zstd:3 /dev/<device> /mnt/root
+        sudo mount -o subvol=@var,compress=zstd:3,noatime /dev/<device> /mnt/var
+        sudo mount -o subvol=@nix,compress=zstd:3,noatime /dev/<device> /mnt/nix
         ``` 
     - Mount EFI System Partition (EFI + GPT Only)
         ```
@@ -86,7 +86,7 @@
     6) #### Sanity Check:
         - Run the following command to check your partitions:
           ```
-          cat /proc/mounts | grep -e btrfs -e vfat
+          cat /proc/mounts | grep -e btrfs -e vfat --color=always
           ```
         - You should see something similar to this:
         <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.'--color=always' was just enabled to show you the different disk types and make it easier to read.">
@@ -122,31 +122,31 @@
         fileSystems."/" =
           { device = "/dev/disk/by-uuid/<device-uuid>";
             fsType = "btrfs";
-            options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+            options = [ "subvol=@" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
 
         fileSystems."/home" =
           { device = "/dev/disk/by-uuid/<device-uuid>";
             fsType = "btrfs";
-            options = [ "subvol=@home" "ssd" "space_cache=v2" "compress=zstd" ];
+            options = [ "subvol=@home" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
 
         fileSystems."/root" =
           { device = "/dev/disk/by-uuid/<device-uuid>";
             fsType = "btrfs";
-            options = [ "subvol=@root" "ssd" "space_cache=v2" "compress=zstd" ];
+            options = [ "subvol=@root" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
 
         fileSystems."/var" =
           { device = "/dev/disk/by-uuid/<device-uuid>";
             fsType = "btrfs";
-            options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+            options = [ "subvol=@var" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
 
         fileSystems."/nix" =
           { device = "/dev/disk/by-uuid/<device-uuid>";
             fsType = "btrfs";
-            options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd" ];
+            options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
         ```
     - Optional Tunables:

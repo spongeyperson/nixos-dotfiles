@@ -46,7 +46,7 @@ in
             editalias="vim /home/tyler/Git\ Projects/spongeyperson/nixos-dotfiles/etc/nixos/system/config/programs/fish.nix";
             vimalias="editalias";
             # General Aliases
-            cat="bat";
+            #cat="bat";
             tb="nc termbin.com 9999";
             termbin="nc termbin.com 9999";
             clbin="curl -F 'clbin=<-' https://clbin.com";
@@ -57,6 +57,7 @@ in
             mounts="cat /proc/mounts";
             lsmounts="cat /proc/mounts";
             #  neofetch="neofetch --config /home/tyler/.config/neofetch/fedora.conf --ascii_distro Fedora"
+            fastfetch="fastfetch -c ~/.config/fastfetch/spongeyconfig-v1.jsonc";
             virsh="virsh --connect=qemu:///system";
             duf="duf -hide-fs squashfs";
             CLEAR="clear";

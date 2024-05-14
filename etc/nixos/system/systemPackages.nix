@@ -10,15 +10,9 @@
   # Allow Unstable Repo for Specific Packages: 
   nixpkgs.config = {
       packageOverrides = pkgs: with pkgs; {
-      unstable = import <unstable> {};
+        unstable = import <unstable> {};
       };
   };
-  # System Font Package Config
-  fonts.packages = with pkgs; [
-      nerdfonts
-      powerline-fonts
-      cascadia-code
-  ];
 
   # Permitted Insecure Packages, moved to /etc/nixos/system/config/nixconfig.nix
 
@@ -114,6 +108,7 @@
       gnome.gnome-disk-utility
       kdiff3
       qdirstat
+      kdiskmark
 
       # GUI Tools, Recording / Editing
       obs-studio
@@ -143,6 +138,17 @@
 
       okteta
       helvum
+      parsec-bin
+      gnome.zenity
+      p7zip
+
+      # Wine
+      wineWowPackages.staging # Wine 32/64 Staging
+      protontricks
+      efibootmgr
+      steam-run
+      onedrivegui
+      premid
     ];
   };
 }
