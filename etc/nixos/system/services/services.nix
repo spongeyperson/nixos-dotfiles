@@ -20,7 +20,7 @@
         # Package Kit
         packagekit.enable = true;
         # Libratbag
-        ratbagd.enable = true;
+        # ratbagd.enable = true; - Disabled because it's been moved to /etc/nixos/hardware/peripherials/mouse-logitech-g604.nix
 
         xserver = {
             # Enable the X11 windowing system.

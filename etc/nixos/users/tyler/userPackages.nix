@@ -45,8 +45,6 @@ in
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
-            wineWowPackages.staging # Wine 32/64 Staging
-            protontricks
             mangohud
             goverlay
             lutris
@@ -75,7 +73,7 @@ in
             gnome-online-accounts
             gnome.gnome-calculator
             gnome.gnome-calendar
-
+            gnome.gnome-system-monitor
             # GUI Audio Manipulation
             pavucontrol
             qpwgraph
@@ -90,7 +88,7 @@ in
 
             # Userspace, CLI
             flatpak
-            android-tools
+
             scrcpy
             neofetch
             tree
@@ -101,6 +99,7 @@ in
 
             # Dropdown terminal
             yakuake
+            steamtinkerlaunch
         ];
     };
 }

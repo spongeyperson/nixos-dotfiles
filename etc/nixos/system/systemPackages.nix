@@ -84,6 +84,8 @@
       eza
       gamescope
       v4l-utils
+      android-tools
+      android-udev-rules
 
       # GCC MAKE Tools
       autoconf
@@ -140,6 +142,15 @@
       iotop
 
       okteta
+      wgnord
+      helvum
+      parsec-bin
+      gnome.zenity
+      p7zip
+
+      # Wine
+      wineWowPackages.staging # Wine 32/64 Staging
+      protontricks
     ];
   };
 }

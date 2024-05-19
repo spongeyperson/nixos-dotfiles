@@ -2,10 +2,10 @@
 # NixOS NixPKG Configuration
 
 {
-  config,
-  lib,
-  pkgs,
-  ...
+    config,
+    lib,
+    pkgs,
+    ...
 }: {
     # Global Nix Settings:
     nix = {
@@ -22,6 +22,7 @@
         '';
     };
 
+    # Nix Package Manager Configuration:
     nixpkgs.config = {
         # Nix Allow Unfree Packages
         allowUnfree = true;
