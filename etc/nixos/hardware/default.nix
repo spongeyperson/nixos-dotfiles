@@ -7,6 +7,7 @@
   imports = [
     # Dir Declarations
     ./device-specific
+    ./peripherials
 
     # File Declarations
     ./bluetooth.nix

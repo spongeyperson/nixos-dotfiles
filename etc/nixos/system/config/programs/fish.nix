@@ -57,6 +57,7 @@ in
             mounts="cat /proc/mounts";
             lsmounts="cat /proc/mounts";
             #  neofetch="neofetch --config /home/tyler/.config/neofetch/fedora.conf --ascii_distro Fedora"
+            fastfetch="fastfetch -c ~/.config/fastfetch/spongeyconfig-v1.jsonc";
             virsh="virsh --connect=qemu:///system";
             duf="duf -hide-fs squashfs";
             CLEAR="clear";
