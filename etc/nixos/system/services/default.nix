@@ -1,10 +1,11 @@
+# /etc/nixos/system/services/default.nix
+# System Configuration Import
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
+    # File Declarations
     ./services.nix
-    ./udev-rules.nix
   ];
 }

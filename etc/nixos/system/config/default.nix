@@ -1,10 +1,19 @@
+# /etc/nixos/system/config/default.nix
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    ./nix
+    # Dir Declarations
     ./programs
+    ./udev-rules
+
+    # File Declarations
+    ./audio.nix
+    ./desktop-environment.nix
+    ./locale.nix
+    ./networking.nix
+    ./nixconfig.nix
+    ./systemd.nix
   ];
 }

@@ -1,15 +1,14 @@
-# This Configuration File is a bridge file that links the following imports together.
-# Modify this configuration only if you want to EXCLUDE a specific config.
+# /etc/nixos/virtualisation/default.nix
+# Virtualisation Configuration Import
 
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    # Define Enabled Subdirectories.
-    #./docker
-    #./podman
-    ./vfio
+    # File Declarations
+    ./docker.nix
+    ./podman.nix
+    ./vfio.nix
+    #./vmware.nix - Disabled Temporarily Due to server being down
   ];
 }

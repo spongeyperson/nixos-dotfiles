@@ -5,13 +5,7 @@
   ...
 }: {
   imports = [
-    # Dir Declarations
-    ./device-specific
-    ./peripherials
-
     # File Declarations
-    ./bluetooth.nix
-    ./cpu.nix
-    ./gpu.nix
+    ./rog-g513qy.nix
   ];
 }

@@ -1,10 +1,13 @@
+# /etc/nixos/system/config/programs/default.nix
+# Program Configuration Import
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    ./fish
+    # File Declarations
+    ./fish.nix
     ./programs.nix
+    ./steam.nix
   ];
 }

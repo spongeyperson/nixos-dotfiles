@@ -2,75 +2,58 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
-
-# Global Variables, (Optional Tunables)
-  let
-    hostname = "Spongey-ROG";
-    # NOTICE: VFIO has been moved to ./virtualisation/vfio/vfio.nix
-  in
-
+{ 
+  config, 
+  pkgs,
+  lib, 
+  ... 
+}:
+# Import global-vars.nix 
+let
+    globalVars = import (toString ./global-vars.nix) { inherit config pkgs lib; };
+    systemVariables = globalVars.systemVariables;
+    userVariables = globalVars.userVariables;
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # NixOS: Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./global-vars.nix
 
       # Custom Includes
       ./hardware
       ./system
-      ./user
+      ./users
+      # Uncomment this if you want to disable all of the following; vfio, docker, podman
       ./virtualisation
     ];
   
-  # Set Hostname, Use Network Manager:
-  networking = {
-	hostName = hostname;
-	networkmanager.enable = true;
+
+## Stray Configurations which have yet to be defined elsewhere.
+# TODO: Move these configs elsewhere
+
+  #security = {
+    # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
+    #rtkit.enable = true; # rtkit is optional but recommended
+    # sudo.configFile = {
+    #   "/etc/sudoers.d/pwfeedback" = { # Add password feedback to sudo prompts.
+    #     content = ''
+    #       Defaults env_reset,pwfeedback 
+    #     '';
+    #   };
+    # };
+  #};
+
+  # XDG Enable Default Portal
+  xdg = {
+    portal.enable = true;
+    portal.xdgOpenUsePortal = true;
   };
 
-  # Set time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-
-
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-
-  # Fonts
-  fonts.fonts = with pkgs; [
-    nerdfonts
-    powerline-fonts
-    cascadia-code
-  ];
 
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Virtualisation Toggles, libvirtd, docker, podman
-  virtualisation = {
-    spiceUSBRedirection.enable = true;
-      libvirtd = {
-        enable = true;
-        qemu.ovmf.enable = true;
-        qemu.runAsRoot = true;
-        onBoot = "ignore";
-        onShutdown = "shutdown";
-      };
-      docker = {
-        enable = true;
-        storageDriver = "btrfs";
-      };
-      podman = {
-        enable = true;
-        # Enable compat to use podman as a drop-in replacement for docker.
-        #dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
-      };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

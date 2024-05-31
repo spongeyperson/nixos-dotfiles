@@ -1,0 +1,27 @@
+# /etc/nixos/hardware/device-specific/rog-g513qy.nix
+# ROG G15 Advantage Edition - Custom Programs & Services
+
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+    # System Packages
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    #environment.shells = with pkgs; [ fish ];
+    environment = {
+        localBinInPath = true;
+        systemPackages = with pkgs; [
+          asusctl
+        ];
+    };
+    services = {
+      supergfxd.enable = true;
+      asusd = {
+        enable = true;
+        enableUserService = true;
+    };
+  };
+}

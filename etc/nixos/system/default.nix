@@ -1,12 +1,17 @@
+# /etc/nixos/system/default.nix
+# System Configuration Import
+
 {
-  modulesPath,
   ...
 }: {
   imports = [
-    #(modulesPath + "/installer/scan/not-detected.nix")
-    # Define Enabled Subdirectories.
+    # Dir Declarations
+    ./boot
     ./config
-    ./packages
     ./services
+
+    # File Declarations
+    ./filesystems.nix
+    ./systemPackages.nix
   ];
 }
