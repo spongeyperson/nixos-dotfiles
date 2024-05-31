@@ -74,11 +74,6 @@ in
             gnome.gnome-calculator
             gnome.gnome-calendar
             gnome.gnome-system-monitor
-            # GUI Audio Manipulation
-            pavucontrol
-            qpwgraph
-            easyeffects
-            plasma-pa
 
             # App Images
             appimage-run

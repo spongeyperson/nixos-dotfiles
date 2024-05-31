@@ -8,5 +8,6 @@
 }: {
     hardware = {
         bluetooth.enable = true;
+        #bluetooth.powerOnBoot = true; - Seems to do opposite of expected result
     };
 }

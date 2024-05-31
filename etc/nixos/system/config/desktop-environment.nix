@@ -25,7 +25,11 @@
             # Enable touchpad support (enabled default in most desktopManager).
         };
     };
+    #nixpkgs.config.allowBroken = true; # Enabled for Kmix as it's labelled as "broken"
     environment.systemPackages = with pkgs; [
+        # Audio Dependancies
+        #kdePackages.kmix #- Marked Broken, according to build.
+
         ## KDE Depends
         kdePackages.ark
         kdePackages.dolphin
@@ -43,8 +47,5 @@
         packagekit
         # Tiling Window Manager
         libsForQt5.bismuth
-
-        # Audio Dependancies
-        #kdePackages.kmix - Marked Broken, according to build.
     ];
 }
