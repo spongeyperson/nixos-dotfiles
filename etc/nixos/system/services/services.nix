@@ -21,12 +21,5 @@
         packagekit.enable = true;
         # Libratbag
         # ratbagd.enable = true; - Disabled because it's been moved to /etc/nixos/hardware/peripherials/mouse-logitech-g604.nix
-
-        xserver = {
-            # Enable the X11 windowing system.
-            enable = true;
-            # Enable touchpad support (enabled default in most desktopManager).
-            libinput.enable = true;
-        };
     };
 }

@@ -29,7 +29,7 @@
     localBinInPath = true;
     systemPackages = with pkgs; [
       # Packages with Insecure Package Requirements
-      etcher
+      #etcher
 
       # Text Editors - CLI
       vim
