@@ -17,7 +17,8 @@ in
 {
     environment = {
         systemPackages = with pkgs; [
-            nvtop-amd
+            nvtopPackages.amd
+            glxinfo
         ];
     };
     # AMDGPU Vulkan / OpenGL (Multilib) Support /w ROCM

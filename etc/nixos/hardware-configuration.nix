@@ -69,7 +69,7 @@
   fileSystems."/mnt/Old 970 Evo" =
     { device = "/dev/disk/by-uuid/01D9848E81913560";
       fsType = "lowntfs-3g"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
+      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
     };
 
   # fileSystems."/mnt/New 970 Evo" =
@@ -93,7 +93,7 @@
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
       fsType = "lowntfs-3g"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
+      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
     };
 
   # CIFS Mount (Samba)

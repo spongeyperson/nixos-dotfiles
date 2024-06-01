@@ -7,33 +7,43 @@
     pkgs,
     ...
 }: {
-    services.xserver = {
-        # Enable the x11 Windowing system (requirement for sddm)
-        enable = true;
-        # Enable touchpad support (enabled default in most desktopManager).
+    services = {
+        # Enable Plasma 6
+        desktopManager.plasma6.enable = true;
         libinput.enable = true;
-
-        # Enable Plasma 5 Desktop Environment.
-        displayManager.sddm.enable = true;
-        desktopManager.plasma5.enable = true;
-        # Set Plasma Wayland as Default Session
-        displayManager.defaultSession = "plasmawayland";
+        displayManager = {
+            # Enable SDDM
+            sddm.enable = true;
+            # Set SDDM to Wayland Mode
+            sddm.wayland.enable = true;
+            # Set SDDM Default Session to Plasma Wayland
+            defaultSession = "plasma";
+        };
+        xserver = {
+            # Enable the x11 Windowing system (requirement for sddm)
+            enable = true;
+            # Enable touchpad support (enabled default in most desktopManager).
+        };
     };
+    #nixpkgs.config.allowBroken = true; # Enabled for Kmix as it's labelled as "broken"
     environment.systemPackages = with pkgs; [
+        # Audio Dependancies
+        #kdePackages.kmix #- Marked Broken, according to build.
+
         ## KDE Depends
-        ark
-        dolphin
+        kdePackages.ark
+        kdePackages.dolphin
         ## KDE-Specific Applications
-        kate
-        okular
-        spectacle
-        libsForQt5.merkuro # Merkuro (Kalendar)
+        kdePackages.kate
+        kdePackages.okular
+        kdePackages.spectacle
+        kdePackages.merkuro # Merkuro (Kalendar)
         # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
-        libsForQt5.kcmutils
-        libsForQt5.sddm-kcm
-        libsForQt5.flatpak-kcm
+        kdePackages.kcmutils
+        kdePackages.sddm-kcm
+        kdePackages.flatpak-kcm
         # Misc Libs for QT5, KDE Discover
-        libsForQt5.discover
+        kdePackages.discover
         packagekit
         # Tiling Window Manager
         libsForQt5.bismuth

@@ -38,6 +38,7 @@ in
 
             # Game Streaming Clients
             moonlight-qt
+            parsec-bin
 
             # Gaming
             #steam - moved to system-programs.nix
@@ -74,12 +75,6 @@ in
             gnome.gnome-calendar
             gnome.gnome-system-monitor
 
-            # GUI Audio Manipulation
-            pavucontrol
-            qpwgraph
-            easyeffects
-            plasma-pa
-
             # App Images
             appimage-run
 
@@ -100,7 +95,7 @@ in
             # Dropdown terminal
             yakuake
             steamtinkerlaunch
-            yuzu-mainline
+            #yuzu-mainline
         ];
     };
 }

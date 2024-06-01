@@ -1,4 +1,4 @@
-# /etc/nixos/user/tyler/tyler.nix
+# /etc/nixos/users/tyler/tyler.nix
 # User Configuration: "Tyler"
 
 {

@@ -4,8 +4,8 @@
 {
     config,
     pkgs,
-    user,
     lib,
+    user,
     ...
 }: 
 # Import global-vars.nix
