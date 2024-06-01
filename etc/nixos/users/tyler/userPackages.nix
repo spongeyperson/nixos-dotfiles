@@ -86,6 +86,7 @@ in
 
             scrcpy
             neofetch
+            fastfetch #Replacement for Neofetch
             tree
             jdk8
             jdk17
