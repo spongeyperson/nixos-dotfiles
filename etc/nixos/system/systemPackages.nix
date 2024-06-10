@@ -72,6 +72,7 @@
       gnupg
       viddy
       fzf
+      duf
       atuin
       du-dust
       bat

@@ -12,7 +12,7 @@
     virtualisation.vmware.host.enable = true;
     environment.systemPackages = with pkgs; [
         linuxKernel.packages.linux_zen.vmware
-        #vmware-workstation - BROKEN in Latest Update - https://github.com/NixOS/nixpkgs/issues/310121
+        vmware-workstation #- BROKEN in Latest Update - https://github.com/NixOS/nixpkgs/issues/310121
     ];
     # Possible Patch (Unimplemented)
     #https://discourse.nixos.org/t/how-to-install-a-package-that-was-manually-downloaded/45132/12

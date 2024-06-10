@@ -18,6 +18,8 @@ in
         packages = with pkgs; [
             # Packages with Insecure Package Requirements
             mailspring # Not using Flatpak due to Libsecret issue
+            # libsecret - Possible Mailspring Depend
+            # gnome.gnome-keyring - Possible Mailspring Depend
 
 
             # Userspace, GUI
@@ -96,6 +98,7 @@ in
             yakuake
             steamtinkerlaunch
             #yuzu-mainline
+            imagemagick
         ];
     };
 }

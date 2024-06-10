@@ -38,6 +38,9 @@
         kdePackages.okular
         kdePackages.spectacle
         kdePackages.merkuro # Merkuro (Kalendar)
+        kdePackages.kmail # Merkuro Mail
+        kdePackages.kmail-account-wizard # Merkuro Mail Depends
+        kdePackages.kmailtransport
         # GUI Tools, KDE Configuration Modules (KCM), KDE Depends
         kdePackages.kcmutils
         kdePackages.sddm-kcm
@@ -46,6 +49,6 @@
         kdePackages.discover
         packagekit
         # Tiling Window Manager
-        libsForQt5.bismuth
+        #libsForQt5.bismuth
     ];
 }
