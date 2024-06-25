@@ -5,7 +5,7 @@
 # <p align=center>- Spongey's <u>NixOS</u> KDE Dotfiles -
 ###### <p align=center> A Simple Git Repository to store various <u>NixOS</u> Linux User Configs (Dotfiles).
 
-<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/eb7aceb7-d27f-48ce-bbc0-ddebfeca3a0e" title="I Run Nix Btw"></p>
+<p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/753412df-980b-49d3-83ae-fa5af3bcc6ad" title="I Run Nix Btw"></p>
 
 - ## Index:
     - <u><b>System / Userspace Configuration</b></u>:
@@ -19,15 +19,16 @@
       - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
       - [x] Setup Backend Passthrough (e.g. Grub configs, enable `vfio-pci`, passthrough & blacklist hardware)
       - [X] Setup a VFIO Branch or seperate optional `.nix` config file <-~~
-    - [ ] Setup Nix Home Manager <- 
-    - [x] Setup `Docker` <-
-    - [X] Setup `Podman` <- 
-    - [X] Setup `Distrobox` <-
-    - [ ] Setup (preferrably declarative) `Flatpak` 
-  - [ ] Implement system & user configuration file creation in [`configuration.nix`](./etc/nixos/configuration.nix)
+    - [ ] Setup Nix Home Manager
+    - [x] Setup `Flatpak`
+      - [ ] Make `Flatpak` Declarative.
+    - [x] Setup `Docker`
+    - [X] Setup `Podman`
+    - [X] Setup `Distrobox`
+  - [ ] Implement system & user configuration file creation in [`configuration.nix`](etc/nixos/configuration.nix)
     - [ ] Test operating system reinstallation with said configuration files, and make sure they work.
-  - [ ] Make sure all configs are replicatable on Physical and Virtual Hardware
-  - [ ] Remove [`changed-files/`](./changed-files/) crutch after system is replicatable elsewhere.
+  - [x] Make sure all configs are replicatable on Physical and Virtual Hardware
+  - [ ] Remove [`changed-files/`](nixos-dotfiles/changed-files/) crutch after system is replicatable elsewhere.
   - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
 
 - ## Setting up / Partitioning:
@@ -44,7 +45,7 @@
         cd /mnt
         ```
     3) #### Create Subvolumes for Install:
-        > (Multi-line Copy)
+        > This is a Multi-line Command:
         ```
         sudo btrfs subvol create @; \ 
         sudo btrfs subvol create @home; \
@@ -62,7 +63,7 @@
         ```
 
     5) #### Mount Subvolume Partitions:
-        > Replace "device" with your device name. You can find your device name via running: `lsblk -f` 
+        > Replace "`<device>`" with your device name (e.g: nvme0n1p1). You can find your device name via running: `lsblk -f`. 
 
         ```
         sudo mount -o subvol=@,compress=zstd:3,noatime /dev/<device> /mnt
@@ -73,11 +74,13 @@
         sudo mkdir -pv /mnt/{home,root,var,nix,boot/efi}
         ```
     - Continue to mount the rest of the partitions:
+        > Replace "`<device>`" with your device name (e.g: nvme0n1p1). You can find your device name via running: `lsblk -f`. <u>This is a multi-line command</u> which will mount all your partitions when you replace the first line with the correct device. 
         ```
-        sudo mount -o subvol=@home,compress=zstd:3 /dev/<device> /mnt/home
-        sudo mount -o subvol=@root,compress=zstd:3 /dev/<device> /mnt/root
-        sudo mount -o subvol=@var,compress=zstd:3,noatime /dev/<device> /mnt/var
-        sudo mount -o subvol=@nix,compress=zstd:3,noatime /dev/<device> /mnt/nix
+        DEVICE=<device>; \
+        sudo mount -o subvol=@home,compress=zstd:3 /dev/$DEVICE /mnt/home; \
+        sudo mount -o subvol=@root,compress=zstd:3 /dev/$DEVICE /mnt/root; \
+        sudo mount -o subvol=@var,compress=zstd:3,noatime /dev/$DEVICE /mnt/var; \
+        sudo mount -o subvol=@nix,compress=zstd:3,noatime /dev/$DEVICE /mnt/nix
         ``` 
     - Mount EFI System Partition (EFI + GPT Only)
         ```
@@ -150,19 +153,34 @@
           };
         ```
     - Optional Tunables:
-        - In `hardware-configuration.nix`, add `./user-mounts.nix` for user mounts. You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
-        - You may also want to change the following line(s) in `configuration.nix` near the beginning of the file.
+        - In [`hardware-configuration.nix`](etc/nixos/hardware-configuration.nix), <!-- Uncommented, as not sure what the context for this was: add `./user-mounts.nix` for user mounts.--> You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
+        - You may also want to change the following line(s) in [`global-vars.nix`](etc/nixos/global-vars.nix) near the beginning of the file.
           ```nix
-          # Global Variables, (Optional Tunables)
-            let
-              user = "tyler";
-              hostname = "Spongey-PC";
-              # VFIO
-              vfioIDs = "10de:2204,10de:1aef";
-              vfioBlacklist = "nvidia,nvidiafb,nouveau";
-            in
+          systemVariables = {
+            ...
+
+            vfioIDs = "10de:2204,10de:1aef";
+            vfioBlacklist = "nvidia,nvidiafb,nouveau";
+
+            # System Hostname
+            hostname = "Spongey-PC";
+            # Fully Qualified (Local) Domain Name
+            fqdn = "Spongey-PC.lan";
+          };
+          userVariables = {
+            ...
+            # User
+            username = "tyler";
+            usershell = pkgs.fish;
+            userid = 1000;
+
+            # Locale / Localisation
+            timeZone = "America/Los_Angeles"; # Set time zone.
+            locale = "en_US.UTF-8"; # Select internationalisation properties.
+            keymap = "us";
+          };
           ```
-  4) #### Run the Install Command:
+  4) #### Finish by Installing NixOS to `/mnt`:
       - ```nix
         sudo nixos-install --root /mnt
         ```

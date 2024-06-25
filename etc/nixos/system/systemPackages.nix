@@ -114,7 +114,6 @@
       # GUI Tools, Recording / Editing
       obs-studio
       handbrake
-      sonobus
 
       # GUI - Remote Desktop Hosts, Etc.
       sunshine
@@ -139,7 +138,6 @@
 
       okteta
       wgnord
-      helvum
       parsec-bin
       gnome.zenity
       p7zip

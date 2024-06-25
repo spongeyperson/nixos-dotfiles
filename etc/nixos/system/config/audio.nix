@@ -27,9 +27,13 @@
         #pulseaudio
 
         # GUI Audio Manipulation
-        pavucontrol
+        #pavucontrol - replaced with pwvucontrol
+        pwvucontrol
         qpwgraph
         easyeffects
+        helvum
+        sonobus
+        coppwr
     ];
 
 

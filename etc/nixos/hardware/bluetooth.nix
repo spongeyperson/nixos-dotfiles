@@ -8,12 +8,12 @@
 }: {
     hardware.bluetooth = {
         enable = true;
-        #powerOnBoot = true;
-        # settings = {
-        #     General = {
-        #     Enable = "Source,Sink,Media,Socket";
-        #     };
-        # };
+        powerOnBoot = true;
+        settings = {
+            General = {
+            Enable = "Source,Sink,Media,Socket";
+            };
+        };
     };
     # environment.systemPackages = with pkgs; [
     #     # KDE Plasma Depends, Bluetooth
