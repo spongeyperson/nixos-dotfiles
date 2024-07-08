@@ -93,25 +93,18 @@
 
       # Hardware Control, CLI
       lm_sensors
-      corectrl
-      lact
-
-      # GPU Hardware Accel Tools / Graphics Testing
-      libva-utils
-      vdpauinfo
-      vulkan-tools
-      radeontop
 
       # GUI
       xwaylandvideobridge
       fsearch
       gparted
+      gsmartcontrol
       gnome.gnome-disk-utility
       kdiff3
       qdirstat
       kdiskmark
 
-      # GUI Tools, Recording / Editing
+      # GUI - Recording / Editing
       obs-studio
       handbrake
 

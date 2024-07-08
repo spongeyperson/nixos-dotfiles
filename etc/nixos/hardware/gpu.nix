@@ -17,8 +17,16 @@ in
 {
     environment = {
         systemPackages = with pkgs; [
+            # GUI
+            corectrl
+            lact
+            # Commandline
             nvtopPackages.amd
+            radeontop
             glxinfo
+            libva-utils
+            vdpauinfo
+            vulkan-tools
         ];
     };
     # AMDGPU Vulkan / OpenGL (Multilib) Support /w ROCM

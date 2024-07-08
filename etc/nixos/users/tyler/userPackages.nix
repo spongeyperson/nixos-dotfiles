@@ -43,7 +43,6 @@ in
             parsec-bin
 
             # Gaming
-            #steam - moved to system-programs.nix
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
