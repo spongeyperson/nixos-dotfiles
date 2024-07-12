@@ -97,6 +97,7 @@ in
             yakuake
             steamtinkerlaunch
             onlyoffice-bin_latest
+            dupeguru
         ];
     };
 }
