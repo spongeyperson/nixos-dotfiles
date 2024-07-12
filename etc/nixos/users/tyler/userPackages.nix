@@ -96,6 +96,7 @@ in
             # Dropdown terminal
             yakuake
             steamtinkerlaunch
+            onlyoffice-bin_latest
         ];
     };
 }

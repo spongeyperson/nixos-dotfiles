@@ -48,6 +48,8 @@ in
     };
     environment.systemPackages = with pkgs; [
         ## Virtualisation, QEMU
+        quickemu
+        quickgui
         spice
         virt-manager
         dconf
