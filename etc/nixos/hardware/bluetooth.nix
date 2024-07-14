@@ -6,8 +6,22 @@
     user,
     ...
 }: {
-    hardware = {
-        bluetooth.enable = true;
-        #bluetooth.powerOnBoot = true; - Seems to do opposite of expected result
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+        settings = {
+            General = {
+            Enable = "Source,Sink,Media,Socket";
+            };
+        };
     };
+    # environment.systemPackages = with pkgs; [
+    #     # KDE Plasma Depends, Bluetooth
+    #     bluedevil
+    #     bluez
+    #     bluez-alsa
+    #     bluez-tools
+    #     libsForQt5.bluez-qt
+    #     libsForQt5.bluedevil
+    # ];
 }

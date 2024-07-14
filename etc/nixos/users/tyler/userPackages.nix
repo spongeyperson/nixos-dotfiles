@@ -41,7 +41,6 @@ in
             parsec-bin
 
             # Gaming
-            #steam - moved to system-programs.nix
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
@@ -85,8 +84,8 @@ in
             flatpak
 
             scrcpy
-            neofetch
-            fastfetch #Replacement for Neofetch
+            neofetch # Soon to be deprecated
+            fastfetch
             tree
             jdk8
             jdk17
@@ -96,6 +95,8 @@ in
             # Dropdown terminal
             yakuake
             steamtinkerlaunch
+            #yuzu-mainline
+            imagemagick
             onlyoffice-bin_latest
             dupeguru
         ];

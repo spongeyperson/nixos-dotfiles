@@ -27,10 +27,29 @@
         #pulseaudio
 
         # GUI Audio Manipulation
-        pavucontrol
+        #pavucontrol - replaced with pwvucontrol
+        pwvucontrol
         qpwgraph
         easyeffects
+        helvum
+        sonobus
+        coppwr
     ];
+
+
+    # Pipewire Low Latency, as Specified by NixOS Wiki:
+    #https://nixos.wiki/wiki/PipeWire#Low-latency_setup
+    services.pipewire.extraConfig.pipewire."92-low-latency" = {
+        context.properties = {
+            default.clock.rate = 48000;
+            default.clock.quantum = 32;
+            default.clock.min-quantum = 32;
+            default.clock.max-quantum = 32;
+        };
+    };
+
+    # Some older ways to define Pipewire Low Latency, here incase i need it. Ignore this #
+
     # environment.etc = {
     #     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
     #         bluez_monitor.properties = {
@@ -49,18 +68,6 @@
     #         }
     #     '';
     # };
-
-
-    # Pipewire Low Latency, as Specified by NixOS Wiki:
-    #https://nixos.wiki/wiki/PipeWire#Low-latency_setup
-    services.pipewire.extraConfig.pipewire."92-low-latency" = {
-        context.properties = {
-            default.clock.rate = 48000;
-            default.clock.quantum = 32;
-            default.clock.min-quantum = 32;
-            default.clock.max-quantum = 32;
-        };
-    };
     # environment.etc = let
     #     json = pkgs.formats.json {};
     # in {

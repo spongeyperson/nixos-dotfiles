@@ -12,6 +12,7 @@
     ./audio.nix
     ./desktop-environment.nix
     ./environment-vars.nix
+    ./font-rendering.nix
     ./locale.nix
     ./networking.nix
     ./nixconfig.nix

@@ -13,12 +13,6 @@
       unstable = import <unstable> {};
     };
   };
-  # System Font Package Config
-  fonts.packages = with pkgs; [
-      nerdfonts
-      powerline-fonts
-      cascadia-code
-  ];
 
   # Permitted Insecure Packages, moved to /etc/nixos/system/config/nixconfig.nix
 
@@ -29,7 +23,7 @@
     localBinInPath = true;
     systemPackages = with pkgs; [
       # Packages with Insecure Package Requirements
-      #etcher
+      etcher
 
       # Text Editors - CLI
       vim
@@ -78,6 +72,8 @@
       gnupg
       viddy
       fzf
+      duf
+      pv
       atuin
       du-dust
       bat
@@ -98,27 +94,20 @@
 
       # Hardware Control, CLI
       lm_sensors
-      corectrl
-      lact
-
-      # GPU Hardware Accel Tools / Graphics Testing
-      libva-utils
-      vdpauinfo
-      vulkan-tools
-      radeontop
 
       # GUI
       xwaylandvideobridge
       fsearch
       gparted
+      gsmartcontrol
       gnome.gnome-disk-utility
       kdiff3
       qdirstat
+      kdiskmark
 
-      # GUI Tools, Recording / Editing
+      # GUI - Recording / Editing
       obs-studio
       handbrake
-      sonobus
 
       # GUI - Remote Desktop Hosts, Etc.
       sunshine
@@ -143,7 +132,6 @@
 
       okteta
       wgnord
-      helvum
       parsec-bin
       gnome.zenity
       p7zip
@@ -151,6 +139,10 @@
       # Wine
       wineWowPackages.staging # Wine 32/64 Staging
       protontricks
+      efibootmgr
+      steam-run
+      onedrivegui
+      premid
     ];
   };
 }
