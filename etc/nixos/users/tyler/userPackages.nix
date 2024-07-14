@@ -98,6 +98,8 @@ in
             steamtinkerlaunch
             #yuzu-mainline
             imagemagick
+            onlyoffice-bin_latest
+            dupeguru
         ];
     };
 }
