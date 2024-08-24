@@ -25,6 +25,7 @@ in
             # Userspace, GUI
             #authy - Removed as App has been Deprecated
             vlc
+            mpv
             stremio
 
             # Web Browsers
