@@ -29,6 +29,7 @@ in
         kernelParams = [
             "amd_iommu=on"
             "iommu=pt"
+            "kvm.ignore_msrs=1"
             "vfio-pci.ids=${systemVariables.vfioIDs}"
             "modprobe.blacklist=${systemVariables.vfioBlacklist}"
         ];

@@ -23,7 +23,7 @@
     localBinInPath = true;
     systemPackages = with pkgs; [
       # Packages with Insecure Package Requirements
-      etcher
+      #etcher
 
       # Text Editors - CLI
       vim
@@ -82,6 +82,7 @@
       v4l-utils
       android-tools
       android-udev-rules
+      python3
 
       # GCC MAKE Tools
       autoconf
