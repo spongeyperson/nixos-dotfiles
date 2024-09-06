@@ -12,5 +12,6 @@
     ./openrgb.nix
     ./programs.nix
     ./steam.nix
+    ./sunshine.nix
   ];
 }

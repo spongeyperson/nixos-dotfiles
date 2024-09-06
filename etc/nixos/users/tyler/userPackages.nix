@@ -52,6 +52,7 @@ in
             lutris
             bottles
             prismlauncher
+            clonehero
 
             #Emulators
             pcem
@@ -101,6 +102,8 @@ in
             imagemagick
             onlyoffice-bin_latest
             dupeguru
+
+            #genymotion
         ];
     };
 }

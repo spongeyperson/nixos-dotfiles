@@ -110,7 +110,7 @@
       handbrake
 
       # GUI - Remote Desktop Hosts, Etc.
-      sunshine
+      #sunshine
       waynergy
       wl-clipboard
 
