@@ -42,6 +42,7 @@
       unzip
       rar
       unrar
+      p7zip
 
       # System Tools
       file
@@ -83,7 +84,16 @@
       android-tools
       android-udev-rules
 
-      # GCC MAKE Tools
+      # Hardware Control, CLI
+      lm_sensors
+
+      # Top Programs (Monitoring Tools)
+      htop
+      btop
+      powertop
+      iotop
+
+      # GCC and Build Tools
       autoconf
       gcc
       gnumake
@@ -92,10 +102,7 @@
       clang
       cmake
 
-      # Hardware Control, CLI
-      lm_sensors
-
-      # GUI
+      # GUI Tools
       xwaylandvideobridge
       fsearch
       gparted
@@ -104,13 +111,15 @@
       kdiff3
       qdirstat
       kdiskmark
+      gnome.zenity
+      onedrivegui
+      premid
 
       # GUI - Recording / Editing
       obs-studio
       handbrake
 
       # GUI - Remote Desktop Hosts, Etc.
-      #sunshine
       waynergy
       wl-clipboard
 
@@ -118,31 +127,22 @@
       materia-theme
       materia-kde-theme
 
-      # Theming, icons
+      # Theming, Icons
       papirus-icon-theme
 
-      # Theming, cursor
+      # Theming, Cursor
       apple-cursor
 
-      # Top Programs
-      htop
-      btop
-      powertop
-      iotop
+      # Wine-related Packages
+      wineWowPackages.staging  # Wine 32/64 Staging
+      protontricks
+      steam-run
 
+      # Other Utilities
+      efibootmgr
+      parsec-bin
       okteta
       wgnord
-      parsec-bin
-      gnome.zenity
-      p7zip
-
-      # Wine
-      wineWowPackages.staging # Wine 32/64 Staging
-      protontricks
-      efibootmgr
-      steam-run
-      onedrivegui
-      premid
     ];
   };
 }
