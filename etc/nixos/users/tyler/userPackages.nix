@@ -25,6 +25,7 @@ in
             # Userspace, GUI
             #authy - Removed as App has been Deprecated
             vlc
+            mpv
             stremio
 
             # Web Browsers
@@ -43,7 +44,6 @@ in
             parsec-bin
 
             # Gaming
-            #steam - moved to system-programs.nix
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
             protonup-qt
@@ -52,6 +52,7 @@ in
             lutris
             bottles
             prismlauncher
+            clonehero
 
             #Emulators
             pcem
@@ -99,6 +100,10 @@ in
             steamtinkerlaunch
             #yuzu-mainline
             imagemagick
+            onlyoffice-bin_latest
+            dupeguru
+
+            #genymotion
         ];
     };
 }

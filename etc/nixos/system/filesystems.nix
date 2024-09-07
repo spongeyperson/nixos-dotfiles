@@ -8,6 +8,9 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+      # BTRFS Maintenance
+      btrfs-assistant
+
       # webdav
       davfs2
       autofs5

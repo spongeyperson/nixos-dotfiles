@@ -28,7 +28,7 @@
         allowUnfree = true;
         permittedInsecurePackages = [
             #"mailspring-1.12.0" # Mailspring is "Insecure"
-            #"electron-19.1.9" #Required insecure package for etcher
+            "electron-19.1.9" #Required insecure package for etcher
         ];
     };
     environment.systemPackages = with pkgs; [

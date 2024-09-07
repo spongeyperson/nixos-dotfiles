@@ -36,9 +36,11 @@ in
 
     # Enable Libvirtd, OVMF, Spice Redirection, etc.
     virtualisation = {
+        #qemu.package = "pkgs.qemu_full"; - Broken
         spiceUSBRedirection.enable = true;
         libvirtd = {
             enable = true;
+            #qemu.package = "pkgs.qemu_full";
             qemu.runAsRoot = true;
             qemu.ovmf.enable = true;
             qemu.swtpm.enable = true;
@@ -46,10 +48,19 @@ in
             onShutdown = "shutdown";
         };
     };
+
+    # Enable Virt-Manager
+    programs = {
+        virt-manager.enable = true;
+    };
+
     environment.systemPackages = with pkgs; [
         ## Virtualisation, QEMU
+        qemu_full
+        quickemu
+        quickgui
         spice
-        virt-manager
+        #virt-manager
         dconf
         gnome3.dconf-editor # needed for saving settings in virt-manager
         libguestfs # needed to virt-sparsify qcow2 files

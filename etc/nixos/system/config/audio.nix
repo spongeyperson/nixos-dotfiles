@@ -48,7 +48,7 @@
         };
     };
 
-    # Some older ways to define Pipewire Low Latency. Ignore this #
+    # Some older ways to define Pipewire Low Latency, here incase i need it. Ignore this #
 
     # environment.etc = {
     #     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''

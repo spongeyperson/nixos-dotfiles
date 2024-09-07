@@ -32,6 +32,9 @@ in
 ## Stray Configurations which have yet to be defined elsewhere.
 # TODO: Move these configs elsewhere
 
+# Temporary Fixes:
+  services.upower.enable = true;
+
   #security = {
     # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
     #rtkit.enable = true; # rtkit is optional but recommended
