@@ -83,6 +83,7 @@
       v4l-utils
       android-tools
       android-udev-rules
+      python3Full
 
       # Hardware Control, CLI
       lm_sensors

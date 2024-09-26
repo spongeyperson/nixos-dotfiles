@@ -46,7 +46,7 @@ in
             # Gaming
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
-            protonup-qt
+            #protonup-qt - disabled because duplicate on flatpak
             mangohud
             goverlay
             lutris
