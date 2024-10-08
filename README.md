@@ -28,7 +28,7 @@
   - [ ] Implement system & user configuration file creation in [`configuration.nix`](etc/nixos/configuration.nix)
     - [ ] Test operating system reinstallation with said configuration files, and make sure they work.
   - [x] Make sure all configs are replicatable on Physical and Virtual Hardware
-  - [ ] Remove [`changed-files/`](nixos-dotfiles/changed-files/) crutch after system is replicatable elsewhere.
+  - [x] Remove [`changed-files/`](nixos-dotfiles/changed-files/) crutch after system is replicatable elsewhere.
   - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
 
 - ## Setting up / Partitioning:
