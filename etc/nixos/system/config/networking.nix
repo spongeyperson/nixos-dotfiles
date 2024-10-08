@@ -12,11 +12,21 @@ let
     userVariables = globalVars.userVariables;
 in
 {
-        # Set Hostname, Use Network Manager:
+    # Set Hostname, Use Network Manager:
     networking = {
         hostName = "${systemVariables.hostname}";
         fqdn = "${systemVariables.fqdn}";
-        networkmanager.enable = true;
+        networkmanager = {
+            enable = true;
+            # Disable Power Saving for Intel iwlwifi module.
+            #wifi.powersave = false;
+        };
+
+        # Disable Power Saving for Intel iwlwifi module.
+        # boot.extraModprobeConfig = ''
+        #     options iwlwifi power_save=0
+        # '';
+
         firewall = {
             enable = true;
             #  allowedTCPPorts = [ 47984 47989 47990 48010 ];
@@ -26,4 +36,16 @@ in
             #  ];
         };
     };
+    # Tailscale
+    services = {
+        tailscale = {
+            enable = true;
+            useRoutingFeatures = "client";
+        };
+    };
+    environment = {
+        systemPackages = with pkgs; [
+            tailscale
+        ];
+    };    
 }

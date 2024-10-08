@@ -84,6 +84,7 @@
       android-tools
       android-udev-rules
       python3Full
+      iperf3
 
       # Hardware Control, CLI
       lm_sensors
@@ -115,6 +116,7 @@
       gnome.zenity
       onedrivegui
       premid
+      networkmanagerapplet
 
       # GUI - Recording / Editing
       obs-studio

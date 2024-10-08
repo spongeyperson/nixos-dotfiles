@@ -7,6 +7,7 @@
     ...
 }: {
     programs = {
+        nix-ld.enable = true; # Enable "nix-ld" for non-NixOS executables
         gamemode.enable = true; # Install Feral Gamemode to System
         kdeconnect.enable = true;
 
