@@ -68,6 +68,7 @@ in
             spotify
             #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
+            input-leap
             #anydesk - Removed as App has been Deprecated
             teamviewer
 

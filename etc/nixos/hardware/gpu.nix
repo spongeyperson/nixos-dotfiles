@@ -27,6 +27,9 @@ in
             libva-utils
             vdpauinfo
             vulkan-tools
+
+            # AMDGPU Pro Drivers
+            #linuxKernel.packages.linux_zen.amdgpu-pro
         ];
     };
     # AMDGPU Vulkan / OpenGL (Multilib) Support /w ROCM
@@ -43,6 +46,7 @@ in
                 # OpenCL ROCM (Compute)
                 rocm-opencl-icd
                 rocm-opencl-runtime
+                #rocmPackages.clr.icd
             ];
         };
     };
