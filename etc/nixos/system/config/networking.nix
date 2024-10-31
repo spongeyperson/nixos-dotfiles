@@ -21,7 +21,6 @@ in
             # Disable Power Saving for Intel iwlwifi module.
             #wifi.powersave = false;
         };
-
         # Disable Power Saving for Intel iwlwifi module.
         # boot.extraModprobeConfig = ''
         #     options iwlwifi power_save=0

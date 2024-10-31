@@ -24,8 +24,13 @@ in
             #"vfio_virqfd"
         ];
         kernelModules = [
-            "kvm-amd" 
+            "kvm-amd"
+            "kvmfr" # KVMFR for Project Looking Glass
         ];
+        # KVMFR Static Framebuffer Size for Project Looking Glass
+        extraModprobeConfig = ''
+            options kvmfr static_size_mb=64
+        '';
         kernelParams = [
             "amd_iommu=on"
             "iommu=pt"
@@ -71,6 +76,25 @@ in
         ## Dependancies:
         xorg.xhost
     ];
+    networking.networkmanager.ensureProfiles = {
+        profiles = {
+            # Define the bridge profile
+            br0 = {
+                connection.type = "bridge";
+                connection.id = "br0";
+                ipv4.method = "auto"; # or use "manual" and specify an IP for static addressing
+                ipv6.method = "ignore"; # set according to your needs
+            };
+
+            # Define the physical interface enp70s0 as a slave to the bridge
+            enp70s0 = {
+                connection.type = "ethernet";
+                connection.id = "enp70s0";
+                connection.slave-type = "bridge";
+                connection.master = "br0";
+            };
+        };
+    };
     #services = {
         #qemuGuest.enable = true; # Enable QEMU Guest Agent on Host. Disable if you're not running this in a VM
     #};
