@@ -21,6 +21,13 @@ in
             # Disable Power Saving for Intel iwlwifi module.
             #wifi.powersave = false;
         };
+        interfaces.enp70s0.useDHCP = true;
+        interfaces.br0.useDHCP = true;
+        bridges = {
+            "br0" = {
+                interfaces = [ "enp70s0" ];
+            };
+        };
         # Disable Power Saving for Intel iwlwifi module.
         # boot.extraModprobeConfig = ''
         #     options iwlwifi power_save=0

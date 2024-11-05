@@ -29,6 +29,7 @@
         permittedInsecurePackages = [
             #"mailspring-1.12.0" # Mailspring is "Insecure"
             "electron-19.1.9" #Required insecure package for etcher
+            "qbittorrent-4.6.4"
         ];
     };
     environment.systemPackages = with pkgs; [

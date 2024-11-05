@@ -26,6 +26,7 @@ in
       ./users
       # Uncomment this if you want to disable all of the following; vfio, docker, podman
       ./virtualisation
+      <home-manager/nixos>
     ];
   
 
