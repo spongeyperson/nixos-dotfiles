@@ -42,6 +42,7 @@
       unzip
       rar
       unrar
+      p7zip
 
       # System Tools
       file

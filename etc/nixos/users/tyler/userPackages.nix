@@ -18,11 +18,15 @@ in
         packages = with pkgs; [
             # Packages with Insecure Package Requirements
             mailspring # Not using Flatpak due to Libsecret issue
+            # libsecret - Possible Mailspring Depend
+            # gnome.gnome-keyring - Possible Mailspring Depend
 
 
             # Userspace, GUI
             #authy - Removed as App has been Deprecated
+            thunderbird
             vlc
+            mpv
             stremio
 
             # Web Browsers
@@ -49,11 +53,18 @@ in
             lutris
             bottles
             prismlauncher
+            clonehero
 
             #Emulators
             pcem
             _86Box
             rpcs3
+            retroarchFull
+            dolphin-emu
+            duckstation
+            mednafen
+            mednaffe
+
 
             # Userspace, GUI, Unstable Pkgs
             #latte-dock
@@ -64,6 +75,7 @@ in
             spotify
             #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
+            input-leap
             #anydesk - Removed as App has been Deprecated
             teamviewer
 

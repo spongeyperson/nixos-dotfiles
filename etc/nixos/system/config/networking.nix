@@ -20,8 +20,8 @@ in
         # Firewall
         firewall.enable = true;
         # Open ports in the firewall.
-        # firewall.allowedTCPPorts = [ ... ];
-        # firewall.allowedUDPPorts = [ ... ];
+        firewall.allowedTCPPorts = [ 24800 ];
+        firewall.allowedUDPPorts = [ 24800 ];
         # networking.firewall.allowedTCPPortRanges = [
         #     { from = 4000; to = 4007; }
         #     { from = 8000; to = 8010; }
