@@ -66,6 +66,7 @@ in
             # Versions of Apps that also
             # have flatpak alternatives.
             spotify
+            youtube-music
             #vscode - Temporarily Disabled as it constantly breaks under wayland. Using Flatpak instead. 
             barrier
             input-leap

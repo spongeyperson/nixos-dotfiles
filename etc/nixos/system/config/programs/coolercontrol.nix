@@ -22,7 +22,7 @@
         # (import <unstable> {}).coolercontrol.coolercontrol-liqctld
     #];
     programs.coolercontrol = {
-        enable = true;
+        enable = false; # 11/11/2024 - Disabled due to broken control of Corsair Commander ST
         #nvidiaSupport = true;
     };
 }

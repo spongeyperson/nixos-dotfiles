@@ -4,6 +4,8 @@
   ...
 }: {
   imports = [
+    # Folder Declarations
+    ./userconfs
     # File Declarations
     ./tyler.nix
     ./userPackages.nix

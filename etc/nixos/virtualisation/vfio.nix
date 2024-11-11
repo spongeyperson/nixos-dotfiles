@@ -32,7 +32,8 @@ in
         #     options kvmfr static_size_mb=64
         # '';
         kernelParams = [
-            "pci=msi"
+            "pci=msi" # Enable Messaged Signal Interrupts
+            "pcie_aspm=off" # Turn off PCIE
             "msi=on"
             "amd_iommu=on"
             "iommu=pt"
@@ -86,6 +87,10 @@ in
         xorg.xhost
     ];
 
+    # Looking Glass Temp File
+    systemd.tmpfiles.rules = [
+        "f /dev/shm/looking-glass 0660 tyler qemu-libvirtd -"
+    ];
     
     ## Non-working Profile
     # networking.networkmanager.ensureProfiles = {
