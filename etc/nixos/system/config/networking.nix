@@ -16,16 +16,31 @@ in
     networking = {
         hostName = "${systemVariables.hostname}";
         fqdn = "${systemVariables.fqdn}";
-        networkmanager.enable = true;
-        # Firewall
-        firewall.enable = true;
-        # Open ports in the firewall.
-        firewall.allowedTCPPorts = [ 24800 ];
-        firewall.allowedUDPPorts = [ 24800 ];
-        # networking.firewall.allowedTCPPortRanges = [
-        #     { from = 4000; to = 4007; }
-        #     { from = 8000; to = 8010; }
-        # ];
+        networkmanager = {
+            enable = true;
+            # Disable Power Saving for Intel iwlwifi module.
+            #wifi.powersave = false;
+        };
+        interfaces.enp70s0.useDHCP = true;
+        interfaces.br0.useDHCP = true;
+        bridges = {
+            "br0" = {
+                interfaces = [ "enp70s0" ];
+            };
+        };
+        # Disable Power Saving for Intel iwlwifi module.
+        # boot.extraModprobeConfig = ''
+        #     options iwlwifi power_save=0
+        # '';
+
+        firewall = {
+            enable = true;
+            #  allowedTCPPorts = [ 47984 47989 47990 48010 ];
+            #  allowedUDPPortRanges = [
+            #    { from = 47998; to = 48000; }
+            #    { from = 8000; to = 8010; }
+            #  ];
+        };
     };
     # Tailscale
     services = {
@@ -38,5 +53,5 @@ in
         systemPackages = with pkgs; [
             tailscale
         ];
-    };
+    };    
 }

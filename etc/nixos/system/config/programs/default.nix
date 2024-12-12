@@ -9,5 +9,6 @@
     ./fish.nix
     ./programs.nix
     ./steam.nix
+    ./sunshine.nix
   ];
 }

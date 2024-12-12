@@ -22,6 +22,21 @@ in
         # Set Kernel
         kernelPackages = systemVariables.kernel;
 
+        # Pin kernel version:
+        # kernelPackages = let
+        #     version = "6.9.5";
+        #     suffix = "zen1";
+        # in pkgs.linuxPackagesFor (pkgs.linux_zen.override {
+        #     inherit version suffix;
+        #     modDirVersion = lib.versions.pad 3 "${version}-${suffix}";
+        #     src = pkgs.fetchFromGitHub {
+        #         owner = "zen-kernel";
+        #         repo = "zen-kernel";
+        #         rev = "v${version}-${suffix}";
+        #         sha256 = "16dm07xd5x5kbn3yk8q2kqwby67953p40ja0akrg31hycz8sgbqq";
+        #     };
+        # });
+
         # Parameters added to the kernel command line.
         kernelModules = [ ];
 

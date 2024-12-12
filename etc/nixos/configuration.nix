@@ -26,11 +26,15 @@ in
       ./users
       # Uncomment this if you want to disable all of the following; vfio, docker, podman
       ./virtualisation
+      <home-manager/nixos>
     ];
   
 
 ## Stray Configurations which have yet to be defined elsewhere.
 # TODO: Move these configs elsewhere
+
+# Temporary Fixes:
+  services.upower.enable = true;
 
   #security = {
     # TODO: CLEANUP This section, rtkit.enable has been moved to /system/config/pipewire/default.nix
@@ -44,17 +48,22 @@ in
     # };
   #};
 
-  # Temporary Fixes
-
-  # NetworkManager-wait-online.service failure
-  # - https://discourse.nixos.org/t/nixos-rebuild-switch-upgrade-networkmanager-wait-online-service-failure/30746
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-
   # XDG Enable Default Portal
   xdg = {
     portal.enable = true;
     portal.xdgOpenUsePortal = true;
   };
+
+
+  # Temporary Solution for Enabling Native Wayland Support for Applications
+  # This will be moved *eventually*
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

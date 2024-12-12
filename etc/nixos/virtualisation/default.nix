@@ -9,6 +9,6 @@
     ./docker.nix
     ./podman.nix
     ./vfio.nix
-    #./vmware.nix - Disabled Temporarily Due to server being down
+    #./vmware.nix #- STILL BROKEN in Latest Update (6.24.2024) - https://github.com/NixOS/nixpkgs/issues/310121
   ];
 }

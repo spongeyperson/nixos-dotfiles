@@ -24,7 +24,6 @@ in
 
             # Userspace, GUI
             #authy - Removed as App has been Deprecated
-            thunderbird
             vlc
             mpv
             stremio
@@ -42,12 +41,12 @@ in
 
             # Game Streaming Clients
             moonlight-qt
-            parsec-bin
+            #parsec-bin
 
             # Gaming
             heroic
             #gamemode - moved to /etc/nixos/system/services/services.nix
-            protonup-qt
+            #protonup-qt - disabled because duplicate on flatpak
             mangohud
             goverlay
             lutris
@@ -59,12 +58,6 @@ in
             pcem
             _86Box
             rpcs3
-            retroarchFull
-            dolphin-emu
-            duckstation
-            mednafen
-            mednaffe
-
 
             # Userspace, GUI, Unstable Pkgs
             #latte-dock
@@ -94,7 +87,6 @@ in
 
             # Userspace, CLI
             flatpak
-
             scrcpy
             neofetch # Soon to be deprecated
             fastfetch
@@ -111,6 +103,8 @@ in
             imagemagick
             onlyoffice-bin_latest
             dupeguru
+
+            #genymotion
         ];
     };
 }

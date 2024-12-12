@@ -9,13 +9,13 @@
 <!--
 <p align=center><img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/753412df-980b-49d3-83ae-fa5af3bcc6ad" title="I Run Nix Btw"></p>
 -->
-- ## Index:
+- ## 📄 Index:
     - <u><b>System / Userspace Configuration</b></u>:
         - [configuration.nix](./etc/nixos/configuration.nix)
     - <u><b>Partition Configuration:</b></u>:
         - [hardware-configuration.nix](./etc/nixos/hardware-configuration.nix)
 
-- ### Repository Todo / Related NixOS Tasks:
+- ## ✅ Repository Todo / Related NixOS Tasks:
   - #### Actual NixOS Setup:
     - [X] VFIO
       - [x] Setup Working `virt-manager` with `libvirt` / `qemu` backend
@@ -33,7 +33,7 @@
   - [ ] Remove [`changed-files/`](nixos-dotfiles/changed-files/) crutch after system is replicatable elsewhere.
   - [ ] Setup `coolercontrol` as system is overheating with current lack of AIO control.
 
-- ## Setting up / Partitioning:
+- ## ✍️ Setting up / Partitioning:
     > Information in this section is based on the following NixOS Wiki Page on Manually installing on BTRFS: https://nixos.wiki/wiki/Btrfs 
     1) #### Create a BTRFS Partition you want to install to; Find it's /dev/<device> name
         - I suggest you use Gparted. This will be automated in the future.
@@ -96,7 +96,7 @@
         - You should see something similar to this:
         <img src="https://github.com/spongeyperson/nixos-dotfiles/assets/28176188/95de4518-393f-4fe0-8a85-7f5ae4acf5b5" title="Your layout should look similar to this, if done correctly.'--color=always' was just enabled to show you the different disk types and make it easier to read.">
 
-- ## Installing NixOS:
+- ## 💾 Installing NixOS:
     1) #### Generate Config + Fstab
         ```sh
         sudo nixos-generate-config --root /mnt
@@ -154,7 +154,7 @@
             options = [ "subvol=@nix" "noatime" "ssd" "space_cache=v2" "compress=zstd:3" ];
           };
         ```
-    - Optional Tunables:
+    - 🎛️ Optional Tunables:
         - In [`hardware-configuration.nix`](etc/nixos/hardware-configuration.nix), <!-- Uncommented, as not sure what the context for this was: add `./user-mounts.nix` for user mounts.--> You may have to configure this file to your needs, as obviously your extra drives will not be avaliable here.
         - You may also want to change the following line(s) in [`global-vars.nix`](etc/nixos/global-vars.nix) near the beginning of the file.
           ```nix
@@ -186,7 +186,14 @@
       - ```nix
         sudo nixos-install --root /mnt
         ```
-  #### <center>Congratz, It's installed. (if you did it right)</center>
+  - <b>NOTE</b>: You may need to add the following nix-channels, depending on the build you grab.
+      > Replace `<version>` with the selected NixOS build version you grabbed.
+      ```
+        home-manager https://github.com/nix-community/home-manager/archive/release-<version>.tar.gz
+        nixos https://nixos.org/channels/nixos-<version>
+        unstable https://nixos.org/channels/nixos-unstable
+      ```
+  #### <center>🎉 Congratz, It's installed. (if you did it right) 🎉</center>
 
 ---
 ###### <p align=center> Note: I do <ins>not</ins> pretend to own any content on this git repository. All contents are copyright of their respective owners. This repository is intented for recreating Linux installs only. Content on this repository is installed <ins>at your own risk</ins>. If you have any legal issue with the content on this repository, please make a github issue and i will create a submodule linking to your project instead.</p>
