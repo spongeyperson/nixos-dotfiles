@@ -76,7 +76,7 @@ in
         spice
         #virt-manager
         dconf
-        gnome3.dconf-editor # needed for saving settings in virt-manager
+        dconf-editor # needed for saving settings in virt-manager
         libguestfs # needed to virt-sparsify qcow2 files
         libvirt
         # Virtualisation, Distrobox

@@ -70,17 +70,17 @@
   # User Mountpoints:
 
   # NTFS Mounts
-  fileSystems."/mnt/Games Drive" =
-    { device = "/dev/disk/by-uuid/E8C2D9F9C2D9CBC6";
-      fsType = "lowntfs-3g"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
-    };
+  #fileSystems."/mnt/Games Drive" =
+  #  { device = "/dev/disk/by-uuid/E8C2D9F9C2D9CBC6";
+  #    fsType = "lowntfs-3g"; 
+  #    options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
+  #  };
 
-  fileSystems."/mnt/Extra Storage" =
-    { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
-      fsType = "lowntfs-3g"; 
-      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
-    };
+  #fileSystems."/mnt/Extra Storage" =
+  #  { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
+  #    fsType = "lowntfs-3g"; 
+  #    options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
+  #  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
