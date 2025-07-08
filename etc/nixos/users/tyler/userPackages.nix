@@ -73,11 +73,11 @@ in
             teamviewer
 
             #rustdesk - Temporarily Disabled due to Rust Compilation Errors
-            filelight
+            kdePackages.filelight
             gnome-online-accounts
-            gnome.gnome-calculator
-            gnome.gnome-calendar
-            gnome.gnome-system-monitor
+            gnome-calculator
+            gnome-calendar
+            gnome-system-monitor
 
             # App Images
             appimage-run
@@ -97,7 +97,7 @@ in
             qbittorrent
 
             # Dropdown terminal
-            yakuake
+            kdePackages.yakuake
             steamtinkerlaunch
             #yuzu-mainline
             imagemagick

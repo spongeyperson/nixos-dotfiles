@@ -11,7 +11,13 @@
     fonts = {
         fontDir.enable = true;
         packages = with pkgs; [
-            nerdfonts
+            nerd-fonts.caskaydia-cove
+            nerd-fonts.caskaydia-mono
+            nerd-fonts.roboto-mono
+            nerd-fonts.noto
+            nerd-fonts.ubuntu
+            nerd-fonts.ubuntu-sans
+            nerd-fonts.ubuntu-mono
             powerline-fonts
             cascadia-code
         ];

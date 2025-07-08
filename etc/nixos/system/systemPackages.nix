@@ -105,15 +105,15 @@
       cmake
 
       # GUI Tools
-      xwaylandvideobridge
+      kdePackages.xwaylandvideobridge
       fsearch
       gparted
       gsmartcontrol
-      gnome.gnome-disk-utility
+      gnome-disk-utility
       kdiff3
       qdirstat
       kdiskmark
-      gnome.zenity
+      zenity
       onedrivegui
       premid
       networkmanagerapplet
