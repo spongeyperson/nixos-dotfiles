@@ -71,30 +71,30 @@
       fsType = "lowntfs-3g"; 
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
     };
-
-  # fileSystems."/mnt/New 970 Evo" =
-  #   { device = "/dev/disk/by-uuid/2D68DA130A20AF61";
-  #     fsType = "ntfs3"; 
-  #     options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "uid=1000" "gid=100" "umask=000" ];
-  #   };
   
-  fileSystems."/mnt/New 970 Evo EXT4" =
-    { device = "/dev/disk/by-uuid/be15d8bb-a24f-4052-9ce9-6abd1c5afd81";
-      fsType = "ext4"; 
-      options = [ "defaults" "nofail" "discard" "data=ordered" ];
+  fileSystems."/mnt/New 970 Evo" =
+    { device = "/dev/disk/by-uuid/9E93EEA6400BCDC3";
+      fsType = "lowntfs-3g"; 
+      options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
     };
-
-  # fileSystems."/mnt/New 970 Evo UDF" =
-  #   { device = "/dev/disk/by-uuid/65d8096f961b552f";
-  #     fsType = "udf"; 
-  #     options = [ "defaults" "nofail" ];
-  #   };
 
   fileSystems."/mnt/SN750 Extra Storage" =
     { device = "/dev/disk/by-uuid/4A31C0BED45DEB5F";
       fsType = "lowntfs-3g"; 
       options = [ "defaults" "nofail" "auto" "discard" "acl" "rw" "user" "exec" "windows_names" "sys_immutable" "hide_hid_files" "uid=1000" "gid=100" "umask=000" ];
     };
+  
+  # fileSystems."/mnt/New 970 Evo EXT4" =
+  #   { device = "/dev/disk/by-uuid/be15d8bb-a24f-4052-9ce9-6abd1c5afd81";
+  #     fsType = "ext4"; 
+  #     options = [ "defaults" "nofail" "discard" "data=ordered" ];
+  #   };
+
+  # fileSystems."/mnt/New 970 Evo UDF" =
+  #   { device = "/dev/disk/by-uuid/65d8096f961b552f";
+  #     fsType = "udf"; 
+  #     options = [ "defaults" "nofail" ];
+  #   };
 
   # CIFS Mount (Samba)
   environment.systemPackages = [ pkgs.cifs-utils ];
