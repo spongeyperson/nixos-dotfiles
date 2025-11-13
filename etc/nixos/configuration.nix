@@ -58,6 +58,8 @@ in
   # Temporary Solution for Enabling Native Wayland Support for Applications
   # This will be moved *eventually*
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.XDG_DATA_DIRS = "${config.environment.sessionVariables.XDG_DATA_DIRS}:/var/lib/flatpak/exports/share:${config.users.users.tyler.home}/.local/share/flatpak/exports/share";
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

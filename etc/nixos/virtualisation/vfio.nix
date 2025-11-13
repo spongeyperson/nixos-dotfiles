@@ -32,7 +32,7 @@ in
         #     options kvmfr static_size_mb=64
         # '';
         kernelParams = [
-            "pci=msi"
+            #"pci=msi" - No longer in kernel? 
             "msi=on"
             "amd_iommu=on"
             "iommu=pt"

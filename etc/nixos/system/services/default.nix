@@ -6,6 +6,7 @@
 }: {
   imports = [
     # File Declarations
+    ./flatpak.nix
     ./services.nix
   ];
 }

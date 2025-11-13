@@ -10,7 +10,6 @@
     # General Services Configuration where they cannot go elsewhere:
     services = {
         openssh.enable = true;
-        flatpak.enable = true;
         fstrim.enable = true;
         teamviewer.enable = true;
 

@@ -52,7 +52,7 @@ in
             lutris
             bottles
             prismlauncher
-            clonehero
+            #clonehero
 
             #Emulators
             pcem
